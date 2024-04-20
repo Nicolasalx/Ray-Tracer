@@ -39,59 +39,29 @@ void Rt::Raytracer::launchRendering()
 {
     Rt::ObjectList world;
 
-    auto ground_material = std::make_shared<Lambertian>(Math::Color01(0.5, 0.5, 0.5));
-    world.add(std::make_shared<Sphere>(Math::Point3D(0,-1000,0), 1000, ground_material));
+    auto material_ground = std::make_shared<Lambertian>(Math::Color01(0.8, 0.8, 0.0));
+    auto material_center = std::make_shared<Lambertian>(Math::Color01(0.1, 0.2, 0.5));
+    auto material_left   = std::make_shared<Dielectric>(1.50);
+    auto material_bubble = std::make_shared<Dielectric>(1.00 / 1.50);
+    auto material_right  = std::make_shared<Metal>(Math::Color01(0.8, 0.6, 0.2), 1.0);
 
-    for (int a = -11; a < 11; a++) {
-        for (int b = -11; b < 11; b++) {
-            auto choose_mat = Rt::Random::getBw01();
-            Math::Point3D center(a + 0.9* Rt::Random::getBw01(), 0.2, b + 0.9*Rt::Random::getBw01());
-
-            if ((center - Math::Point3D(4, 0.2, 0)).length() > 0.9) {
-                std::shared_ptr<IMaterial> sphere_material;
-
-                if (choose_mat < 0.8) {
-                    // diffuse
-                    auto albedo = Math::Color01::random() * Math::Color01::random();
-                    sphere_material = std::make_shared<Lambertian>(albedo);
-                    world.add(std::make_shared<Sphere>(center, 0.2, sphere_material));
-                } else if (choose_mat < 0.95) {
-                    // metal
-                    auto albedo = Math::Color01::random(0.5, 1);
-                    auto fuzz = Rt::Random::get(0, 0.5);
-                    sphere_material = std::make_shared<Metal>(albedo, fuzz);
-                    world.add(std::make_shared<Sphere>(center, 0.2, sphere_material));
-                } else {
-                    // glass
-                    sphere_material = std::make_shared<Dielectric>(1.5);
-                    world.add(std::make_shared<Sphere>(center, 0.2, sphere_material));
-                }
-            }
-        }
-    }
-
-    auto material1 = std::make_shared<Dielectric>(1.5);
-    world.add(std::make_shared<Sphere>(Math::Point3D(0, 1, 0), 1.0, material1));
-
-    auto material2 = std::make_shared<Lambertian>(Math::Color01(0.4, 0.2, 0.1));
-    world.add(std::make_shared<Sphere>(Math::Point3D(-4, 1, 0), 1.0, material2));
-
-    auto material3 = std::make_shared<Metal>(Math::Color01(0.7, 0.6, 0.5), 0.0);
-    world.add(std::make_shared<Sphere>(Math::Point3D(4, 1, 0), 1.0, material3));
-
-    world = Rt::ObjectList(std::make_shared<Rt::BoundingNode>(world));
+    world.add(std::make_shared<Sphere>(Math::Point3D( 0.0, -100.5, -1.0), 100.0, material_ground));
+    world.add(std::make_shared<Sphere>(Math::Point3D( 0.0,    0.0, -1.2),   0.5, material_center));
+    world.add(std::make_shared<Sphere>(Math::Point3D(-1.0,    0.0, -1.0),   0.5, material_left));
+    world.add(std::make_shared<Sphere>(Math::Point3D(-1.0,    0.0, -1.0),   0.4, material_bubble));
+    world.add(std::make_shared<Sphere>(Math::Point3D( 1.0,    0.0, -1.0),   0.5, material_right));
 
     Rt::Camera cam;
 
-    cam.fov = 20;
+    cam.fov = 90;
     cam.image_width = 480;
     cam.image_height = 270;
     cam.samples_per_pixel = 20; // 20 - 100
     cam.max_depth = 10; // 10 - 50
     cam.nb_thread = 32;
 
-    cam.lookfrom = Math::Point3D(13,2,3);
-    cam.lookat   = Math::Point3D(0,0,0);
+    cam.lookfrom = Math::Point3D(-2,2,1);
+    cam.lookat   = Math::Point3D(0,0,-1);
     cam.vup      = Math::Vector3D(0,1,0);
 
     cam.render(world);

@@ -33,8 +33,8 @@ namespace Rt
         Math::Point3D lookat = Math::Point3D(0,0,-1);  // Point camera is looking at
         Math::Vector3D vup = Math::Vector3D(0,1,0);     // Camera-relative "up" direction
 
-        Math::Point3D position = Math::Point3D(0, 0, 0);   // Camera position
-        Math::Vector3D rotation = Math::Vector3D(0, 0, 0); // Camera rotation
+//        Math::Point3D position = Math::Point3D(0, 0, 0);   // Camera position
+//        Math::Vector3D rotation = Math::Vector3D(0, 0, 0); // Camera rotation
 
         void render(const Rt::IObject &world);
 
@@ -57,8 +57,6 @@ namespace Rt
             double focal_length = (lookfrom - lookat).length();
             double viewport_height = 2.0 * std::tan((fov * M_PI / 180.0) / 2.0) * focal_length;
             double viewport_width = viewport_height * (double(image_width)/image_height);
-
-            
 
             // Calculate the u,v,w unit basis vectors for the camera coordinate frame.
             w = (lookfrom - lookat).unit_vector();

@@ -73,6 +73,14 @@ namespace Math
             return res;
         }
 
+        Math::Vector3D operator * (const Math::Vector3D &vec) const
+        {
+            double x = matrix_[0][0] * vec.x() + matrix_[0][1] * vec.y() + matrix_[0][2] * vec.z();
+            double y = matrix_[1][0] * vec.x() + matrix_[1][1] * vec.y() + matrix_[1][2] * vec.z();
+            double z = matrix_[2][0] * vec.x() + matrix_[2][1] * vec.y() + matrix_[2][2] * vec.z();
+            return Math::Vector3D(x, y, z);
+        }
+
         double &operator () (int i, int j)
         {
             return matrix_[i][j];
