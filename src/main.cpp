@@ -42,26 +42,6 @@ std::atomic_bool Rt::Raytracer::end_rendering(false);
 std::size_t Rt::Interface::image_size_x = 480;
 std::size_t Rt::Interface::image_size_y = 270;
 
-void Rt::Raytracer::createObjModel(Rt::ObjectList &world ,const std::string &path)
-{
-    auto left_red     = std::make_shared<Rt::Lambertian>(Math::Color01(1.0, 0.2, 0.2));
-
-    FileObj obj(path);
-    FaceList faceList = obj.getFaceList();
-    for (auto face : faceList) {
-        for (int i = 0; i < face.size() - 2; i++) {
-            std::cout << face[0][0] << " " << face[0][1] << " " << face[0][2] << " ";
-            std::cout << face[i + 1][0] << " " << face[i + 1][1] << " " << face[i + 1][2] << " ";
-            std::cout << face[i + 2][0] << " " << face[i + 2][1] << " " << face[i + 2][2] << " \n";
-            world.add(std::make_shared<Rt::Triangle>(Math::Point3D(face[0][0],face[0][1],face[0][2]),
-            Math::Point3D(face[i + 1][0], face[i + 1][1],face[i + 1][2]), Math::Point3D(face[i + 2][0] ,face[i + 2][1] ,face[i + 2][2]), left_red));
-            // world.add(std::make_shared<Rt::Triangle>(Math::Point3D(0,0, 0),
-            // Math::Point3D(1, 0,0), Math::Point3D(1 ,1, 0), left_red));
-        }
-    }
-    obj.printFaceList();
-}
-
 void Rt::Raytracer::launchRendering()
 {
     Rt::ObjectList world;
@@ -73,7 +53,7 @@ void Rt::Raytracer::launchRendering()
     auto upper_orange = std::make_shared<Rt::Lambertian>(Math::Color01(1.0, 0.5, 0.0));
     auto lower_teal   = std::make_shared<Rt::Lambertian>(Math::Color01(0.2, 0.8, 0.8));
 
-    createObjModel(world, "assets/vaisseau.obj");
+    createObjModel(world, "assets/vaisseau_texturé.obj");
     auto difflight = std::make_shared<Rt::DiffuseLight>(Math::Color01(10,10,10));
     world.add(std::make_shared<Rt::Sphere>(Math::Point3D(0,0,0), 0.3, difflight));
 
@@ -91,11 +71,11 @@ void Rt::Raytracer::launchRendering()
     cam.fov = 90;
     cam.image_width = Rt::Interface::image_size_x;
     cam.image_height = Rt::Interface::image_size_y;
-    cam.samples_per_pixel = 20; // 20 - 100
+    cam.samples_per_pixel = 1; // 20 - 100
     cam.max_depth = 20; // 10 - 50
     cam.nb_thread = 32;
 
-    cam.lookfrom = Math::Point3D(10,5,10);
+    cam.lookfrom = Math::Point3D(10,10,10);
     cam.lookat   = Math::Point3D(0,0,0);
     cam.vup      = Math::Vector3D(0,1,0);
     cam.background = Math::Color01(0.3, 0.3, 0.3);
@@ -104,6 +84,7 @@ void Rt::Raytracer::launchRendering()
 }
 
 int main(int argc, const char *argv[]) {
+
     try {
         Rt::Interface interface(Rt::Interface::image_size_x, Rt::Interface::image_size_y);
 

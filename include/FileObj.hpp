@@ -14,17 +14,25 @@
 #include <vector>
 
 typedef std::vector <std::vector<std::vector <double>>> FaceList;
+typedef std::vector <std::vector<std::vector <double>>> NormalList;
+typedef std::vector <std::vector<std::vector <double>>> TextureList;
 
 class FileObj {
     public:
         FileObj(std::string file_path);
         ~FileObj();
         void printVertexList();
+        void printTextureList();
+        void printNormalList();
         void printFaceList();
         FaceList getFaceList();
     protected:
+        std::vector <std::vector<double>> vertex_texture_list;
+        std::vector <std::vector<double>> vertex_normal_list;
         std::vector <std::vector<double>> vertex_list;
         FaceList face_list;
+        NormalList normal_list;
+        TextureList texture_list;
 };
 
 #endif /* !FILEOBJ_HPP_ */
