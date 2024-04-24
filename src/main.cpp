@@ -30,6 +30,7 @@
 #include "Triangle.hpp"
 #include "DiffuseLight.hpp"
 #include <thread>
+#include <libconfig.h++>
 
 std::size_t Rt::Interface::image_pixel_i = 0;
 sf::Uint8 *Rt::Interface::image_pixel = nullptr;
@@ -78,13 +79,11 @@ void Rt::Raytracer::launchRendering()
     cam.render(world);
 }
 
-int main(int argc, const char *argv[])
-{
+int main(int argc, const char *argv[]) {
     try {
         Rt::Interface interface(Rt::Interface::image_size_x, Rt::Interface::image_size_y);
 
         std::thread render_thread(Rt::Raytracer::launchRendering);
-
         interface.loop();
         Rt::Raytracer::end_rendering = true;
         render_thread.join();
@@ -94,3 +93,4 @@ int main(int argc, const char *argv[])
     }
     return 0;
 }
+
