@@ -15,16 +15,18 @@ namespace Rt
     class SolidColor : public ITexture
     {
     private:
-        Math::Color01 albedo;
+        Math::Color01 albedo_;
 
     public:
-        SolidColor(const Math::Color01 &albedo) : albedo(albedo) {}
+        SolidColor(const Math::Color01 &albedo) : albedo_(albedo) {}
 
-        SolidColor(double red, double green, double blue) : SolidColor(Math::Color01(red, green, blue)) {}
+        SolidColor(double red, double green, double blue) : SolidColor(Math::Color01(red, green, blue))
+        {
+        }
 
         Math::Color01 value(double u, double v, const Math::Point3D &p) const override
         {
-            return albedo;
+            return albedo_;
         }
     };
 }

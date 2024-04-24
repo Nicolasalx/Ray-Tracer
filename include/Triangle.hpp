@@ -15,8 +15,8 @@ namespace Rt
     class Triangle : public Rt::Plane
     {
     public:
-        Triangle(const Math::Point3D &origin, const Math::Vector3D &aa, const Math::Vector3D &ab, std::shared_ptr<Rt::IMaterial> material)
-            : Rt::Plane(origin, aa, ab, material)
+        Triangle(const Math::Point3D &origin, const Math::Point3D &pointA, const Math::Point3D &pointB, std::shared_ptr<Rt::IMaterial> material)
+            : Rt::Plane(origin, pointA - origin, pointB - origin, material)
         {}
         ~Triangle() = default;
 

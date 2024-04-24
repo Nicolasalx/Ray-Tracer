@@ -14,11 +14,8 @@ void Rt::Camera::render(const Rt::IObject &world)
 
     std::vector<std::thread> render_thread;
 
-//    std::cout << "P3\n" << image_width << ' ' << image_height << "\n255\n";
-
     auto render_line = [&](int start_line, int end_line) {
         for (int j = start_line; j < end_line; j++) {
-//            std::clog << std::fixed << std::setprecision(2) << static_cast<double>(j * 100.0 / (image_height - 1)) << " %\n";
             for (int i = 0; i < image_width; i++) {
                 Math::Color01 pixel_color(0, 0, 0);
                 for (int sample = 0; sample < samples_per_pixel; sample++) {
@@ -40,7 +37,7 @@ void Rt::Camera::render(const Rt::IObject &world)
     for (size_t i = 0; i < nb_thread; ++i) {
         render_thread[i].join();
     }
-    // sf::Image result_image;
-    // result_image.create(image_width, image_height, Rt::Interface::image_pixel);
-    // result_image.saveToFile();
+    sf::Image result_image;
+    result_image.create(image_width, image_height, Rt::Interface::image_pixel);
+    result_image.saveToFile("result_image.png");
 }
