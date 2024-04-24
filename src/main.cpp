@@ -24,6 +24,7 @@
 #include "Lambertian.hpp"
 #include "Dielectric.hpp"
 #include "BoundingNode.hpp"
+#include "FileObj.hpp"
 #include <thread>
 #include <libconfig.h++>
 
