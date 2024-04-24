@@ -12,29 +12,18 @@
     #include <string>
     #include <source_location>
     #include <format>
+    #include <iostream>
 
 namespace my::log
 {
     void info(const std::string &msg,
-        std::source_location info = std::source_location::current())
-    {
-        std::cerr << std::format("\033[1m{}:\033[96m{}\033[0;1m: "
-            "\033[96minfo: \033[0m{}\n", info.file_name(), info.line(), msg);
-    }
+        std::source_location info = std::source_location::current());
 
     void warning(const std::string &msg,
-        std::source_location info = std::source_location::current())
-    {
-        std::cerr << std::format("\033[1m{}:\033[96m{}\033[0;1m: "
-            "\033[95mwarning: \033[0m{}\n", info.file_name(), info.line(), msg);
-    }
+        std::source_location info = std::source_location::current());
 
     void error(const std::string &msg,
-        std::source_location info = std::source_location::current())
-    {
-        std::cerr << std::format("\033[1m{}:\033[96m{}\033[0;1m: "
-            "\033[91merror: \033[0m{}\n", info.file_name(), info.line(), msg);
-    }
+        std::source_location info = std::source_location::current());
 }
 
 #endif /* !MY_LOG_HPP_ */

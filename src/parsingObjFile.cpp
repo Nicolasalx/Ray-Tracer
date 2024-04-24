@@ -22,7 +22,7 @@
 
 void Rt::Raytracer::createObjModel(Rt::ObjectList &world ,const std::string &path)
 {
-    auto left_red     = std::make_shared<Rt::Lambertian>(Math::Color01(1.0, 0.2, 0.2));
+    auto left_red     = std::make_shared<Rt::Lambertian>(Math::Color01(1, 0, 0));
 
     FileObj obj(path);
     FaceList faceList = obj.getFaceList();
