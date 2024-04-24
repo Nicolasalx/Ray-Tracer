@@ -22,6 +22,7 @@ namespace Rt
         ~Raytracer() = default;
 
         static void launchRendering();
+        static void createObjModel(Rt::ObjectList &world ,const std::string &path);
 
         static std::mutex mutex;
         static std::atomic_bool end_rendering;
