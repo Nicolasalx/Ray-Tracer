@@ -16,6 +16,15 @@ namespace Rt
 {
     class BoundingBox
     {
+    private:
+        void pad_to_minimums()
+        {
+            double delta = 0.0001;
+            if (x.size() < delta) x = x.expand(delta);
+            if (y.size() < delta) y = y.expand(delta);
+            if (z.size() < delta) z = z.expand(delta);
+        }
+
     public:
         Rt::Interval x;
         Rt::Interval y;
@@ -23,12 +32,16 @@ namespace Rt
 
         BoundingBox() = default;
         BoundingBox(const Rt::Interval &x_, const Rt::Interval &y_, const Interval &z_)
-            : x(x_), y(y_), z(z_) {}
+            : x(x_), y(y_), z(z_)
+        {
+            pad_to_minimums();
+        }
         BoundingBox(const Math::Point3D &a, const Math::Point3D &b)
         {
             x = (a[0] <= b[0]) ? Rt::Interval(a[0], b[0]) : Rt::Interval(b[0], a[0]);
             y = (a[1] <= b[1]) ? Rt::Interval(a[1], b[1]) : Rt::Interval(b[1], a[1]);
             z = (a[2] <= b[2]) ? Rt::Interval(a[2], b[2]) : Rt::Interval(b[2], a[2]);
+            pad_to_minimums();
         }
         BoundingBox(const Rt::BoundingBox &box0, const Rt::BoundingBox &box1)
         {

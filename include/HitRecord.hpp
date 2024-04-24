@@ -22,6 +22,8 @@ namespace Rt
         Math::Point3D pos;
         Math::Vector3D normal;
         double t;
+        double u;
+        double v;
         bool front_face;
         std::shared_ptr<Rt::IMaterial> material;
 

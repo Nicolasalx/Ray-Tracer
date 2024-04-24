@@ -40,4 +40,7 @@ void Rt::Camera::render(const Rt::IObject &world)
     for (size_t i = 0; i < nb_thread; ++i) {
         render_thread[i].join();
     }
+    // sf::Image result_image;
+    // result_image.create(image_width, image_height, Rt::Interface::image_pixel);
+    // result_image.saveToFile();
 }

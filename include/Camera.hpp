@@ -22,16 +22,16 @@ namespace Rt
         Camera() = default;
         ~Camera() = default;
 
-        //double aspect_ratio = 1.0; // Ratio of image width over height
-        int image_width = 1920; // Rendered image width in pixel count
-        int image_height = 1080;   // Rendered image height
+        int image_width = 1920;
+        int image_height = 1080;
         double fov = 90;
         int samples_per_pixel = 10;   // Count of random samples for each pixel
         int max_depth = 10;   // Maximum number of ray bounces into scene
         std::size_t nb_thread = 16;
-        Math::Point3D lookfrom = Math::Point3D(0,0,0);   // Point camera is looking from
-        Math::Point3D lookat = Math::Point3D(0,0,-1);  // Point camera is looking at
-        Math::Vector3D vup = Math::Vector3D(0,1,0);     // Camera-relative "up" direction
+        Math::Point3D lookfrom = Math::Point3D(0,0,0);
+        Math::Point3D lookat = Math::Point3D(0,0,-1);
+        Math::Vector3D vup = Math::Vector3D(0,1,0);
+        Math::Color01 background;               // Scene background color
 
 //        Math::Point3D position = Math::Point3D(0, 0, 0);   // Camera position
 //        Math::Vector3D rotation = Math::Vector3D(0, 0, 0); // Camera rotation
@@ -106,17 +106,19 @@ namespace Rt
                 return Math::Color01(0, 0, 0);
             }
 
-            if (world.hit(ray, Rt::Interval(0.001, std::numeric_limits<double>::infinity()), rec)) {
-                Rt::Ray scattered;
-                Math::Color01 attenuation;
-                if (rec.material->scatter(ray, rec, attenuation, scattered)) {
-                    return attenuation * ray_color(scattered, depth-1, world);
-                }
-                return Math::Color01(0, 0, 0);
+            if (!world.hit(ray, Rt::Interval(0.001, std::numeric_limits<double>::infinity()), rec)) {
+                return background;
             }
 
-            double a = 0.5 * (ray.getDirection().unit_vector().y() + 1.0);
-            return (1.0 - a) * Math::Color01(1, 1, 1) + a * Math::Color01(0.5, 0.7, 1.0);
+            Rt::Ray scattered;
+            Math::Color01 attenuation;
+            Math::Color01 emmited = rec.material->emitted(rec.u, rec.v, rec.pos);
+
+            if (!rec.material->scatter(ray, rec, attenuation, scattered)) {
+                return emmited;
+            }
+
+            return emmited + attenuation * ray_color(scattered, depth - 1, world);
         }
     };
 }

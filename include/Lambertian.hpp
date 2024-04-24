@@ -11,16 +11,19 @@
     #include "Color01.hpp"
     #include "Vector3D.hpp"
     #include "AMaterial.hpp"
+    #include "ITexture.hpp"
+    #include "SolidColor.hpp"
 
 namespace Rt
 {
     class Lambertian : public AMaterial
     {
     private:
-        Math::Color01 whiteness_;
+        std::shared_ptr<Rt::ITexture> texture_;
 
     public:
-        Lambertian(const Math::Color01 whiteness) : whiteness_(whiteness) {}
+        Lambertian(const Math::Color01 albedo) : texture_(std::make_shared<Rt::SolidColor>(albedo)) {}
+        Lambertian(std::shared_ptr<ITexture> texture) : texture_(texture) {}
         ~Lambertian() = default;
     
         bool scatter(const Rt::Ray &, const Rt::HitRecord &rec,
@@ -32,7 +35,7 @@ namespace Rt
                 scatter_direction = rec.normal;
             }
             scattered = Rt::Ray(rec.pos, scatter_direction);
-            attenuation = this->whiteness_;
+            attenuation = this->texture_->value(rec.u, rec.v, rec.pos);
             return true;
         }
     };

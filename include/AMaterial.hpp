@@ -22,6 +22,11 @@ namespace Rt
         {
             return false;
         }
+
+        Math::Color01 emitted(double, double, const Math::Point3D &) const override
+        {
+            return Math::Color01(0, 0, 0);
+        }
     };
 }
 
