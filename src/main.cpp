@@ -23,8 +23,7 @@
 #include "Metal.hpp"
 #include "Lambertian.hpp"
 #include "Dielectric.hpp"
-#include "BoundingNode.hpp"
-#include "TextureChecker.hpp"
+#include "ChessTexture.hpp"
 #include "ImageTexture.hpp"
 #include "Plane.hpp"
 #include "Triangle.hpp"
@@ -33,22 +32,16 @@
 #include <thread>
 #include <libconfig.h++>
 
-std::size_t Rt::Interface::image_pixel_i = 0;
-sf::Uint8 *Rt::Interface::image_pixel = nullptr;
-
 std::mutex Rt::Raytracer::mutex;
 std::atomic_bool Rt::Raytracer::end_rendering(false);
-
-std::size_t Rt::Interface::image_size_x = 480;
-std::size_t Rt::Interface::image_size_y = 270;
 
 void Rt::Raytracer::launchRendering()
 {
     Rt::ObjectList world;
 
-    auto red   = std::make_shared<Rt::Lambertian>(Math::Color01(0.65, 0.05, 0.05));
+    auto red   = std::make_shared<Rt::Lambertian>(Math::Color01(1, 0, 0));
     auto white = std::make_shared<Rt::Lambertian>(Math::Color01(0.73, 0.73, 0.73));
-    auto green = std::make_shared<Rt::Lambertian>(Math::Color01(0.12, 0.45, 0.15));
+    auto green = std::make_shared<Rt::Lambertian>(Math::Color01(0, 1, 0));
     auto light = std::make_shared<Rt::DiffuseLight>(Math::Color01(15, 15, 15));
 
     world.add(std::make_shared<Rt::Plane>(Math::Point3D(555,0,0), Math::Vector3D(0,555,0), Math::Vector3D(0,0,555), green));
@@ -63,8 +56,8 @@ void Rt::Raytracer::launchRendering()
     cam.fov = 40;
     cam.image_width = Rt::Interface::image_size_x;
     cam.image_height = Rt::Interface::image_size_y;
-    cam.samples_per_pixel = 50; // 20 - 100
-    cam.max_depth = 10; // 10 - 50
+    cam.samples_per_pixel = 100; // 20 - 100
+    cam.max_depth = 20; // 10 - 50
     cam.nb_thread = 32;
 
     cam.lookfrom = Math::Point3D(278,278,-800);
@@ -75,10 +68,11 @@ void Rt::Raytracer::launchRendering()
     cam.render(world);
 }
 
-int main(int argc, const char *argv[]) {
-
+int main(int argc, const char *argv[])
+{
+    std::srand(std::time(nullptr));
     try {
-        Rt::Interface interface(Rt::Interface::image_size_x, Rt::Interface::image_size_y);
+        Rt::Interface interface(1920 / 8, 1080 / 8);
 
         std::thread render_thread(Rt::Raytracer::launchRendering);
         interface.loop();
@@ -90,4 +84,3 @@ int main(int argc, const char *argv[]) {
     }
     return 0;
 }
-

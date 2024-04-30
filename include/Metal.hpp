@@ -27,7 +27,7 @@ namespace Rt
             : diffusion_(diffusion), reflection_(reflection < 1 ? reflection : 1) {}
         ~Metal() = default;
 
-        bool scatter(const Rt::Ray &ray_in, const Rt::HitRecord &rec,
+        bool scatter(const Rt::Ray &ray_in, const Rt::HitData &rec,
             Math::Color01 &attenuation, Rt::Ray &scattered) const override
         {
             Math::Vector3D reflected = ray_in.getDirection().reflect(rec.normal);

@@ -29,7 +29,7 @@ namespace Rt
         Dielectric(double refraction_index) : refraction_index_(refraction_index) {}
         ~Dielectric() = default;
 
-        bool scatter(const Rt::Ray &ray_in, const Rt::HitRecord &rec,
+        bool scatter(const Rt::Ray &ray_in, const Rt::HitData &rec,
             Math::Color01 & attenuation, Rt::Ray &scattered) const override
         {
             attenuation = Math::Color01(1.0, 1.0, 1.0);

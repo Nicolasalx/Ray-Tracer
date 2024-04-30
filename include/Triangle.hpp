@@ -20,7 +20,7 @@ namespace Rt
         {}
         ~Triangle() = default;
 
-        bool is_interior(double a, double b, Rt::HitRecord &rec) const override
+        bool is_interior(double a, double b, Rt::HitData &rec) const override
         {
             if ((a < 0) || (b < 0) || (a + b > 1))
                 return false;

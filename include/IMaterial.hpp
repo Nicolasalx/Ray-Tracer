@@ -9,19 +9,19 @@
     #define MATERIAL_HPP_
 
     #include "Ray.hpp"
-    #include "HitRecord.hpp"
+    #include "HitData.hpp"
     #include "Color01.hpp"
 
 namespace Rt
 {
-    struct HitRecord;
+    struct HitData;
 
     class IMaterial
     {
     public:
         virtual ~IMaterial() = default;
 
-        virtual bool scatter(const Rt::Ray &ray_in, const Rt::HitRecord &rec,
+        virtual bool scatter(const Rt::Ray &ray_in, const Rt::HitData &rec,
             Math::Color01 &attenuation, Rt::Ray &scattered) const = 0;
         virtual Math::Color01 emitted(double u, double v, const Math::Point3D &p) const = 0;
     };

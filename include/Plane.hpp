@@ -20,7 +20,6 @@ namespace Rt
         Math::Vector3D v_;
         Math::Vector3D w_;
         std::shared_ptr<Rt::IMaterial> material_;
-        Rt::BoundingBox bounding_box_;
         Math::Vector3D normal_;
         double d_;
 
@@ -32,22 +31,9 @@ namespace Rt
             normal_ = n.unit_vector();
             d_ = normal_.dot(pos_);
             w_ = n / n.dot(n);
-            set_bounding_box();
         }
 
-        virtual void set_bounding_box()
-        {
-            auto bbox_diagonal1 = Rt::BoundingBox(pos_, pos_ + u_ + v_);
-            auto bbox_diagonal2 = Rt::BoundingBox(pos_ + u_, pos_ + v_);
-            bounding_box_ = Rt::BoundingBox(bbox_diagonal1, bbox_diagonal2);
-        }
-
-        Rt::BoundingBox getBoundingBox() const override
-        {
-            return bounding_box_;
-        }
-
-        bool hit(const Rt::Ray &ray, Rt::Interval ray_t, Rt::HitRecord &rec) const override
+        bool hit(const Rt::Ray &ray, Rt::Interval ray_t, Rt::HitData &rec) const override
         {
              auto denom = normal_.dot(ray.getDirection());
 
@@ -76,7 +62,7 @@ namespace Rt
             return true;
         }
 
-        virtual bool is_interior(double a, double b, Rt::HitRecord &rec) const
+        virtual bool is_interior(double a, double b, Rt::HitData &rec) const
         {
             Rt::Interval unit_interval = Rt::Interval(0, 1);
             // Given the hit point in plane coordinates, return false if it is outside the

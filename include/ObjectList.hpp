@@ -16,9 +16,6 @@ namespace Rt
 {
     class ObjectList : public IObject
     {
-    private:
-        Rt::BoundingBox bounding_box_;
-
     public:
         std::vector<std::shared_ptr<Rt::IObject>> objects;
 
@@ -26,7 +23,6 @@ namespace Rt
         ObjectList(std::shared_ptr<Rt::IObject> object)
         {
             add(object);
-            bounding_box_ = Rt::BoundingBox(bounding_box_, object->getBoundingBox());
         }
 
         void clear()
@@ -39,9 +35,9 @@ namespace Rt
             objects.push_back(object);
         }
 
-        bool hit(const Rt::Ray &ray, Rt::Interval ray_t, Rt::HitRecord &rec) const override
+        bool hit(const Rt::Ray &ray, Rt::Interval ray_t, Rt::HitData &rec) const override
         {
-            Rt::HitRecord temp_rec;
+            Rt::HitData temp_rec;
             bool hit_anything = false;
             auto closest_so_far = ray_t.max;
 
@@ -54,11 +50,6 @@ namespace Rt
             }
 
             return hit_anything;
-        }
-
-        Rt::BoundingBox getBoundingBox() const override
-        {
-            return bounding_box_;
         }
     };
 }

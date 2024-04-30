@@ -48,15 +48,14 @@ namespace Rt
             return image_.getSize().y;
         }
 
-        Math::Color01 getPixelColor(int x, int y) const
+        Math::Color01 getPixelColor(std::size_t x, std::size_t y) const
         {
-            if (x >= 0 && x < image_.getSize().x && y >= 0 && y < image_.getSize().y) {
+            if (x < image_.getSize().x && y < image_.getSize().y) {
                 sf::Color color = image_.getPixel(x, y);
-//                my::log::info("r: " + std::to_string(color.r) + ", g:" + std::to_string(color.g) + ", b:" + std::to_string(color.b));
                 return Math::Color01(color.r / 255.0, color.g / 255.0, color.b / 255.0);
             } else {
                 my::log::warning("Invalid pixel coordinates: (" + std::to_string(x) + ", " + std::to_string(y) + ")");
-                return Math::Color01(); // Return black for out-of-bounds coordinates
+                return Math::Color01();
             }
         }
     };
