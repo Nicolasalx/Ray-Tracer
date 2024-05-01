@@ -1,0 +1,44 @@
+camera:
+{
+    resolution = { x = 1920; y = 1080; };
+    position = { x = 0; y = -100; z = 20; };
+    fov = 72.0;
+    nb_thread = 32;
+    max_depth = 10;
+    samples_per_pixel = 10;
+    look_from = { x = 0; y = 0; z = 0 };
+    look_at = { x = 0; y = 0; z = -1 };
+    vup = { x = 0; y = 1; z = 0 };
+    background = { x = 0; y = 0; z = 0 };
+};
+
+materials:
+{
+    listMaterials = (
+        { materialName = "metal"; color = { r = 255; g = 64; b = 64; }; reflection = 10.0; },
+        { materialName = "lambertian"; color = { r = 255; g = 64; b = 64; }; },
+        { materialName = "dielectric"; reflection = 10.0; },
+        { materialName = "diffuseLight"; color = { r = 255; g = 64; b = 64; }; } 
+    );
+};
+
+primitives:
+{
+    spheres = (
+        { center = { x = 255; y = 64; z = 64; }; radius = 10.0; material = "metal"; },
+        { center = { x = 255; y = 64; z = 64; }; radius = 15.0; material = "lambertian"; }
+    );
+    triangles = (
+        { origin = { x = 255; y = 64; z = 64; }; pointA = { x = 255; y = 64; z = 64; }; pointB = { x = 255; y = 64; z = 64; }; material = "metal"; }
+    );
+    planes = (
+        { pos = { x = 255; y = 64; z = 64; }; u = { x = 255; y = 64; z = 64; }; v = { x = 255; y = 64; z = 64; }; material = "dielectric"; }
+    );
+};
+
+lights:
+{
+    points = (
+        { origin = { x = 255; y = 64; z = 64; }; width = { x = 255; y = 64; z = 64; }; height = { x = 255; y = 64; z = 64; }; material = "diffuseLight"; }
+    );
+}

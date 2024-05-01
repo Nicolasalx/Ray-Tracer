@@ -16,12 +16,14 @@
 
 namespace Rt
 {
+    class Camera;
+
     class Raytracer
     {
     public:
         ~Raytracer() = default;
 
-        static void launchRendering();
+        static void launchRendering(Rt::ObjectList &world, Rt::Camera &camera);
         static void createObjModel(Rt::ObjectList &world ,const std::string &path);
 
         static std::mutex mutex;
