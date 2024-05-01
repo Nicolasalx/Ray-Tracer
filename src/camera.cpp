@@ -82,7 +82,7 @@ Rt::Ray Rt::Camera::get_ray(int i, int j) const
         + ((j + offset.y()) * pixel_delta_v);
 
     auto ray_origin = center;
-    auto ray_direction = pixel_sample - ray_origin;
+    auto ray_direction = (pixel_sample - ray_origin).unit_vector();
 
     return Rt::Ray(ray_origin, ray_direction);
 }

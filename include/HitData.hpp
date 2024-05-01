@@ -5,8 +5,8 @@
 ** HitData
 */
 
-#ifndef HITRECORD_HPP_
-    #define HITRECORD_HPP_
+#ifndef HITDATA_HPP_
+    #define HITDATA_HPP_
 
     #include "Vector3D.hpp"
     #include "Ray.hpp"
@@ -38,4 +38,4 @@ namespace Rt
     };
 }
 
-#endif /* !HITRECORD_HPP_ */
+#endif /* !HITDATA_HPP_ */

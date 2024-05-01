@@ -34,20 +34,19 @@ namespace Rt
         {
         }
 
-        bool hit(const Rt::Ray &r, Rt::Interval ray_t, Rt::HitData &rec) const override
+        bool hit(const Rt::Ray &ray, Rt::Interval ray_t, Rt::HitData &rec) const override
         {
-            Math::Vector3D oc = center_ - r.getOrigin();
-            auto a = r.getDirection().length_squared();
-            auto h = r.getDirection().dot(oc);
+            Math::Vector3D oc = center_ - ray.getOrigin();
+            auto a = ray.getDirection().length_squared();
+            auto h = ray.getDirection().dot(oc);
             auto c = oc.length_squared() - radius_ * radius_;
 
             auto discriminant = h*h - a*c;
             if (discriminant < 0)
                 return false;
 
-            auto sqrtd = sqrt(discriminant);
+            auto sqrtd = std::sqrt(discriminant);
 
-            // Find the nearest root that lies in the acceptable range.
             auto root = (h - sqrtd) / a;
             if (!ray_t.surrounds(root)) {
                 root = (h + sqrtd) / a;
@@ -56,9 +55,9 @@ namespace Rt
             }
 
             rec.t = root;
-            rec.pos = r.at(rec.t);
+            rec.pos = ray.at(rec.t);
             Math::Vector3D outward_normal = (rec.pos - center_) / radius_;
-            rec.set_face_normal(r, outward_normal);
+            rec.set_face_normal(ray, outward_normal);
             this->get_sphere_uv(outward_normal, rec.u, rec.v);
             rec.material = this->material_;
 
