@@ -27,37 +27,15 @@ namespace Rt
         }
         ~Interval() = default;
 
-        double size() const
-        {
-            return max - min;
-        }
+        double size() const;
 
-        bool contains(double x) const
-        {
-            return min <= x && x <= max;
-        }
+        bool contains(double x) const;
 
-        bool surrounds(double x) const
-        {
-            return min < x && x < max;
-        }
+        bool surrounds(double x) const;
 
-        double clamp(double x) const
-        {
-            if (x < min) {
-                return min;
-            }
-            if (x > max) {
-                return max;
-            }
-            return x;
-        }
+        double clamp(double x) const;
 
-        Interval expand(double delta) const
-        {
-            double padding = delta / 2.0;
-            return Interval(min - padding, max + padding);
-        }
+        Interval expand(double delta) const;
 
         static const Interval empty, universe;
     };
