@@ -17,15 +17,9 @@ namespace Rt
     public:
         ~Random() = default;
 
-        static double getBw01()
-        {
-            return std::rand() / (RAND_MAX + 1.0);
-        }
+        static double getBw01();
 
-        static double get(double min, double max)
-        {
-            return min + (max - min) * getBw01();
-        }
+        static double get(double min, double max);
     };
 }
 

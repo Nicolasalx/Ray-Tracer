@@ -31,33 +31,13 @@ namespace Rt
         }
         ~ImageLoader() = default;
 
-        void loadImage(const std::string &image_path)
-        {
-            if (!image_.loadFromFile(image_path)) {
-                throw my::tracked_exception("Failed to load image: " + image_path);
-            }
-        }
+        void loadImage(const std::string &image_path);
 
-        std::size_t getSizeX() const
-        {
-            return image_.getSize().x;
-        }
+        std::size_t getSizeX() const;
 
-        std::size_t getSizeY() const
-        {
-            return image_.getSize().y;
-        }
+        std::size_t getSizeY() const;
 
-        Math::Color01 getPixelColor(std::size_t x, std::size_t y) const
-        {
-            if (x < image_.getSize().x && y < image_.getSize().y) {
-                sf::Color color = image_.getPixel(x, y);
-                return Math::Color01(color.r / 255.0, color.g / 255.0, color.b / 255.0);
-            } else {
-                my::log::warning("Invalid pixel coordinates: (" + std::to_string(x) + ", " + std::to_string(y) + ")");
-                return Math::Color01();
-            }
-        }
+        Math::Color01 getPixelColor(std::size_t x, std::size_t y) const;
     };
 }
 

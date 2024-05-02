@@ -24,10 +24,7 @@ namespace Rt
         {
         }
 
-        Math::Color01 value(double, double, const Math::Point3D &) const override
-        {
-            return albedo_;
-        }
+        Math::Color01 value(double, double, const Math::Point3D &) const override;
     };
 }
 
