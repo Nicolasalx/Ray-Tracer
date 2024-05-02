@@ -25,18 +25,12 @@ namespace Rt
             : origin_(origin), direction_(direction) {}
         ~Ray() = default;
 
-        const Math::Point3D &getOrigin() const { return origin_; }
-        const Math::Vector3D &getDirection() const { return direction_; }
+        const Math::Point3D &getOrigin() const;
+        const Math::Vector3D &getDirection() const;
 
-        Math::Point3D at(double t) const
-        {
-            return origin_ + direction_ * t;
-        }
+        Math::Point3D at(double t) const;
 
-        Rt::Ray rotate(const Math::Matrix3D &rotation_matrix) const
-        {
-            return Rt::Ray(this->origin_.rotate(rotation_matrix), this->direction_.rotate(rotation_matrix));
-        }
+        Rt::Ray rotate(const Math::Matrix3D &rotation_matrix) const;
     };
 }
 
