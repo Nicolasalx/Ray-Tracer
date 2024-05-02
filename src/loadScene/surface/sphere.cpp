@@ -19,15 +19,25 @@ void Rt::LoadScene::analyseOneSphere(const libconfig::Setting &currentSphere, Rt
     sphere.lookupValue("material", materialName);
     sphere.lookupValue("radius", radius);
     std::shared_ptr<Rt::IMaterial> material;
-    chooseMaterialType(material);
+    
+    std::cout << "------------------------------------------------------\n";
+    std::cout << "New Sphere:\n";
+    std::cout << "Point Pos: " << pointOrigin.x() << " / " << pointOrigin.y() << " / " << pointOrigin.z() << "\n";
+    std::cout << "Radius: " << radius << "\n";
+    chooseMaterialType(material, materialName);
+    std::cout << "------------------------------------------------------\n";
+
     world.add(std::make_shared<Rt::Sphere>(pointOrigin, radius, material));
 }
 
-void Rt::LoadScene::parseAllSphere(libconfig::Config &cfg, const libconfig::Setting &primitivesSettings, Rt::ObjectList &world)
+void Rt::LoadScene::parseAllSphere(const libconfig::Setting &primitivesSettings, Rt::ObjectList &world)
 {
-    const libconfig::Setting &listSpheres = primitivesSettings.lookup("spheres");
-
-    for (int i = 0; i < listSpheres.getLength(); ++i) {
-        analyseOneSphere(listSpheres[i], world);
+    try {
+        libconfig::Setting &listSpheres = primitivesSettings.lookup("spheres");
+        for (int i = 0; i < listSpheres.getLength(); ++i) {
+            analyseOneSphere(listSpheres[i], world);
+        }
+    } catch(const std::exception &) {
+        return;
     }
 }

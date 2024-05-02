@@ -15,30 +15,347 @@ camera:
 materials:
 {
     listMaterials = (
-        { materialName = "metal"; color = { r = 255; g = 64; b = 64; }; reflection = 10.0; },
-        { materialName = "lambertian"; color = { r = 255; g = 64; b = 64; }; },
-        { materialName = "dielectric"; reflection = 10.0; },
-        { materialName = "diffuseLight"; color = { r = 255; g = 64; b = 64; }; } 
+        { materialName = "lambertian_red"; color = { r = 255; g = 0; b = 0; }; },
+        { materialName = "lambertian_white"; color = { r = 186; g = 51; b = 186; }; },
+        { materialName = "lambertian_green"; color = { r = 0; g = 255; b = 0; }; },
+        { materialName = "diffuseLight"; color = { r = 255; g = 255; b = 255; }; }
+    );
+};
+
+materials:
+{
+    listMaterials = (
+        { materialName = "lambertian_red"; color = { r = 255; g = 0; b = 0; }; },
+        { materialName = "lambertian_white"; color = { r = 186; g = 51; b = 186; }; },
+        { materialName = "lambertian_green"; color = { r = 0; g = 255; b = 0; }; },
+        { materialName = "diffuseLight"; color = { r = 255; g = 255; b = 255; }; }
+    );
+};
+
+materials:
+{
+    listMaterials = (
+        { materialName = "lambertian_red"; color = { r = 255; g = 0; b = 0; }; },
+        { materialName = "lambertian_white"; color = { r = 186; g = 51; b = 186; }; },
+        { materialName = "lambertian_green"; color = { r = 0; g = 255; b = 0; }; },
+        { materialName = "diffuseLight"; color = { r = 255; g = 255; b = 255; }; }
+    );
+};
+
+materials:
+{
+    listMaterials = (
+        { materialName = "lambertian_red"; color = { r = 255; g = 0; b = 0; }; },
+        { materialName = "lambertian_white"; color = { r = 186; g = 51; b = 186; }; },
+        { materialName = "lambertian_green"; color = { r = 0; g = 255; b = 0; }; },
+        { materialName = "diffuseLight"; color = { r = 255; g = 255; b = 255; }; }
+    );
+};
+
+materials:
+{
+    listMaterials = (
+        { materialName = "lambertian_red"; color = { r = 255; g = 0; b = 0; }; },
+        { materialName = "lambertian_white"; color = { r = 186; g = 51; b = 186; }; },
+        { materialName = "lambertian_green"; color = { r = 0; g = 255; b = 0; }; },
+        { materialName = "diffuseLight"; color = { r = 255; g = 255; b = 255; }; }
+    );
+};
+
+materials:
+{
+    listMaterials = (
+        { materialName = "lambertian_red"; color = { r = 255; g = 0; b = 0; }; },
+        { materialName = "lambertian_white"; color = { r = 186; g = 51; b = 186; }; },
+        { materialName = "lambertian_green"; color = { r = 0; g = 255; b = 0; }; },
+        { materialName = "diffuseLight"; color = { r = 255; g = 255; b = 255; }; }
+    );
+};
+
+materials:
+{
+    listMaterials = (
+        { materialName = "lambertian_red"; color = { r = 255; g = 0; b = 0; }; },
+        { materialName = "lambertian_white"; color = { r = 186; g = 51; b = 186; }; },
+        { materialName = "lambertian_green"; color = { r = 0; g = 255; b = 0; }; },
+        { materialName = "diffuseLight"; color = { r = 255; g = 255; b = 255; }; }
+    );
+};
+
+materials:
+{
+    listMaterials = (
+        { materialName = "lambertian_red"; color = { r = 255; g = 0; b = 0; }; },
+        { materialName = "lambertian_white"; color = { r = 186; g = 51; b = 186; }; },
+        { materialName = "lambertian_green"; color = { r = 0; g = 255; b = 0; }; },
+        { materialName = "diffuseLight"; color = { r = 255; g = 255; b = 255; }; }
+    );
+};
+
+materials:
+{
+    listMaterials = (
+        { materialName = "lambertian_red"; color = { r = 255; g = 0; b = 0; }; },
+        { materialName = "lambertian_white"; color = { r = 186; g = 51; b = 186; }; },
+        { materialName = "lambertian_green"; color = { r = 0; g = 255; b = 0; }; },
+        { materialName = "diffuseLight"; color = { r = 255; g = 255; b = 255; }; }
+    );
+};
+
+materials:
+{
+    listMaterials = (
+        { materialName = "lambertian_red"; color = { r = 255; g = 0; b = 0; }; },
+        { materialName = "lambertian_white"; color = { r = 186; g = 51; b = 186; }; },
+        { materialName = "lambertian_green"; color = { r = 0; g = 255; b = 0; }; },
+        { materialName = "diffuseLight"; color = { r = 255; g = 255; b = 255; }; }
+    );
+};
+
+materials:
+{
+    listMaterials = (
+        { materialName = "lambertian_red"; color = { r = 255; g = 0; b = 0; }; },
+        { materialName = "lambertian_white"; color = { r = 186; g = 51; b = 186; }; },
+        { materialName = "lambertian_green"; color = { r = 0; g = 255; b = 0; }; },
+        { materialName = "diffuseLight"; color = { r = 255; g = 255; b = 255; }; }
+    );
+};
+
+materials:
+{
+    listMaterials = (
+        { materialName = "lambertian_red"; color = { r = 255; g = 0; b = 0; }; },
+        { materialName = "lambertian_white"; color = { r = 186; g = 51; b = 186; }; },
+        { materialName = "lambertian_green"; color = { r = 0; g = 255; b = 0; }; },
+        { materialName = "diffuseLight"; color = { r = 255; g = 255; b = 255; }; }
+    );
+};
+
+materials:
+{
+    listMaterials = (
+        { materialName = "lambertian_red"; color = { r = 255; g = 0; b = 0; }; },
+        { materialName = "lambertian_white"; color = { r = 186; g = 51; b = 186; }; },
+        { materialName = "lambertian_green"; color = { r = 0; g = 255; b = 0; }; },
+        { materialName = "diffuseLight"; color = { r = 255; g = 255; b = 255; }; }
+    );
+};
+
+materials:
+{
+    listMaterials = (
+        { materialName = "lambertian_red"; color = { r = 255; g = 0; b = 0; }; },
+        { materialName = "lambertian_white"; color = { r = 186; g = 51; b = 186; }; },
+        { materialName = "lambertian_green"; color = { r = 0; g = 255; b = 0; }; },
+        { materialName = "diffuseLight"; color = { r = 255; g = 255; b = 255; }; }
+    );
+};
+
+materials:
+{
+    listMaterials = (
+        { materialName = "lambertian_red"; color = { r = 255; g = 0; b = 0; }; },
+        { materialName = "lambertian_white"; color = { r = 186; g = 51; b = 186; }; },
+        { materialName = "lambertian_green"; color = { r = 0; g = 255; b = 0; }; },
+        { materialName = "diffuseLight"; color = { r = 255; g = 255; b = 255; }; }
+    );
+};
+
+materials:
+{
+    listMaterials = (
+        { materialName = "lambertian_red"; color = { r = 255; g = 0; b = 0; }; },
+        { materialName = "lambertian_white"; color = { r = 186; g = 51; b = 186; }; },
+        { materialName = "lambertian_green"; color = { r = 0; g = 255; b = 0; }; },
+        { materialName = "diffuseLight"; color = { r = 255; g = 255; b = 255; }; }
+    );
+};
+
+materials:
+{
+    listMaterials = (
+        { materialName = "lambertian_red"; color = { r = 255; g = 0; b = 0; }; },
+        { materialName = "lambertian_white"; color = { r = 186; g = 51; b = 186; }; },
+        { materialName = "lambertian_green"; color = { r = 0; g = 255; b = 0; }; },
+        { materialName = "diffuseLight"; color = { r = 255; g = 255; b = 255; }; }
+    );
+};
+
+materials:
+{
+    listMaterials = (
+        { materialName = "lambertian_red"; color = { r = 255; g = 0; b = 0; }; },
+        { materialName = "lambertian_white"; color = { r = 186; g = 51; b = 186; }; },
+        { materialName = "lambertian_green"; color = { r = 0; g = 255; b = 0; }; },
+        { materialName = "diffuseLight"; color = { r = 255; g = 255; b = 255; }; }
+    );
+};
+
+materials:
+{
+    listMaterials = (
+        { materialName = "lambertian_red"; color = { r = 255; g = 0; b = 0; }; },
+        { materialName = "lambertian_white"; color = { r = 186; g = 51; b = 186; }; },
+        { materialName = "lambertian_green"; color = { r = 0; g = 255; b = 0; }; },
+        { materialName = "diffuseLight"; color = { r = 255; g = 255; b = 255; }; }
+    );
+};
+
+materials:
+{
+    listMaterials = (
+        { materialName = "lambertian_red"; color = { r = 255; g = 0; b = 0; }; },
+        { materialName = "lambertian_white"; color = { r = 186; g = 51; b = 186; }; },
+        { materialName = "lambertian_green"; color = { r = 0; g = 255; b = 0; }; },
+        { materialName = "diffuseLight"; color = { r = 255; g = 255; b = 255; }; }
+    );
+};
+
+materials:
+{
+    listMaterials = (
+        { materialName = "lambertian_red"; color = { r = 255; g = 0; b = 0; }; },
+        { materialName = "lambertian_white"; color = { r = 186; g = 51; b = 186; }; },
+        { materialName = "lambertian_green"; color = { r = 0; g = 255; b = 0; }; },
+        { materialName = "diffuseLight"; color = { r = 255; g = 255; b = 255; }; }
+    );
+};
+
+materials:
+{
+    listMaterials = (
+        { materialName = "lambertian_red"; color = { r = 255; g = 0; b = 0; }; },
+        { materialName = "lambertian_white"; color = { r = 186; g = 51; b = 186; }; },
+        { materialName = "lambertian_green"; color = { r = 0; g = 255; b = 0; }; },
+        { materialName = "diffuseLight"; color = { r = 255; g = 255; b = 255; }; }
+    );
+};
+
+materials:
+{
+    listMaterials = (
+        { materialName = "lambertian_red"; color = { r = 255; g = 0; b = 0; }; },
+        { materialName = "lambertian_white"; color = { r = 186; g = 51; b = 186; }; },
+        { materialName = "lambertian_green"; color = { r = 0; g = 255; b = 0; }; },
+        { materialName = "diffuseLight"; color = { r = 255; g = 255; b = 255; }; }
+    );
+};
+
+materials:
+{
+    listMaterials = (
+        { materialName = "lambertian_red"; color = { r = 255; g = 0; b = 0; }; },
+        { materialName = "lambertian_white"; color = { r = 186; g = 51; b = 186; }; },
+        { materialName = "lambertian_green"; color = { r = 0; g = 255; b = 0; }; },
+        { materialName = "diffuseLight"; color = { r = 255; g = 255; b = 255; }; }
+    );
+};
+
+materials:
+{
+    listMaterials = (
+        { materialName = "lambertian_red"; color = { r = 255; g = 0; b = 0; }; },
+        { materialName = "lambertian_white"; color = { r = 186; g = 51; b = 186; }; },
+        { materialName = "lambertian_green"; color = { r = 0; g = 255; b = 0; }; },
+        { materialName = "diffuseLight"; color = { r = 255; g = 255; b = 255; }; }
+    );
+};
+
+materials:
+{
+    listMaterials = (
+        { materialName = "lambertian_red"; color = { r = 255; g = 0; b = 0; }; },
+        { materialName = "lambertian_white"; color = { r = 186; g = 51; b = 186; }; },
+        { materialName = "lambertian_green"; color = { r = 0; g = 255; b = 0; }; },
+        { materialName = "diffuseLight"; color = { r = 255; g = 255; b = 255; }; }
+    );
+};
+materials:
+{
+    listMaterials = (
+        { materialName = "lambertian_red"; color = { r = 255; g = 0; b = 0; }; },
+        { materialName = "lambertian_white"; color = { r = 186; g = 51; b = 186; }; },
+        { materialName = "lambertian_green"; color = { r = 0; g = 255; b = 0; }; },
+        { materialName = "diffuseLight"; color = { r = 255; g = 255; b = 255; }; }
+    );
+};
+
+materials:
+{
+    listMaterials = (
+        { materialName = "lambertian_red"; color = { r = 255; g = 0; b = 0; }; },
+        { materialName = "lambertian_white"; color = { r = 186; g = 51; b = 186; }; },
+        { materialName = "lambertian_green"; color = { r = 0; g = 255; b = 0; }; },
+        { materialName = "diffuseLight"; color = { r = 255; g = 255; b = 255; }; }
+    );
+};
+materials:
+{
+    listMaterials = (
+        { materialName = "lambertian_red"; color = { r = 255; g = 0; b = 0; }; },
+        { materialName = "lambertian_white"; color = { r = 186; g = 51; b = 186; }; },
+        { materialName = "lambertian_green"; color = { r = 0; g = 255; b = 0; }; },
+        { materialName = "diffuseLight"; color = { r = 255; g = 255; b = 255; }; }
+    );
+};
+
+materials:
+{
+    listMaterials = (
+        { materialName = "lambertian_red"; color = { r = 255; g = 0; b = 0; }; },
+        { materialName = "lambertian_white"; color = { r = 186; g = 51; b = 186; }; },
+        { materialName = "lambertian_green"; color = { r = 0; g = 255; b = 0; }; },
+        { materialName = "diffuseLight"; color = { r = 255; g = 255; b = 255; }; }
+    );
+};
+
+materials:
+{
+    listMaterials = (
+        { materialName = "lambertian_red"; color = { r = 255; g = 0; b = 0; }; },
+        { materialName = "lambertian_white"; color = { r = 186; g = 51; b = 186; }; },
+        { materialName = "lambertian_green"; color = { r = 0; g = 255; b = 0; }; },
+        { materialName = "diffuseLight"; color = { r = 255; g = 255; b = 255; }; }
+    );
+};
+materials:
+{
+    listMaterials = (
+        { materialName = "lambertian_red"; color = { r = 255; g = 0; b = 0; }; },
+        { materialName = "lambertian_white"; color = { r = 186; g = 51; b = 186; }; },
+        { materialName = "lambertian_green"; color = { r = 0; g = 255; b = 0; }; },
+        { materialName = "diffuseLight"; color = { r = 255; g = 255; b = 255; }; }
+    );
+};
+materials:
+{
+    listMaterials = (
+        { materialName = "lambertian_red"; color = { r = 255; g = 0; b = 0; }; },
+        { materialName = "lambertian_white"; color = { r = 186; g = 51; b = 186; }; },
+        { materialName = "lambertian_green"; color = { r = 0; g = 255; b = 0; }; },
+        { materialName = "diffuseLight"; color = { r = 255; g = 255; b = 255; }; }
+    );
+};
+
+materials:
+{
+    listMaterials = (
+        { materialName = "lambertian_red"; color = { r = 255; g = 0; b = 0; }; },
+        { materialName = "lambertian_white"; color = { r = 186; g = 51; b = 186; }; },
+        { materialName = "lambertian_green"; color = { r = 0; g = 255; b = 0; }; },
+        { materialName = "diffuseLight"; color = { r = 255; g = 255; b = 255; }; }
     );
 };
 
 primitives:
 {
-    spheres = (
-        { center = { x = 255; y = 64; z = 64; }; radius = 10.0; material = "metal"; },
-        { center = { x = 255; y = 64; z = 64; }; radius = 15.0; material = "lambertian"; }
-    );
-    triangles = (
-        { origin = { x = 255; y = 64; z = 64; }; pointA = { x = 255; y = 64; z = 64; }; pointB = { x = 255; y = 64; z = 64; }; material = "metal"; }
-    );
     planes = (
-        { pos = { x = 255; y = 64; z = 64; }; u = { x = 255; y = 64; z = 64; }; v = { x = 255; y = 64; z = 64; }; material = "dielectric"; }
+        { pos = { x = 555; y = 0; z = 0; }; u = { x = 0; y = 555; z = 0; }; v = { x = 0; y = 0; z = 555; }; material = "lambertian_green"; },
+        { pos = { x = 555; y = 0; z = 0; }; u = { x = 0; y = 555; z = 0; }; v = { x = 0; y = 0; z = 555; }; material = "lambertian_red"; },
+        { pos = { x = 343; y = 554; z = 332; }; u = { x = -130; y = 0; z = 0; }; v = { x = 0; y = 0; z = -105; }; material = "diffuseLight" },
+        { pos = { x = 0; y = 0; z = 0; }; u = { x = -555; y = 0; z = 0; }; v = { x = 0; y = 0; z = 555; }; material = "lambertian_white"; },
+        { pos = { x = 555; y = 555; z = 555; }; u = { x = 555; y = 0; z = 0; }; v = { x = 0; y = 0; z = -555; }; material = "lambertian_white"; },
+        { pos = { x = 0; y = 0; z = 555; }; u = { x = 555; y = 0; z = 0; }; v = { x = 0; y = 555; z = 0; }; material = "lambertian_white"; }
     );
 };
-
-lights:
-{
-    points = (
-        { origin = { x = 255; y = 64; z = 64; }; width = { x = 255; y = 64; z = 64; }; height = { x = 255; y = 64; z = 64; }; material = "diffuseLight"; }
-    );
-}

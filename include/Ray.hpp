@@ -32,6 +32,11 @@ namespace Rt
         {
             return origin_ + direction_ * t;
         }
+
+        Rt::Ray rotate(const Math::Matrix3D &rotation_matrix) const
+        {
+            return Rt::Ray(this->origin_.rotate(rotation_matrix), this->direction_.rotate(rotation_matrix));
+        }
     };
 }
 

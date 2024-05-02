@@ -13,32 +13,32 @@
 #include <filesystem>
 #include "Metal.hpp"
 
-void Rt::LoadScene::getMetal(const libconfig::Setting &material, libconfig::Config &cfg)
+void Rt::LoadScene::getMetal(const libconfig::Setting &material, std::string &materialName)
 {
     const libconfig::Setting &color = material["color"];
     double reflection = 0.0;
     material_t mat;
-    std::vector<int> vectorColor = parseColor(color);
+    std::vector<double> vectorColor = parseColor(color);
 
     material.lookupValue("reflection", reflection);
     mat.name = METAL;
     mat.color = Math::Color01(vectorColor.at(0), vectorColor.at(1), vectorColor.at(2));
     mat.reflection = reflection;
-    _materialsList["metal"] = mat;
+    _materialsList[materialName] = mat;
 }
 
-void Rt::LoadScene::getLambertian(const libconfig::Setting &material, libconfig::Config &cfg)
+void Rt::LoadScene::getLambertian(const libconfig::Setting &material, std::string &materialName)
 {
     const libconfig::Setting &color = material["color"];
     material_t mat;
-    std::vector<int> vectorColor = parseColor(color);
+    std::vector<double> vectorColor = parseColor(color);
 
     mat.name = LAMBERTIAN;
     mat.color = Math::Color01(vectorColor.at(0), vectorColor.at(1), vectorColor.at(2));
-    _materialsList["lambertian"] = mat;
+    _materialsList[materialName] = mat;
 }
 
-void Rt::LoadScene::getDielectric(const libconfig::Setting &material, libconfig::Config &cfg)
+void Rt::LoadScene::getDielectric(const libconfig::Setting &material, std::string &materialName)
 {
     double reflection = 0.0;
     material_t mat;
@@ -46,18 +46,18 @@ void Rt::LoadScene::getDielectric(const libconfig::Setting &material, libconfig:
     material.lookupValue("reflection", reflection);
     mat.name = DIELECTRIC;
     mat.reflection = reflection;
-    _materialsList["dielectric"] = mat;
+    _materialsList[materialName] = mat;
 }
 
-void Rt::LoadScene::getDiffuseLight(const libconfig::Setting &material, libconfig::Config &cfg)
+void Rt::LoadScene::getDiffuseLight(const libconfig::Setting &material, std::string &materialName)
 {
     const libconfig::Setting &color = material["color"];
     material_t mat;
-    std::vector<int> vectorColor = parseColor(color);
+    std::vector<double> vectorColor = parseColor(color);
 
     mat.name = DIFFUSE_LIGHT;
     mat.color = Math::Color01(vectorColor.at(0), vectorColor.at(1), vectorColor.at(2));
-    _materialsList["diffuseLight"] = mat;
+    _materialsList[materialName] = mat;
 }
 
 void Rt::LoadScene::parseMaterials(libconfig::Config &cfg)
@@ -67,18 +67,16 @@ void Rt::LoadScene::parseMaterials(libconfig::Config &cfg)
 
     for (int i = 0; i < listMaterialsSettings.getLength(); ++i) {
         const libconfig::Setting &material = listMaterialsSettings[i];
-
         std::string materialName = "";
         material.lookupValue("materialName", materialName);
-
-        if (materialName == "metal") {
-            getMetal(material, cfg);
-        } else if (materialName == "lambertian") {
-            getLambertian(material, cfg);
-        } else if (materialName == "dielectric") {
-            getDielectric(material, cfg);
-        } else if (materialName == "diffuseLight") {
-            getDiffuseLight(material, cfg);
+        if (materialName.starts_with("metal")) {
+            getMetal(material, materialName);
+        } else if (materialName.starts_with("lambertian")) {
+            getLambertian(material, materialName);
+        } else if (materialName.starts_with("dielectric")) {
+            getDielectric(material, materialName);
+        } else if (materialName.starts_with("diffuseLight")) {
+            getDiffuseLight(material, materialName);
         }
     }
 }

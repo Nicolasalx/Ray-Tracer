@@ -26,7 +26,7 @@ namespace Rt
         Lambertian(std::shared_ptr<ITexture> texture) : texture_(texture) {}
         ~Lambertian() = default;
     
-        bool scatter(const Rt::Ray &, const Rt::HitRecord &rec,
+        bool scatter(const Rt::Ray &, const Rt::HitData &rec,
             Math::Color01 &attenuation, Rt::Ray &scattered) const override
         {
             Math::Vector3D scatter_direction = rec.normal + Math::Vector3D::random_unit_vector();

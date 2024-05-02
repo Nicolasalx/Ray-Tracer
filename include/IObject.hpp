@@ -11,8 +11,7 @@
     #include "Ray.hpp"
     #include "Point3D.hpp"
     #include "Interval.hpp"
-    #include "HitRecord.hpp"
-    #include "BoundingBox.hpp"
+    #include "HitData.hpp"
 
 namespace Rt
 {
@@ -21,8 +20,7 @@ namespace Rt
     public:
         virtual ~IObject() = default;
 
-        virtual bool hit(const Rt::Ray &ray, Rt::Interval ray_t, Rt::HitRecord &rec) const = 0;
-        virtual Rt::BoundingBox getBoundingBox() const = 0;
+        virtual bool hit(const Rt::Ray &ray, Rt::Interval ray_t, Rt::HitData &rec) const = 0;
     };
 }
 

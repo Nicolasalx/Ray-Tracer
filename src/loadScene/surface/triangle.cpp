@@ -19,19 +19,29 @@ void Rt::LoadScene::analyseOneTriangle(const libconfig::Setting &currentTriangle
     Math::Point3D pointOrigin = vectorToPoint3D(parseVector3D(origin));
     Math::Point3D PpointA = vectorToPoint3D(parseVector3D(pointA));
     Math::Point3D PpointB = vectorToPoint3D(parseVector3D(pointB));
-
     triangle.lookupValue("material", materialName);
-
     std::shared_ptr<Rt::IMaterial> material;
-    chooseMaterialType(material);
+    
+    std::cout << "------------------------------------------------------\n";
+    std::cout << "New Triangle:\n";
+    std::cout << "Point Pos: " << pointOrigin.x() << " / " << pointOrigin.y() << " / " << pointOrigin.z() << "\n";
+    std::cout << "Vector U: " << PpointA.x() << " / " << PpointA.y() << " / " << PpointA.z() << "\n";
+    std::cout << "Vector V: " << PpointB.x() << " / " << PpointB.y() << " / " << PpointB.z() << "\n";
+
+    chooseMaterialType(material, materialName);
+    std::cout << "------------------------------------------------------\n";
     world.add(std::make_shared<Rt::Triangle>(pointOrigin, PpointA, PpointB, material));
 }
 
-void Rt::LoadScene::parseAllTriangle(libconfig::Config &cfg, const libconfig::Setting &primitivesSettings, Rt::ObjectList &world)
+void Rt::LoadScene::parseAllTriangle(const libconfig::Setting &primitivesSettings, Rt::ObjectList &world)
 {
-    const libconfig::Setting &listTriangles = primitivesSettings.lookup("triangles");
+    try {
+        const libconfig::Setting &listTriangles = primitivesSettings.lookup("triangles");
 
-    for (int i = 0; i < listTriangles.getLength(); ++i) {
-        analyseOneTriangle(listTriangles[i], world);
+        for (int i = 0; i < listTriangles.getLength(); ++i) {
+            analyseOneTriangle(listTriangles[i], world);
+        }
+    } catch(const std::exception &) {
+        return;
     }
 }

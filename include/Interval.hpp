@@ -22,7 +22,6 @@ namespace Rt
         Interval(double min_, double max_) : min(min_), max(max_) {}
         Interval(const Rt::Interval &a, const Rt::Interval &b)
         {
-            // Create the interval tightly enclosing the two input intervals.
             min = a.min <= b.min ? a.min : b.min;
             max = a.max >= b.max ? a.max : b.max;
         }

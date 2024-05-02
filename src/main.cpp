@@ -23,8 +23,7 @@
 #include "Metal.hpp"
 #include "Lambertian.hpp"
 #include "Dielectric.hpp"
-#include "BoundingNode.hpp"
-#include "TextureChecker.hpp"
+#include "ChessTexture.hpp"
 #include "ImageTexture.hpp"
 #include "Plane.hpp"
 #include "Triangle.hpp"
@@ -34,29 +33,29 @@
 #include "LoadScene.hpp"
 #include <libconfig.h++>
 
-std::size_t Rt::Interface::image_pixel_i = 0;
-sf::Uint8 *Rt::Interface::image_pixel = nullptr;
-
 std::mutex Rt::Raytracer::mutex;
 std::atomic_bool Rt::Raytracer::end_rendering(false);
-
-std::size_t Rt::Interface::image_size_x = 480;
-std::size_t Rt::Interface::image_size_y = 270;
 
 void Rt::Raytracer::launchRendering(Rt::ObjectList &world, Rt::Camera &camera)
 {
     //Rt::ObjectList world;
 
-    //auto red   = std::make_shared<Rt::Lambertian>(Math::Color01(0.65, 0.05, 0.05));
-    //auto white = std::make_shared<Rt::Lambertian>(Math::Color01(0.73, 0.73, 0.73));
-    //auto green = std::make_shared<Rt::Lambertian>(Math::Color01(0.12, 0.45, 0.15));
+    auto red   = std::make_shared<Rt::Lambertian>(Math::Color01(1, 0, 0));
+    auto white = std::make_shared<Rt::Lambertian>(Math::Color01(0.73, 0.73, 0.73));
+    auto green = std::make_shared<Rt::Lambertian>(Math::Color01(0, 1, 0));
+    auto light = std::make_shared<Rt::DiffuseLight>(Math::Color01(15, 15, 15));
 
     //auto metal = std::make_shared<Rt::Metal>(Math::Color01(15, 15, 15), 10.0);
     //auto lambertian = std::make_shared<Rt::Lambertian>(Math::Color01(0.12, 0.45, 0.15));
     //auto dielectric = std::make_shared<Rt::Dielectric>(10.0);
     //auto diffuseLight = std::make_shared<Rt::DiffuseLight>(Math::Color01(15, 15, 15));
 
-
+    //cam.fov = 40;
+    //cam.image_width = Rt::Interface::image_size_x;
+    //cam.image_height = Rt::Interface::image_size_y;
+    //cam.samples_per_pixel = 100; // 20 - 100
+    //cam.max_depth = 20; // 10 - 50
+    //cam.nb_thread = 32;
 
     // Diffuse Light -> Emet de la lumière
 
@@ -93,12 +92,13 @@ int main(int argc, const char *argv[])
     Rt::ObjectList world;
     Rt::Camera camera;
 
+    std::srand(std::time(nullptr));
     try {
         allScenes.parseArgs(argc, argv);
         allScenes.loadAllScenes(world, camera);
-        Rt::Interface interface(Rt::Interface::image_size_x, Rt::Interface::image_size_y);
+        Rt::Interface interface(1920 / 8, 1080 / 8);
 
-        std::thread render_thread([&world, &camera]() { Rt::Raytracer::launchRendering(world, camera); });
+        std::thread render_thread([&](){ Rt::Raytracer::launchRendering(world, camera); });
         interface.loop();
         Rt::Raytracer::end_rendering = true;
         render_thread.join();
@@ -108,4 +108,3 @@ int main(int argc, const char *argv[])
     }
     return 0;
 }
-

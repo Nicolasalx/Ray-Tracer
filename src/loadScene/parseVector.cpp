@@ -16,9 +16,13 @@ std::vector<int> Rt::LoadScene::parseVector3D(const libconfig::Setting &vector)
 {
     std::vector<int> listElement;
 
-    listElement.push_back(vector["x"]);
-    listElement.push_back(vector["y"]);
-    listElement.push_back(vector["z"]);
+    int x = vector["x"];
+    int y = vector["y"];
+    int z = vector["z"];
+
+    listElement.push_back(x);
+    listElement.push_back(y);
+    listElement.push_back(z);
     return listElement;
 }
 
@@ -38,21 +42,40 @@ Math::Point3D Rt::LoadScene::vectorTo3D(std::vector<int> list)
     return Math::Point3D(list.at(0), list.at(1), list.at(2));
 }
 
-std::vector<int> Rt::LoadScene::parseColor(const libconfig::Setting &vector)
+double Rt::LoadScene::checkValueIsColor(int value)
 {
-    std::vector<int> listElement;
-
-    listElement.push_back(vector["r"]);
-    listElement.push_back(vector["g"]);
-    listElement.push_back(vector["b"]);
-    return listElement;
+    if (value < 0 || value > 255) {
+        throw("In the parsing with lib config a color value is not correct (need to be between 0 and 255)!");
+    }
+    return (static_cast<double>(value) / 255.0);
 }
+
+std::vector<double> Rt::LoadScene::parseColor(const libconfig::Setting &vector)
+{
+    std::vector<double> listElement;
+
+    int r = vector["r"];
+    int g = vector["g"];
+    int b = vector["b"];
+
+    double rdouble = checkValueIsColor(r);
+    double gdouble = checkValueIsColor(g);
+    double bdouble = checkValueIsColor(b);
+
+    listElement.push_back(rdouble);
+    listElement.push_back(gdouble);
+    listElement.push_back(bdouble);
+    return listElement;
+}   
 
 std::vector<int> Rt::LoadScene::parseVector2D(const libconfig::Setting &vector)
 {
     std::vector<int> listElement;
 
-    listElement.push_back(vector["x"]);
-    listElement.push_back(vector["y"]);
+    int x = vector["x"];
+    int y = vector["y"];
+
+    listElement.push_back(x);
+    listElement.push_back(y);
     return listElement;
 }

@@ -22,15 +22,28 @@ void Rt::LoadScene::analyseOnePlane(const libconfig::Setting &currentPlane, Rt::
 
     plane.lookupValue("material", materialName);
     std::shared_ptr<Rt::IMaterial> material;
-    chooseMaterialType(material);
+
+    std::cout << "------------------------------------------------------\n";
+    std::cout << "New Plane:\n";
+    std::cout << "Point Pos: " << pointPos.x() << " / " << pointPos.y() << " / " << pointPos.z() << "\n";
+    std::cout << "Vector U: " << vectorU.x() << " / " << vectorU.y() << " / " << vectorU.z() << "\n";
+    std::cout << "Vector V: " << vectorV.x() << " / " << vectorV.y() << " / " << vectorV.z() << "\n";
+
+    chooseMaterialType(material, materialName);
+    std::cout << "------------------------------------------------------\n";
+
     world.add(std::make_shared<Rt::Plane>(pointPos, vectorU, vectorV, material));
 }
 
-void Rt::LoadScene::parseAllPlane(libconfig::Config &cfg, const libconfig::Setting &primitivesSettings, Rt::ObjectList &world)
+void Rt::LoadScene::parseAllPlane(const libconfig::Setting &primitivesSettings, Rt::ObjectList &world)
 {
-    const libconfig::Setting &listPlanes = primitivesSettings.lookup("planes");
+    try {
+        const libconfig::Setting &listPlanes = primitivesSettings.lookup("planes");
 
-    for (int i = 0; i < listPlanes.getLength(); ++i) {
-        analyseOnePlane(listPlanes[i], world);
+        for (int i = 0; i < listPlanes.getLength(); ++i) {
+            analyseOnePlane(listPlanes[i], world);
+        }
+    } catch(const std::exception &) {
+        return;
     }
 }

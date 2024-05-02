@@ -19,20 +19,12 @@ namespace Rt
 
         static double getBw01()
         {
-            std::random_device random;
-            std::mt19937 gen(random());
-            std::uniform_real_distribution<double> distr(0.0, 1.0);
-
-            return distr(gen);
+            return std::rand() / (RAND_MAX + 1.0);
         }
 
         static double get(double min, double max)
         {
-            std::random_device random;
-            std::mt19937 gen(random());
-            std::uniform_real_distribution<double> distr(min, max);
-
-            return distr(gen);
+            return min + (max - min) * getBw01();
         }
     };
 }
