@@ -26,6 +26,10 @@ namespace Rt
             : center_(center), radius_(std::fmax(0, radius)), material_(material)
         {
         }
+        Sphere(double radius, std::shared_ptr<IMaterial> material)
+            : radius_(std::fmax(0, radius)), material_(material)
+        {
+        }
 
         bool hit(const Rt::Ray &ray, Rt::Interval ray_t, Rt::HitData &rec) const override;
     };

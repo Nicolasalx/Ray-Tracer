@@ -21,8 +21,12 @@ namespace Rt
         std::shared_ptr<Rt::IMaterial> material_;
 
     public:
-        Cylinder(const Math::Point3D &center, double radius, double lenght, std::shared_ptr<IMaterial> material)
-            : center_(center), radius_(std::fmax(0, radius)), length_(std::fmax(0, lenght)), material_(material)
+        Cylinder(const Math::Point3D &center, double radius, double length, std::shared_ptr<IMaterial> material)
+            : center_(center), radius_(std::fmax(0, radius)), length_(std::fmax(0, length)), material_(material)
+        {
+        }
+        Cylinder(double radius, double length, std::shared_ptr<IMaterial> material)
+            : radius_(std::fmax(0, radius)), length_(std::fmax(0, length)), material_(material)
         {
         }
 

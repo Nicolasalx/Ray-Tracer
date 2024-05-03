@@ -10,7 +10,7 @@
 Math::Color01 Rt::ImageTexture::value(double u, double v, const Math::Point3D &) const
 {
     if (image_.getSizeY() <= 0) {
-        return Math::Color01(0, 0, 0);
+        return Math::Color01(1, 1, 1);
     }
 
     u = Rt::Interval(0, 1).clamp(u);
