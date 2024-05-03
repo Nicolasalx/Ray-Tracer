@@ -35,10 +35,15 @@
     - refraction -> [0, 1]
 - Diffuse Light
     - emit -> Color01
+
+## Texture
+
 - ChessBoar
     - scale -> double
     - color1 -> Color01
     - color2 -> Color01
+- Image
+    - path -> std::string
 
 ### Builder
 
