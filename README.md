@@ -9,7 +9,14 @@
     - material -> IMaterial
 
 - Plane
+    - position (x, y, z) -> Vector3D
+    - rotation (x, y, z) -> Vector3D
+    - height -> double
+    - width -> double
+    - material -> IMaterial
+
 - Triangle
+
 - Cone
     - position (x, y, z) -> Vector3D
     - rotation (x, y, z) -> Vector3D
