@@ -16,6 +16,12 @@
     - material -> IMaterial
 
 - Triangle
+    - position (x, y, z) -> Vector3D
+    - rotation (x, y, z) -> Vector3D
+    - pointA -> (x, y, z) -> Point3D
+    - pointB -> (x, y, z) -> Point3D
+    - pointC -> (x, y, z) -> Point3D
+    - material -> IMaterial
 
 - Cone
     - position (x, y, z) -> Vector3D
