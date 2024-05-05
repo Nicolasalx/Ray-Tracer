@@ -10,17 +10,17 @@
 bool Rt::Sphere::hit(const Rt::Ray &ray, Rt::Interval ray_t, Rt::HitData &rec) const
 {
     Math::Vector3D oc = center_ - ray.getOrigin();
-    auto a = ray.getDirection().length_squared();
-    auto h = ray.getDirection().dot(oc);
-    auto c = oc.length_squared() - radius_ * radius_;
+    double a = ray.getDirection().length_squared();
+    double h = ray.getDirection().dot(oc);
+    double c = oc.length_squared() - radius_ * radius_;
 
-    auto discriminant = h*h - a*c;
+    double discriminant = h*h - a*c;
     if (discriminant < 0)
         return false;
 
-    auto sqrtd = std::sqrt(discriminant);
+    double sqrtd = std::sqrt(discriminant);
 
-    auto root = (h - sqrtd) / a;
+    double root = (h - sqrtd) / a;
     if (!ray_t.surrounds(root)) {
         root = (h + sqrtd) / a;
         if (!ray_t.surrounds(root))
@@ -39,8 +39,8 @@ bool Rt::Sphere::hit(const Rt::Ray &ray, Rt::Interval ray_t, Rt::HitData &rec) c
 
 void Rt::Sphere::get_sphere_uv(const Math::Point3D &p, double &u, double &v)
 {
-    auto theta = std::acos(-p.y());
-    auto phi = std::atan2(-p.z(), p.x()) + std::numbers::pi;
+    double theta = std::acos(-p.y());
+    double phi = std::atan2(-p.z(), p.x()) + std::numbers::pi;
 
     u = phi / (2 * std::numbers::pi);
     v = theta / std::numbers::pi;

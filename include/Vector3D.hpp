@@ -36,6 +36,7 @@ namespace Math
         double &operator [] (int i);
 
         Vector3D &operator += (const Vector3D &other);
+        Vector3D &operator *= (const Vector3D &other);
         Vector3D &operator *= (double t);
         Vector3D &operator /= (double t);
         double length() const;
@@ -45,6 +46,7 @@ namespace Math
         Vector3D operator * (const Vector3D &other) const;
         Vector3D operator * (double t) const;
         Vector3D operator / (double t) const;
+        Vector3D operator / (const Vector3D &other) const;
         double dot(const Vector3D &other) const;
         Vector3D cross(const Vector3D &other) const;
         Vector3D unit_vector() const;

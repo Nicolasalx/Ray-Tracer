@@ -40,6 +40,6 @@ void Rt::ColorRGB::displayColor(int x, int y)
     Rt::Interface::image_pixel[index + 1] = color[1];
     Rt::Interface::image_pixel[index + 2] = color[2];
     Rt::Interface::image_pixel[index + 3] = 255;
-    Rt::Interface::image_pixel_i += 4;
+    Rt::Interface::image_pixel_i += 1;
     Rt::Raytracer::mutex.unlock();
 }
