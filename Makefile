@@ -11,7 +11,14 @@ CPPFLAGS		=	-std=c++20 -Wall -Wextra \
 					-lsfml-graphics -lsfml-window -lsfml-system -lconfig++ \
 					$(ADDITIONAL_FLAGS)
 
-INCLUDE_PATH	=	-I./include/ -I./include/lib
+INCLUDE_PATH	=	-I./include/ -I./include/lib \
+					-I./include/material \
+					-I./include/math \
+					-I./include/primitive \
+					-I./include/rendering \
+					-I./include/texture \
+					-I./include/transformation \
+
 
 NAME			=	raytracer
 
