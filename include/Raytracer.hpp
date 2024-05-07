@@ -24,7 +24,8 @@ namespace Rt
         ~Raytracer() = default;
 
         static void launchRendering(Rt::ObjectList &world, Rt::Camera &camera);
-        static void createObjModel(Rt::ObjectList &world ,const std::string &path);
+        static void createObjModel(Rt::ObjectList &world, const std::string &path,
+            double scale, std::shared_ptr<Rt::IMaterial> material);
 
         static std::mutex mutex;
         static std::atomic_bool end_rendering;
