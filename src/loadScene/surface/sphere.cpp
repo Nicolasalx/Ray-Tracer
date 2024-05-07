@@ -16,19 +16,19 @@ void Rt::LoadScene::analyseOneSphere(const libconfig::Setting &currentSphere, Rt
     try {
         std::string materialName = "";
         double radius = 0.0;
-        const libconfig::Setting &translation = currentSphere["translation"];
+        const libconfig::Setting &position = currentSphere["position"];
         const libconfig::Setting &rotation = currentSphere["rotation"];
         currentSphere.lookupValue("radius", radius);
         currentSphere.lookupValue("material", materialName);
 
-        Math::Vector3D vectorTranslation = vectorTo3D(parseVector3D(translation));
+        Math::Vector3D vectorPosition = vectorTo3D(parseVector3D(position));
         Math::Vector3D vectorRotation = vectorTo3D(parseVector3D(rotation));
 
         std::shared_ptr<Rt::IMaterial> material;
 
         chooseMaterialType(material, materialName);
 
-        world.add(Rt::Builder::createObject<Rt::Sphere>(vectorTranslation, vectorRotation, material, radius));
+        world.add(Rt::Builder::createObject<Rt::Sphere>(vectorPosition, vectorRotation, material, radius));
     } catch(const std::exception &exception) {
         throw my::tracked_exception("Error in the parsing of the sphere: " + std::string(exception.what()));
     }

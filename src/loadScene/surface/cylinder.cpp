@@ -17,19 +17,19 @@ void Rt::LoadScene::analyseOneCylinder(const libconfig::Setting &currentCylinder
         std::string materialName = "";
         double radius = 0.0;
         double length = 0.0;
-        const libconfig::Setting &translation = currentCylinder["translation"];
+        const libconfig::Setting &position = currentCylinder["position"];
         const libconfig::Setting &rotation = currentCylinder["rotation"];
         currentCylinder.lookupValue("radius", radius);
         currentCylinder.lookupValue("length", length);
         currentCylinder.lookupValue("material", materialName);
 
-        Math::Vector3D vectorTranslation = vectorTo3D(parseVector3D(translation));
+        Math::Vector3D vectorPosition = vectorTo3D(parseVector3D(position));
         Math::Vector3D vectorRotation = vectorTo3D(parseVector3D(rotation));
 
         std::shared_ptr<Rt::IMaterial> material;
 
         chooseMaterialType(material, materialName);
-        world.add(Rt::Builder::createObject<Rt::Cylinder>(vectorTranslation, vectorRotation, material, radius, length));
+        world.add(Rt::Builder::createObject<Rt::Cylinder>(vectorPosition, vectorRotation, material, radius, length));
     } catch(const std::exception &exception) {
         throw my::tracked_exception("Error in the parsing of the cylinder: " + std::string(exception.what()));
     }

@@ -15,14 +15,14 @@ void Rt::LoadScene::analyseOneTriangle(const libconfig::Setting &currentTriangle
 {
     try {
         std::string materialName = "";
-        const libconfig::Setting &translation = currentTriangle["translation"];
+        const libconfig::Setting &position = currentTriangle["position"];
         const libconfig::Setting &rotation = currentTriangle["rotation"];
         const libconfig::Setting &origin = currentTriangle["origin"];
         const libconfig::Setting &pointA = currentTriangle["pointA"];
         const libconfig::Setting &pointB = currentTriangle["pointB"];
         currentTriangle.lookupValue("material", materialName);
 
-        Math::Vector3D vectorTranslation = vectorTo3D(parseVector3D(translation));
+        Math::Vector3D vectorPosition = vectorTo3D(parseVector3D(position));
         Math::Vector3D vectorRotation = vectorTo3D(parseVector3D(rotation));
         Math::Point3D pointOrigin = vectorToPoint3D(parseVector3D(origin));
         Math::Point3D PpointA = vectorToPoint3D(parseVector3D(pointA));
@@ -30,7 +30,7 @@ void Rt::LoadScene::analyseOneTriangle(const libconfig::Setting &currentTriangle
         std::shared_ptr<Rt::IMaterial> material;
 
         chooseMaterialType(material, materialName);
-        world.add(Rt::Builder::createObject<Rt::Triangle>(vectorTranslation, vectorRotation, material, pointOrigin, PpointA, PpointB));
+        world.add(Rt::Builder::createObject<Rt::Triangle>(vectorPosition, vectorRotation, material, pointOrigin, PpointA, PpointB));
     } catch(const std::exception &exception) {
         throw my::tracked_exception("Error in the parsing of the triangle: " + std::string(exception.what()));
     }    

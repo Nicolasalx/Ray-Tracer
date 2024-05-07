@@ -17,19 +17,19 @@ void Rt::LoadScene::analyseOneCone(const libconfig::Setting &currentCone, Rt::Ob
         std::string materialName = "";
         double radius = 0.0;
         double length = 0.0;
-        const libconfig::Setting &translation = currentCone["translation"];
+        const libconfig::Setting &position = currentCone["position"];
         const libconfig::Setting &rotation = currentCone["rotation"];
         currentCone.lookupValue("radius", radius);
         currentCone.lookupValue("length", length);
         currentCone.lookupValue("material", materialName);
 
-        Math::Vector3D vectorTranslation = vectorTo3D(parseVector3D(translation));
+        Math::Vector3D vectorPosition = vectorTo3D(parseVector3D(position));
         Math::Vector3D vectorRotation = vectorTo3D(parseVector3D(rotation));
 
         std::shared_ptr<Rt::IMaterial> material;
 
         chooseMaterialType(material, materialName);
-        world.add(Rt::Builder::createObject<Rt::Cone>(vectorTranslation, vectorRotation, material, radius, length));
+        world.add(Rt::Builder::createObject<Rt::Cone>(vectorPosition, vectorRotation, material, radius, length));
     } catch(const std::exception &exception) {
         throw my::tracked_exception("Error in the parsing of the cone: " + std::string(exception.what()));
     }
