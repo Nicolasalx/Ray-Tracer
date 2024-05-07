@@ -15,22 +15,23 @@ void Rt::LoadScene::analyseOnePlane(const libconfig::Setting &currentPlane, Rt::
 {
     try {
         std::string materialName = "";
+        double height = 0.0;
+        double width = 0.0;
         std::shared_ptr<Rt::IMaterial> material;
-        const libconfig::Setting &translation = currentPlane["translation"];
-        const libconfig::Setting &rotation = currentPlane["rotation"];    
-        const libconfig::Setting &pos = currentPlane["pos"];
-        const libconfig::Setting &u = currentPlane["u"];
-        const libconfig::Setting &v = currentPlane["v"];
-        currentPlane.lookupValue("material", materialName);
+        const libconfig::Setting &position = currentPlane["position"];
+        const libconfig::Setting &rotation = currentPlane["rotation"];
 
-        Math::Vector3D vectorTranslation = vectorTo3D(parseVector3D(translation));
+        checkFieldExist(currentPlane, "height", height, "plane");
+        checkFieldExist(currentPlane, "width", width, "plane");
+        checkFieldExist(currentPlane, "material", materialName, "plane");
+
+        Math::Vector3D vectorPosition = vectorTo3D(parseVector3D(position));
         Math::Vector3D vectorRotation = vectorTo3D(parseVector3D(rotation));
-        Math::Point3D pointPos = vectorToPoint3D(parseVector3D(pos));
-        Math::Vector3D vectorU = vectorTo3D(parseVector3D(u));
-        Math::Vector3D vectorV = vectorTo3D(parseVector3D(v));
 
         chooseMaterialType(material, materialName);
-        world.add(Rt::Builder::createObject<Rt::Plane>(vectorTranslation, vectorRotation, material, pointPos, vectorU, vectorV));
+        world.add(Rt::Builder::createObject<Rt::Plane>(vectorPosition, vectorRotation, material, height, width));
+    } catch(const libconfig::SettingNotFoundException &nfex) {
+        throw my::tracked_exception("Error in the parsing of the plane:");
     } catch(const std::exception &exception) {
         throw my::tracked_exception("Error in the parsing of the plane: " + std::string(exception.what()));
     }

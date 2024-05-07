@@ -19,9 +19,10 @@ void Rt::LoadScene::analyseOneCone(const libconfig::Setting &currentCone, Rt::Ob
         double length = 0.0;
         const libconfig::Setting &position = currentCone["position"];
         const libconfig::Setting &rotation = currentCone["rotation"];
-        currentCone.lookupValue("radius", radius);
-        currentCone.lookupValue("length", length);
-        currentCone.lookupValue("material", materialName);
+
+        checkFieldExist(currentCone, "radius", radius, "cone");
+        checkFieldExist(currentCone, "length", length, "cone");
+        checkFieldExist(currentCone, "material", materialName, "cone");
 
         Math::Vector3D vectorPosition = vectorTo3D(parseVector3D(position));
         Math::Vector3D vectorRotation = vectorTo3D(parseVector3D(rotation));

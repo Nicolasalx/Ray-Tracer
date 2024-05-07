@@ -21,6 +21,9 @@ void Rt::LoadScene::analyseOneSphere(const libconfig::Setting &currentSphere, Rt
         currentSphere.lookupValue("radius", radius);
         currentSphere.lookupValue("material", materialName);
 
+        checkFieldExist(currentSphere, "radius", radius, "sphere");
+        checkFieldExist(currentSphere, "material", materialName, "sphere");
+
         Math::Vector3D vectorPosition = vectorTo3D(parseVector3D(position));
         Math::Vector3D vectorRotation = vectorTo3D(parseVector3D(rotation));
 

@@ -22,6 +22,8 @@ void Rt::LoadScene::analyseOneTriangle(const libconfig::Setting &currentTriangle
         const libconfig::Setting &pointB = currentTriangle["pointB"];
         currentTriangle.lookupValue("material", materialName);
 
+        checkFieldExist(currentTriangle, "material", materialName, "triangle");
+
         Math::Vector3D vectorPosition = vectorTo3D(parseVector3D(position));
         Math::Vector3D vectorRotation = vectorTo3D(parseVector3D(rotation));
         Math::Point3D pointOrigin = vectorToPoint3D(parseVector3D(origin));

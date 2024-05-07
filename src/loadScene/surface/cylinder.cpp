@@ -19,9 +19,10 @@ void Rt::LoadScene::analyseOneCylinder(const libconfig::Setting &currentCylinder
         double length = 0.0;
         const libconfig::Setting &position = currentCylinder["position"];
         const libconfig::Setting &rotation = currentCylinder["rotation"];
-        currentCylinder.lookupValue("radius", radius);
-        currentCylinder.lookupValue("length", length);
-        currentCylinder.lookupValue("material", materialName);
+
+        checkFieldExist(currentCylinder, "radius", radius, "cylinder");
+        checkFieldExist(currentCylinder, "length", length, "cylinder");
+        checkFieldExist(currentCylinder, "material", materialName, "cylinder");
 
         Math::Vector3D vectorPosition = vectorTo3D(parseVector3D(position));
         Math::Vector3D vectorRotation = vectorTo3D(parseVector3D(rotation));
