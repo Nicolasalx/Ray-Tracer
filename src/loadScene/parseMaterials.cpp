@@ -7,10 +7,8 @@
 
 #include <iostream>
 #include "ObjectList.hpp"
-#include "Camera.hpp"
 #include "LoadScene.hpp"
 #include "my_tracked_exception.hpp"
-#include <filesystem>
 #include "Metal.hpp"
 
 void Rt::LoadScene::getMetal(const libconfig::Setting &material, std::string &materialName)
