@@ -15,6 +15,7 @@
     #include <libconfig.h++>
     #include <map>
     #include "Point3D.hpp"
+    #include "my_tracked_exception.hpp"
 
 namespace Rt
 {
@@ -81,6 +82,16 @@ namespace Rt
             Math::Point3D vectorToPoint3D(std::vector<int> list);
             Math::Point3D vectorTo3D(std::vector<int> list);
             double checkValueIsColor(int value);
+
+            template<typename T>
+            void checkFieldExist(const libconfig::Setting &currentElem, const std::string &field, T &valueToGet, const std::string &surfaceName)
+            {
+                if (currentElem.exists(field)) {
+                    currentElem.lookupValue(field, valueToGet);
+                } else {
+                    throw my::tracked_exception("Error in the parsing of the " + surfaceName);
+                }
+            }
 
         private:
             std::vector<std::string> _listConfigFile;
