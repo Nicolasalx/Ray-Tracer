@@ -61,7 +61,7 @@
 ### Builder
 
 ```cpp
-    void createObject(const Math::Vector3D &translation, const Math::Vector3D &rotation, const Param &... param)
+    void createObject(const Math::Vector3D &translation, const Math::Vector3D &rotation, std::shared_ptr<Rt::IMaterial> material, Param &&... param)
     void applyMaterial(const std::shared_ptr<Rt::IMaterial> material)
     std::shared_ptr<Rt::IObject> getResult()
 ```

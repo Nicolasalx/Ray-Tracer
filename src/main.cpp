@@ -36,60 +36,78 @@
 #include "Builder.hpp"
 #include "MaterialFactory.hpp"
 #include <thread>
+#include "LoadScene.hpp"
 #include <libconfig.h++>
 
 std::mutex Rt::Raytracer::mutex;
 std::atomic_bool Rt::Raytracer::end_rendering(false);
 
-void Rt::Raytracer::launchRendering()
+void Rt::Raytracer::launchRendering(Rt::ObjectList &world, Rt::Camera &camera)
 {
-    Rt::ObjectList world;
+    //Rt::ObjectList world;
 
     std::shared_ptr<Rt::IMaterial> red = std::make_shared<Rt::Lambertian>(Math::Color01(1, 0, 0));
 //    std::shared_ptr<Rt::ITexture> chess_bord = std::make_shared<Rt::ChessTexture>(25, Math::Color01(1, 0, 0), Math::Color01(0, 1, 1));
-    std::shared_ptr<Rt::ITexture> chess_bord = std::make_shared<Rt::ImageTexture>("texture/cyberpunk_2077.png");
-    std::shared_ptr<Rt::IMaterial> chess_mat = std::make_shared<Rt::Lambertian>(chess_bord);
+    //std::shared_ptr<Rt::ITexture> chess_bord = std::make_shared<Rt::ImageTexture>("texture/cyberpunk_2077.png");
+    //std::shared_ptr<Rt::IMaterial> chess_mat = std::make_shared<Rt::Lambertian>(chess_bord);
     auto white = std::make_shared<Rt::Lambertian>(Math::Color01(0.73, 0.73, 0.73));
     auto green = std::make_shared<Rt::Lambertian>(Math::Color01(0, 1, 0));
     auto light = std::make_shared<Rt::DiffuseLight>(Math::Color01(1 * 20, 1 * 20, 1 * 20));
 
-    world.add(std::make_shared<Rt::Plane>(Math::Point3D(555,0,0), Math::Vector3D(0,555,0), Math::Vector3D(0,0,555), white));
-    world.add(std::make_shared<Rt::Plane>(Math::Point3D(0,0,0), Math::Vector3D(0,555,0), Math::Vector3D(0,0,555), white));
-    world.add(std::make_shared<Rt::Plane>(Math::Point3D(343, 554, 332), Math::Vector3D(-130,0,0), Math::Vector3D(0,0,-105), light));
-    world.add(std::make_shared<Rt::Plane>(Math::Point3D(0,0,0), Math::Vector3D(555,0,0), Math::Vector3D(0,0,555), white));
-    world.add(std::make_shared<Rt::Plane>(Math::Point3D(555,555,555), Math::Vector3D(-555,0,0), Math::Vector3D(0,0,-555), white));
-    world.add(std::make_shared<Rt::Plane>(Math::Point3D(0,0,555), Math::Vector3D(555,0,0), Math::Vector3D(0,555,0), white));
+    //auto metal = std::make_shared<Rt::Metal>(Math::Color01(15, 15, 15), 10.0);
+    //auto lambertian = std::make_shared<Rt::Lambertian>(Math::Color01(0.12, 0.45, 0.15));
+    //auto dielectric = std::make_shared<Rt::Dielectric>(10.0);
+    //auto diffuseLight = std::make_shared<Rt::DiffuseLight>(Math::Color01(15, 15, 15));
 
-    // world.add(Rt::Builder::createObject<Rt::Cone>(
-//         Math::Vector3D(555 / 2., 250, 555 / 2.),
-        // Math::Vector3D(0, 0, 180),
-        // Rt::MaterialFactory::createMaterial<Rt::Lambertian>(Math::Color01(1, 0, 0)),
-        // 100.0, 250.0));
+    //cam.fov = 40;
+    //cam.image_width = Rt::Interface::image_size_x;
+    //cam.image_height = Rt::Interface::image_size_y;
+    //cam.samples_per_pixel = 100; // 20 - 100
+    //cam.max_depth = 20; // 10 - 50
+    //cam.nb_thread = 32;
 
-    Rt::Camera cam;
+    // Diffuse Light -> Emet de la lumière
 
-    cam.fov = 40;
-    cam.image_width = Rt::Interface::image_size_x;
-    cam.image_height = Rt::Interface::image_size_y;
-    cam.samples_per_pixel = 250; // 20 - 100
-    cam.max_depth = 3; // 10 - 50
-    cam.nb_thread = 32;
+    // Q -> U -> V -> Matériau
+    // Each Plane Surface
+    //world.add(std::make_shared<Rt::Plane>(Math::Point3D(555,0,0), Math::Vector3D(0,555,0), Math::Vector3D(0,0,555), green));
+    //world.add(std::make_shared<Rt::Plane>(Math::Point3D(0,0,0), Math::Vector3D(0,555,0), Math::Vector3D(0,0,555), red));
+    //world.add(std::make_shared<Rt::Plane>(Math::Point3D(343, 554, 332), Math::Vector3D(-130,0,0), Math::Vector3D(0,0,-105), diffuseLight));
+    //world.add(std::make_shared<Rt::Plane>(Math::Point3D(0,0,0), Math::Vector3D(555,0,0), Math::Vector3D(0,0,555), white));
+    //world.add(std::make_shared<Rt::Plane>(Math::Point3D(555,555,555), Math::Vector3D(-555,0,0), Math::Vector3D(0,0,-555), white));
+    //world.add(std::make_shared<Rt::Plane>(Math::Point3D(0,0,555), Math::Vector3D(555,0,0), Math::Vector3D(0,555,0), white));
 
-    cam.lookfrom = Math::Point3D(278, 278, -800);
-    cam.lookat = Math::Point3D(278, 278, 0);
-    cam.vup = Math::Vector3D(0,1,0);
-    cam.background = Math::Color01(0, 0, 0);
+    // Option of the camera
+    //Rt::Camera cam;
 
-    cam.render(world);
+    //cam.fov = 40;
+    //cam.image_width = Rt::Interface::image_size_x;
+    //cam.image_height = Rt::Interface::image_size_y;
+    //cam.samples_per_pixel = 50; // 20 - 100
+    //cam.max_depth = 10; // 10 - 50
+    //cam.nb_thread = 32;
+
+    //cam.lookfrom = Math::Point3D(278,278,-800);
+    //cam.lookat   = Math::Point3D(278,278,0);
+    //cam.vup      = Math::Vector3D(0,1,0);
+    //cam.background = Math::Color01(0, 0, 0);
+//
+    camera.render(world);
 }
 
 int main(int argc, const char *argv[])
 {
+    Rt::LoadScene allScenes;
+    Rt::ObjectList world;
+    Rt::Camera camera;
+
     std::srand(std::time(nullptr));
     try {
-        Rt::Interface interface(1080 / 8, 1080 / 8);
+        allScenes.parseArgs(argc, argv);
+        allScenes.loadAllScenes(world, camera);
+        Rt::Interface interface(camera.image_width, camera.image_height);
 
-        std::thread render_thread(Rt::Raytracer::launchRendering);
+        std::thread render_thread([&](){ Rt::Raytracer::launchRendering(world, camera); });
         interface.loop();
         Rt::Raytracer::end_rendering = true;
         render_thread.join();
