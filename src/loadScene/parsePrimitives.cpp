@@ -38,8 +38,11 @@ void Rt::LoadScene::chooseMaterialType(std::shared_ptr<Rt::IMaterial> &material,
         if (itDiffuseLight != _materialsList.end()) {
             material = std::make_shared<Rt::DiffuseLight>(itDiffuseLight->second.color);
         }
-    } else {    
+    } else {
         throw my::tracked_exception("In the parsing with libConfig++, we have detect a mysterious material!");
+    }
+    if (!material) {
+        throw my::tracked_exception("In the parsing with libConfig++, material not found!");
     }
 }
 

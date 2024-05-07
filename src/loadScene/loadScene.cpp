@@ -10,6 +10,7 @@
 #include "LoadScene.hpp"
 #include "my_tracked_exception.hpp"
 #include <filesystem>
+#include "my_log.hpp"
 
 void Rt::LoadScene::parseArgs(int argc, const char **argv)
 {
@@ -35,7 +36,9 @@ void Rt::LoadScene::loadScene(const std::string &filepath, Rt::ObjectList &world
     } catch(const std::exception &e) {}
     try {
         parsePrimitives(cfg, world);
-    } catch(const std::exception &e) {}
+    } catch(const my::tracked_exception &exception) {
+        throw my::tracked_exception(exception.what());
+    } catch (const std::exception& e) {}
     try {
         parseCamera(cfg, camera);
     } catch(const std::exception &e) {}
