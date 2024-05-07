@@ -19,17 +19,28 @@
 #include "Lambertian.hpp"
 #include "Triangle.hpp"
 #include "FileObj.hpp"
+#include "Vector3D.hpp"
 
-void Rt::Raytracer::createObjModel(Rt::ObjectList &world ,const std::string &path)
+void Rt::Raytracer::createObjModel(Rt::ObjectList &world, const std::string &path,
+    double scale, std::shared_ptr<Rt::IMaterial> material)
 {
-    auto left_red     = std::make_shared<Rt::Lambertian>(Math::Color01(1, 0, 0));
-
     FileObj obj(path);
     FaceList faceList = obj.getFaceList();
     for (auto face : faceList) {
-        for (int i = 0; i < face.size() - 2; i++) {
-            world.add(std::make_shared<Rt::Triangle>(Math::Point3D(face[0][0],face[0][1],face[0][2]),
-            Math::Point3D(face[i + 1][0], face[i + 1][1],face[i + 1][2]), Math::Point3D(face[i + 2][0] ,face[i + 2][1] ,face[i + 2][2]), left_red));
+        for (int i = 0; i < static_cast<int>(face.size()) - 2; i++) {
+            world.add(std::make_shared<Rt::Triangle>(
+                Math::Point3D(
+                    face[0][0] * scale,
+                    face[0][1] * scale,
+                    face[0][2] * scale),
+                Math::Point3D(
+                    face[i + 1][0] * scale,
+                    face[i + 1][1] * scale,
+                    face[i + 1][2] * scale),
+                Math::Point3D(
+                    face[i + 2][0] * scale,
+                    face[i + 2][1] * scale,
+                    face[i + 2][2] * scale), material));
         }
     }
 }
