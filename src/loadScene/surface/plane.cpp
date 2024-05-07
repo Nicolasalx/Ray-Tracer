@@ -13,8 +13,7 @@
 
 void Rt::LoadScene::analyseOnePlane(const libconfig::Setting &currentPlane, Rt::ObjectList &world)
 {
-    try
-    {
+    try {
         std::string materialName = "";
         std::shared_ptr<Rt::IMaterial> material;
         const libconfig::Setting &translation = currentPlane["translation"];
