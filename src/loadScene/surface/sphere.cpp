@@ -7,19 +7,21 @@
 
 #include "LoadScene.hpp"
 #include "Sphere.hpp"
+#include "Builder.hpp"
 
 void Rt::LoadScene::analyseOneSphere(const libconfig::Setting &currentSphere, Rt::ObjectList &world)
 {
     std::string materialName = "";
     double radius = 0.0;
     const libconfig::Setting &sphere = currentSphere;
-    const libconfig::Setting &center = sphere["center"];
+    const libconfig::Setting &center = sphere["position"];
+    // ! To Add Rotation
 
     Math::Point3D pointOrigin = vectorToPoint3D(parseVector3D(center));
     sphere.lookupValue("material", materialName);
     sphere.lookupValue("radius", radius);
     std::shared_ptr<Rt::IMaterial> material;
-    
+
     std::cout << "------------------------------------------------------\n";
     std::cout << "New Sphere:\n";
     std::cout << "Point Pos: " << pointOrigin.x() << " / " << pointOrigin.y() << " / " << pointOrigin.z() << "\n";
@@ -27,7 +29,7 @@ void Rt::LoadScene::analyseOneSphere(const libconfig::Setting &currentSphere, Rt
     chooseMaterialType(material, materialName);
     std::cout << "------------------------------------------------------\n";
 
-    world.add(std::make_shared<Rt::Sphere>(pointOrigin, radius, material));
+    world.add(Rt::Builder::createObject<Rt::Sphere>(pointOrigin, radius, material));
 }
 
 void Rt::LoadScene::parseAllSphere(const libconfig::Setting &primitivesSettings, Rt::ObjectList &world)

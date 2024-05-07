@@ -29,23 +29,26 @@ void Rt::LoadScene::loadScene(const std::string &filepath, Rt::ObjectList &world
 {
     libconfig::Config cfg;
 
+    cfg.readFile(filepath.c_str());
     try {
-        cfg.readFile(filepath.c_str());
         parseMaterials(cfg);
+    } catch(const std::exception& e) {
+        std::cerr << e.what() << '\n';
+    }
+    try {
         parsePrimitives(cfg, world);
+    } catch(const std::exception& e) {
+        std::cerr << e.what() << '\n';
+    }
+    try {
         parseCamera(cfg, camera);
-    } catch(const libconfig::FileIOException &fioex) {
-        throw my::tracked_exception("Can't open configuration file to parse the scene.");
-    } catch(const libconfig::ParseException &pex) {
-        std::cerr << "Syntax error in the configuration file at line " << pex.getLine() << ": " << pex.getError() << std::endl; // ! Delete after with the return (set error in the throw)
-        throw my::tracked_exception("Syntax error in the configuration file.");
-        return;
+    } catch(const std::exception& e) {
+        std::cerr << e.what() << '\n';
     }
 }
 
 void Rt::LoadScene::loadAllScenes(Rt::ObjectList &world, Rt::Camera &camera)
 {
-    // Les couleurs doivent etre rendu sur une échelle de 0 à 1 (/255.0 et pas /255 => division à virgule et pas entière)
     for (const auto &filepath: _listConfigFile) {
         loadScene(filepath, world, camera);
     }

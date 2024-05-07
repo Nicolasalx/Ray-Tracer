@@ -96,7 +96,7 @@ int main(int argc, const char *argv[])
     try {
         allScenes.parseArgs(argc, argv);
         allScenes.loadAllScenes(world, camera);
-        Rt::Interface interface(1920 / 8, 1080 / 8);
+        Rt::Interface interface(camera.image_width, camera.image_height);
 
         std::thread render_thread([&](){ Rt::Raytracer::launchRendering(world, camera); });
         interface.loop();

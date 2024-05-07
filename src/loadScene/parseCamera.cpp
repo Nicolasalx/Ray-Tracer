@@ -44,7 +44,6 @@ void Rt::LoadScene::parseCamera(libconfig::Config &cfg, Rt::Camera &camera)
     camera.vup = Math::Point3D(vectorVup.at(0), vectorVup.at(1), vectorVup.at(2));
     camera.background = Math::Point3D(vectorBackground.at(0), vectorBackground.at(1), vectorBackground.at(2));
 
-
     std::cout << "FOV: " << camera.fov << "\n";
     std::cout << "NB THREAD: " << camera.nb_thread << "\n";
     std::cout << "MAX DEPTH: " << camera.max_depth << "\n";
