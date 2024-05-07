@@ -21,7 +21,7 @@ bool Rt::ObjectList::hit(const Rt::Ray &ray, Rt::Interval ray_t, Rt::HitData &re
 {
     Rt::HitData temp_rec;
     bool hit_anything = false;
-    auto closest_so_far = ray_t.max;
+    double closest_so_far = ray_t.max;
 
     for (const auto &object : objects) {
         if (object->hit(ray, Rt::Interval(ray_t.min, closest_so_far), temp_rec)) {

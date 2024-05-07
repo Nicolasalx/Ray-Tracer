@@ -182,3 +182,19 @@ Math::Vector3D Math::operator * (double t, const Math::Vector3D &vector)
 {
     return Vector3D(t * vector.x(), t * vector.y(), t * vector.z());
 }
+
+Math::Vector3D &Math::Vector3D::operator *= (const Math::Vector3D &other)
+{
+    vector[0] *= other.vector[0];
+    vector[1] *= other.vector[1];
+    vector[2] *= other.vector[2];
+    return *this;
+}
+
+Math::Vector3D Math::Vector3D::operator / (const Math::Vector3D &other) const
+{
+    return Math::Vector3D(
+        vector[0] / other.vector[0],
+        vector[1] / other.vector[1],
+        vector[2] / other.vector[2]);
+}

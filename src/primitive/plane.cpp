@@ -21,19 +21,19 @@ bool Rt::Plane::is_interior(double a, double b, Rt::HitData &rec) const
 
 bool Rt::Plane::hit(const Rt::Ray &ray, Rt::Interval ray_t, Rt::HitData &rec) const
 {
-    auto denom = normal_.dot(ray.getDirection());
+    double denom = normal_.dot(ray.getDirection());
 
     if (std::fabs(denom) < 1e-8)
         return false;
 
-    auto t = (d_ - normal_.dot(ray.getOrigin())) / denom;
+    double t = (d_ - normal_.dot(ray.getOrigin())) / denom;
     if (!ray_t.contains(t))
         return false;
 
-    auto intersection = ray.at(t);
+    Math::Point3D intersection = ray.at(t);
     Math::Vector3D planar_hitpt_vector = intersection - pos_;
-    auto alpha = w_.dot(planar_hitpt_vector.cross(v_));
-    auto beta = w_.dot(u_.cross(planar_hitpt_vector));
+    double alpha = w_.dot(planar_hitpt_vector.cross(v_));
+    double beta = w_.dot(u_.cross(planar_hitpt_vector));
 
     if (!is_interior(alpha, beta, rec)) {
         return false;

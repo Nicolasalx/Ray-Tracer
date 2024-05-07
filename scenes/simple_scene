@@ -1,11 +1,23 @@
 primitives:
 {
     planes = (
-        { pos = { x = 555; y = 0; z = 0; }; u = { x = 0; y = 555; z = 0; }; v = { x = 0; y = 0; z = 555; }; material = "lambertian_green"; },
-        { pos = { x = 555; y = 0; z = 0; }; u = { x = 0; y = 555; z = 0; }; v = { x = 0; y = 0; z = 555; }; material = "lambertian_red"; },
-        { pos = { x = 343; y = 554; z = 332; }; u = { x = -130; y = 0; z = 0; }; v = { x = 0; y = 0; z = -105; }; material = "diffuseLight" },
-        { pos = { x = 0; y = 0; z = 0; }; u = { x = -555; y = 0; z = 0; }; v = { x = 0; y = 0; z = 555; }; material = "lambertian_white"; },
-        { pos = { x = 555; y = 555; z = 555; }; u = { x = 555; y = 0; z = 0; }; v = { x = 0; y = 0; z = -555; }; material = "lambertian_white"; },
-        { pos = { x = 0; y = 0; z = 555; }; u = { x = 555; y = 0; z = 0; }; v = { x = 0; y = 555; z = 0; }; material = "lambertian_white"; }
+        { translation = { x = 2, y = 2, z = 2 }; rotation = { x = 2, y = 2, z = 2 }; pos = { x = 555; y = 0; z = 0; }; u = { x = 0; y = 555; z = 0; }; v = { x = 0; y = 0; z = 555; }; material = "lambertian_green"; },
+        { translation = { x = 2, y = 2, z = 2 }; rotation = { x = 2, y = 2, z = 2 }; pos = { x = 555; y = 0; z = 0; }; u = { x = 0; y = 555; z = 0; }; v = { x = 0; y = 0; z = 555; }; material = "lambertian_red"; },
+        { translation = { x = 2, y = 2, z = 2 }; rotation = { x = 2, y = 2, z = 2 }; pos = { x = 343; y = 554; z = 332; }; u = { x = -130; y = 0; z = 0; }; v = { x = 0; y = 0; z = -105; }; material = "diffuseLight" },
+        { translation = { x = 2, y = 2, z = 2 }; rotation = { x = 2, y = 2, z = 2 }; pos = { x = 0; y = 0; z = 0; }; u = { x = -555; y = 0; z = 0; }; v = { x = 0; y = 0; z = 555; }; material = "lambertian_white"; },
+        { translation = { x = 2, y = 2, z = 2 }; rotation = { x = 2, y = 2, z = 2 }; pos = { x = 555; y = 555; z = 555; }; u = { x = 555; y = 0; z = 0; }; v = { x = 0; y = 0; z = -555; }; material = "lambertian_white"; },
+        { translation = { x = 2, y = 2, z = 2 }; rotation = { x = 2, y = 2, z = 2 }; pos = { x = 0; y = 0; z = 555; }; u = { x = 555; y = 0; z = 0; }; v = { x = 0; y = 555; z = 0; }; material = "lambertian_white"; }
     );
+    spheres = (
+        { translation = { x = 2, y = 2, z = 2 }; rotation = { x = 2, y = 2, z = 2 }; radius = 10.0; material = "lambertian_red"; }
+    );
+    cones = (
+        { translation = { x = 3, y = 3, z = 3 }; rotation = { x = 3, y = 3, z = 3 }; radius = 15.0; length = 20.0; material = "lambertian_red"; }
+    );
+    cylinders = (
+        { translation = { x = 3, y = 3, z = 3 }; rotation = { x = 3, y = 3, z = 3 }; radius = 15.0; length = 20.0; material = "lambertian_red"; }
+    );
+    triangles = (
+        { translation = { x = 3, y = 3, z = 3 }; rotation = { x = 3, y = 3, z = 3 }; origin = { x = 12; y = 13; z = 14}; pointA = { x = 22; y = 23; z = 24}; pointB = { x = 32; y = 33; z = 34}; material = "lambertian_red" }
+    )
 };

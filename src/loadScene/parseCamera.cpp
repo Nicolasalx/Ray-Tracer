@@ -43,15 +43,4 @@ void Rt::LoadScene::parseCamera(libconfig::Config &cfg, Rt::Camera &camera)
     camera.lookat = Math::Point3D(vectorLookAt.at(0), vectorLookAt.at(1), vectorLookAt.at(2));
     camera.vup = Math::Point3D(vectorVup.at(0), vectorVup.at(1), vectorVup.at(2));
     camera.background = Math::Point3D(vectorBackground.at(0), vectorBackground.at(1), vectorBackground.at(2));
-
-    std::cout << "FOV: " << camera.fov << "\n";
-    std::cout << "NB THREAD: " << camera.nb_thread << "\n";
-    std::cout << "MAX DEPTH: " << camera.max_depth << "\n";
-    std::cout << "SAMPLES PER PIXEL: " << camera.samples_per_pixel << "\n";
-    std::cout << "IMAGE WIDTH: " << camera.image_width << "\n";
-    std::cout << "IMAGE HEIGHT: " << camera.image_height << "\n";
-    std::cout << "LOOK FROM: " << camera.lookfrom.x() << " / " << camera.lookfrom.y() << " / " << camera.lookfrom.z() << "\n";
-    std::cout << "LOOK AT: " << camera.lookat.x() << " / " << camera.lookat.y() << " / " << camera.lookat.z() << "\n";
-    std::cout << "LOOK AT: " << camera.vup.x() << " / " << camera.vup.y() << " / " << camera.vup.z() << "\n";
-    std::cout << "LOOK AT: " << camera.background.x() << " / " << camera.background.y() << " / " << camera.background.z() << "\n";
 }

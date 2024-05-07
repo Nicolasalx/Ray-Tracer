@@ -13,23 +13,19 @@ void Rt::LoadScene::analyseOneSphere(const libconfig::Setting &currentSphere, Rt
 {
     std::string materialName = "";
     double radius = 0.0;
-    const libconfig::Setting &sphere = currentSphere;
-    const libconfig::Setting &center = sphere["position"];
-    // ! To Add Rotation
+    const libconfig::Setting &translation = currentSphere["translation"];
+    const libconfig::Setting &rotation = currentSphere["rotation"];
+    currentSphere.lookupValue("radius", radius);
+    currentSphere.lookupValue("material", materialName);
 
-    Math::Point3D pointOrigin = vectorToPoint3D(parseVector3D(center));
-    sphere.lookupValue("material", materialName);
-    sphere.lookupValue("radius", radius);
+    Math::Vector3D vectorTranslation = vectorTo3D(parseVector3D(translation));
+    Math::Vector3D vectorRotation = vectorTo3D(parseVector3D(rotation));
+
     std::shared_ptr<Rt::IMaterial> material;
 
-    std::cout << "------------------------------------------------------\n";
-    std::cout << "New Sphere:\n";
-    std::cout << "Point Pos: " << pointOrigin.x() << " / " << pointOrigin.y() << " / " << pointOrigin.z() << "\n";
-    std::cout << "Radius: " << radius << "\n";
     chooseMaterialType(material, materialName);
-    std::cout << "------------------------------------------------------\n";
 
-    world.add(Rt::Builder::createObject<Rt::Sphere>(pointOrigin, radius, material));
+    world.add(Rt::Builder::createObject<Rt::Sphere>(vectorTranslation, vectorRotation, material, radius));
 }
 
 void Rt::LoadScene::parseAllSphere(const libconfig::Setting &primitivesSettings, Rt::ObjectList &world)

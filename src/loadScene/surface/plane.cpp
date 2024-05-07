@@ -7,32 +7,27 @@
 
 #include "LoadScene.hpp"
 #include "Plane.hpp"
+#include "Builder.hpp"
 
 void Rt::LoadScene::analyseOnePlane(const libconfig::Setting &currentPlane, Rt::ObjectList &world)
 {
     std::string materialName = "";
-    const libconfig::Setting &plane = currentPlane;
-    const libconfig::Setting &pos = plane["pos"];
-    const libconfig::Setting &u = plane["u"];
-    const libconfig::Setting &v = plane["v"];
+    std::shared_ptr<Rt::IMaterial> material;
+    const libconfig::Setting &translation = currentPlane["translation"];
+    const libconfig::Setting &rotation = currentPlane["rotation"];    
+    const libconfig::Setting &pos = currentPlane["pos"];
+    const libconfig::Setting &u = currentPlane["u"];
+    const libconfig::Setting &v = currentPlane["v"];
+    currentPlane.lookupValue("material", materialName);
 
+    Math::Vector3D vectorTranslation = vectorTo3D(parseVector3D(translation));
+    Math::Vector3D vectorRotation = vectorTo3D(parseVector3D(rotation));
     Math::Point3D pointPos = vectorToPoint3D(parseVector3D(pos));
     Math::Vector3D vectorU = vectorTo3D(parseVector3D(u));
     Math::Vector3D vectorV = vectorTo3D(parseVector3D(v));
 
-    plane.lookupValue("material", materialName);
-    std::shared_ptr<Rt::IMaterial> material;
-
-    std::cout << "------------------------------------------------------\n";
-    std::cout << "New Plane:\n";
-    std::cout << "Point Pos: " << pointPos.x() << " / " << pointPos.y() << " / " << pointPos.z() << "\n";
-    std::cout << "Vector U: " << vectorU.x() << " / " << vectorU.y() << " / " << vectorU.z() << "\n";
-    std::cout << "Vector V: " << vectorV.x() << " / " << vectorV.y() << " / " << vectorV.z() << "\n";
-
     chooseMaterialType(material, materialName);
-    std::cout << "------------------------------------------------------\n";
-
-    world.add(std::make_shared<Rt::Plane>(pointPos, vectorU, vectorV, material));
+    world.add(Rt::Builder::createObject<Rt::Plane>(vectorTranslation, vectorRotation, material, pointPos, vectorU, vectorV));
 }
 
 void Rt::LoadScene::parseAllPlane(const libconfig::Setting &primitivesSettings, Rt::ObjectList &world)

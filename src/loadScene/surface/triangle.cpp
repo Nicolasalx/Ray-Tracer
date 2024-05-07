@@ -7,30 +7,27 @@
 
 #include "LoadScene.hpp"
 #include "Triangle.hpp"
+#include "Builder.hpp"
 
 void Rt::LoadScene::analyseOneTriangle(const libconfig::Setting &currentTriangle, Rt::ObjectList &world)
 {
     std::string materialName = "";
-    const libconfig::Setting &triangle = currentTriangle;
-    const libconfig::Setting &origin = triangle["origin"];
-    const libconfig::Setting &pointA = triangle["pointA"];
-    const libconfig::Setting &pointB = triangle["pointB"];
+    const libconfig::Setting &translation = currentTriangle["translation"];
+    const libconfig::Setting &rotation = currentTriangle["rotation"];
+    const libconfig::Setting &origin = currentTriangle["origin"];
+    const libconfig::Setting &pointA = currentTriangle["pointA"];
+    const libconfig::Setting &pointB = currentTriangle["pointB"];
+    currentTriangle.lookupValue("material", materialName);
 
+    Math::Vector3D vectorTranslation = vectorTo3D(parseVector3D(translation));
+    Math::Vector3D vectorRotation = vectorTo3D(parseVector3D(rotation));
     Math::Point3D pointOrigin = vectorToPoint3D(parseVector3D(origin));
     Math::Point3D PpointA = vectorToPoint3D(parseVector3D(pointA));
     Math::Point3D PpointB = vectorToPoint3D(parseVector3D(pointB));
-    triangle.lookupValue("material", materialName);
     std::shared_ptr<Rt::IMaterial> material;
     
-    std::cout << "------------------------------------------------------\n";
-    std::cout << "New Triangle:\n";
-    std::cout << "Point Pos: " << pointOrigin.x() << " / " << pointOrigin.y() << " / " << pointOrigin.z() << "\n";
-    std::cout << "Vector U: " << PpointA.x() << " / " << PpointA.y() << " / " << PpointA.z() << "\n";
-    std::cout << "Vector V: " << PpointB.x() << " / " << PpointB.y() << " / " << PpointB.z() << "\n";
-
     chooseMaterialType(material, materialName);
-    std::cout << "------------------------------------------------------\n";
-    world.add(std::make_shared<Rt::Triangle>(pointOrigin, PpointA, PpointB, material));
+    world.add(Rt::Builder::createObject<Rt::Triangle>(vectorTranslation, vectorRotation, material, pointOrigin, PpointA, PpointB));
 }
 
 void Rt::LoadScene::parseAllTriangle(const libconfig::Setting &primitivesSettings, Rt::ObjectList &world)

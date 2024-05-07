@@ -18,30 +18,25 @@
 
 void Rt::LoadScene::chooseMaterialType(std::shared_ptr<Rt::IMaterial> &material, std::string &materialName)
 {
-    std::cout << "Before choose\n";
     if (materialName.starts_with("metal")) {
         auto itMetal = _materialsList.find(materialName);
         if (itMetal != _materialsList.end()) {
             material = std::make_shared<Rt::Metal>(itMetal->second.color, itMetal->second.reflection);
-            std::cout << "Material: " << materialName << " | Color: " << itMetal->second.color.x() << " / " << itMetal->second.color.y() << " / " << itMetal->second.color.z() << " / Reflection: " << itMetal->second.reflection << "\n";
         }
     } else if (materialName.starts_with("lambertian")) {
         auto itLambertian = _materialsList.find(materialName);
         if (itLambertian != _materialsList.end()) {
             material = std::make_shared<Rt::Lambertian>(itLambertian->second.color);
-            std::cout << "Material: " << materialName << " | Color: " << itLambertian->second.color.x() << " / " << itLambertian->second.color.y() << " / " << itLambertian->second.color.z() << "\n";
         }
     } else if (materialName.starts_with("dielectric")) {
         auto itDielectric = _materialsList.find(materialName);
         if (itDielectric != _materialsList.end()) {
             material = std::make_shared<Rt::Dielectric>(itDielectric->second.reflection);
-            std::cout << "Material: " << materialName << " | Reflection: " << itDielectric->second.reflection << "\n";
         }
     } else if (materialName.starts_with("diffuseLight")) {
         auto itDiffuseLight = _materialsList.find(materialName);
         if (itDiffuseLight != _materialsList.end()) {
             material = std::make_shared<Rt::DiffuseLight>(itDiffuseLight->second.color);
-            std::cout << "Material: " << materialName << " | Color: " << itDiffuseLight->second.color.x() << " / " << itDiffuseLight->second.color.y() << " / " << itDiffuseLight->second.color.z() << "\n";
         }
     } else {    
         throw my::tracked_exception("In the parsing with libConfig++, we have detect a mysterious material!");
@@ -55,4 +50,6 @@ void Rt::LoadScene::parsePrimitives(libconfig::Config &cfg, Rt::ObjectList &worl
     parseAllSphere(primitivesSettings, world);
     parseAllTriangle(primitivesSettings, world);
     parseAllPlane(primitivesSettings, world);
+    parseAllCone(primitivesSettings, world);
+    parseAllCylinder(primitivesSettings, world);
 }

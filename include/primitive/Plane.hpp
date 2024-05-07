@@ -24,10 +24,22 @@ namespace Rt
         double d_;
 
     public:
-        Plane(const Math::Point3D &pos, const Math::Vector3D &u, const Math::Vector3D &v, std::shared_ptr<IMaterial> material)
+        Plane() = default;
+        Plane(const Math::Point3D &pos, const Math::Vector3D &u,
+        const Math::Vector3D &v, std::shared_ptr<IMaterial> material)
           : pos_(pos), u_(u), v_(v), material_(material)
         {
-            auto n = u.cross(v);
+            Math::Vector3D n = u.cross(v);
+            normal_ = n.unit_vector();
+            d_ = normal_.dot(pos_);
+            w_ = n / n.dot(n);
+        }
+        Plane(double height, double width, std::shared_ptr<IMaterial> material)
+            : material_(material)
+        {
+            u_ = Math::Vector3D(-width, 0, 0);
+            v_ = Math::Vector3D(0, height, 0);
+            Math::Vector3D n = u_.cross(v_);
             normal_ = n.unit_vector();
             d_ = normal_.dot(pos_);
             w_ = n / n.dot(n);

@@ -29,6 +29,12 @@
 #include "Triangle.hpp"
 #include "DiffuseLight.hpp"
 #include "FileObj.hpp"
+#include "Cylinder.hpp"
+#include "Cone.hpp"
+#include "Translation.hpp"
+#include "Rotation.hpp"
+#include "Builder.hpp"
+#include "MaterialFactory.hpp"
 #include <thread>
 #include "LoadScene.hpp"
 #include <libconfig.h++>
@@ -40,10 +46,13 @@ void Rt::Raytracer::launchRendering(Rt::ObjectList &world, Rt::Camera &camera)
 {
     //Rt::ObjectList world;
 
-    auto red   = std::make_shared<Rt::Lambertian>(Math::Color01(1, 0, 0));
+    std::shared_ptr<Rt::IMaterial> red = std::make_shared<Rt::Lambertian>(Math::Color01(1, 0, 0));
+//    std::shared_ptr<Rt::ITexture> chess_bord = std::make_shared<Rt::ChessTexture>(25, Math::Color01(1, 0, 0), Math::Color01(0, 1, 1));
+    //std::shared_ptr<Rt::ITexture> chess_bord = std::make_shared<Rt::ImageTexture>("texture/cyberpunk_2077.png");
+    //std::shared_ptr<Rt::IMaterial> chess_mat = std::make_shared<Rt::Lambertian>(chess_bord);
     auto white = std::make_shared<Rt::Lambertian>(Math::Color01(0.73, 0.73, 0.73));
     auto green = std::make_shared<Rt::Lambertian>(Math::Color01(0, 1, 0));
-    auto light = std::make_shared<Rt::DiffuseLight>(Math::Color01(15, 15, 15));
+    auto light = std::make_shared<Rt::DiffuseLight>(Math::Color01(1 * 20, 1 * 20, 1 * 20));
 
     //auto metal = std::make_shared<Rt::Metal>(Math::Color01(15, 15, 15), 10.0);
     //auto lambertian = std::make_shared<Rt::Lambertian>(Math::Color01(0.12, 0.45, 0.15));

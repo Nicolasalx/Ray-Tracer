@@ -34,12 +34,12 @@ Math::Point3D Rt::LoadScene::vectorToPoint3D(std::vector<int> list)
     return Math::Point3D(list.at(0), list.at(1), list.at(2));
 }
 
-Math::Point3D Rt::LoadScene::vectorTo3D(std::vector<int> list)
+Math::Vector3D Rt::LoadScene::vectorTo3D(std::vector<int> list)
 {
     if (list.size() != 3) {
         throw("Invalid size of vector, need to be a size of 3!");
     }
-    return Math::Point3D(list.at(0), list.at(1), list.at(2));
+    return Math::Vector3D(list.at(0), list.at(1), list.at(2));
 }
 
 double Rt::LoadScene::checkValueIsColor(int value)

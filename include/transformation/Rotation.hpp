@@ -30,7 +30,6 @@ namespace Rt
         {
         }
 
-
         bool hit(const Rt::Ray &ray, Rt::Interval ray_t, Rt::HitData &rec) const override;
     };
 }

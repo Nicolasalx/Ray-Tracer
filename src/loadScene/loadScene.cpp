@@ -32,19 +32,13 @@ void Rt::LoadScene::loadScene(const std::string &filepath, Rt::ObjectList &world
     cfg.readFile(filepath.c_str());
     try {
         parseMaterials(cfg);
-    } catch(const std::exception& e) {
-        std::cerr << e.what() << '\n';
-    }
+    } catch(const std::exception &e) {}
     try {
         parsePrimitives(cfg, world);
-    } catch(const std::exception& e) {
-        std::cerr << e.what() << '\n';
-    }
+    } catch(const std::exception &e) {}
     try {
         parseCamera(cfg, camera);
-    } catch(const std::exception& e) {
-        std::cerr << e.what() << '\n';
-    }
+    } catch(const std::exception &e) {}
 }
 
 void Rt::LoadScene::loadAllScenes(Rt::ObjectList &world, Rt::Camera &camera)

@@ -66,6 +66,14 @@ namespace Rt
             void parseAllPlane(const libconfig::Setting &primitivesSettings, Rt::ObjectList &world);
             void analyseOnePlane(const libconfig::Setting &currentPlane, Rt::ObjectList &world);
 
+            // Cone
+            void parseAllCone(const libconfig::Setting &primitivesSettings, Rt::ObjectList &world);
+            void analyseOneCone(const libconfig::Setting &currentCone, Rt::ObjectList &world);
+
+            // Cylinder
+            void parseAllCylinder(const libconfig::Setting &primitivesSettings, Rt::ObjectList &world);
+            void analyseOneCylinder(const libconfig::Setting &currentCylinder, Rt::ObjectList &world);
+
             // Generic functions to parse
             std::vector<int> parseVector3D(const libconfig::Setting &vector);
             std::vector<int> parseVector2D(const libconfig::Setting &vector);
