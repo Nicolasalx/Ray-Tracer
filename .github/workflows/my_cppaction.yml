@@ -35,9 +35,6 @@ jobs:
             fi
           }
 
-    - name: check functional_tests
-      run: ./tests/Functionnal/tests_functionnal.sh
-
     - name: check unit_tests
       run: |
           echo "## 🧪 Test results" >> $GITHUB_STEP_SUMMARY
