@@ -75,10 +75,15 @@ namespace Rt
             void parseAllCylinder(const libconfig::Setting &primitivesSettings, Rt::ObjectList &world);
             void analyseOneCylinder(const libconfig::Setting &currentCylinder, Rt::ObjectList &world);
 
+            // Object
+            void parseObject();
+
             // Generic functions to parse
             std::vector<int> parseVector3D(const libconfig::Setting &vector);
             std::vector<int> parseVector2D(const libconfig::Setting &vector);
             std::vector<double> parseColor(const libconfig::Setting &vector);
+            std::vector<double> parseColorMul(const libconfig::Setting &vector);
+
             Math::Point3D vectorToPoint3D(std::vector<int> list);
             Math::Point3D vectorTo3D(std::vector<int> list);
             double checkValueIsColor(int value);

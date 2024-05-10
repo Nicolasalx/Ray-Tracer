@@ -46,7 +46,7 @@ void Rt::LoadScene::parseAllCylinder(const libconfig::Setting &primitivesSetting
         }
     } catch(const my::tracked_exception &exception) {
         throw my::tracked_exception("Triangle");
-    } catch (const std::exception& e) {
+    } catch (const std::exception &e) {
         return;
     }
 }

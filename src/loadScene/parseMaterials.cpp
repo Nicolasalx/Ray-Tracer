@@ -51,10 +51,10 @@ void Rt::LoadScene::getDiffuseLight(const libconfig::Setting &material, std::str
 {
     const libconfig::Setting &color = material["color"];
     material_t mat;
-    std::vector<double> vectorColor = parseColor(color);
+    std::vector<double> vectorColor = parseColorMul(color);
 
     mat.name = DIFFUSE_LIGHT;
-    mat.color = Math::Color01(vectorColor.at(0), vectorColor.at(1), vectorColor.at(2));
+    mat.color = Math::Color01(vectorColor.at(0) * vectorColor.at(3), vectorColor.at(1) * vectorColor.at(3), vectorColor.at(2) * vectorColor.at(3));
     _materialsList[materialName] = mat;
 }
 

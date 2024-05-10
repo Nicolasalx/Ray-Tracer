@@ -66,7 +66,27 @@ std::vector<double> Rt::LoadScene::parseColor(const libconfig::Setting &vector)
     listElement.push_back(gdouble);
     listElement.push_back(bdouble);
     return listElement;
-}   
+}
+
+std::vector<double> Rt::LoadScene::parseColorMul(const libconfig::Setting &vector)
+{
+    std::vector<double> listElement;
+
+    int r = vector["r"];
+    int g = vector["g"];
+    int b = vector["b"];
+    double multiplier = vector["multiplier"];
+
+    double rdouble = checkValueIsColor(r);
+    double gdouble = checkValueIsColor(g);
+    double bdouble = checkValueIsColor(b);
+
+    listElement.push_back(rdouble);
+    listElement.push_back(gdouble);
+    listElement.push_back(bdouble);
+    listElement.push_back(multiplier);
+    return listElement;
+}
 
 std::vector<int> Rt::LoadScene::parseVector2D(const libconfig::Setting &vector)
 {
