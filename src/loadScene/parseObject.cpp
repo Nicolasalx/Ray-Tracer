@@ -19,8 +19,16 @@ void Rt::LoadScene::parseOneObject(const libconfig::Setting &object, Rt::ObjectL
         object.lookupValue("scale", scale);
 
         object.lookupValue("material", materialName);
-        chooseMaterialType(material, materialName);
 
+        std::size_t found = materialName.find_last_of("_");
+        if (found != std::string::npos) {
+            std::string result = materialName.substr(found + 1);
+            if (result == "RANDOM") {
+                Rt::Raytracer::createObjModelRandom(world, filepath, scale);
+                return;
+            }
+        }
+        chooseMaterialType(material, materialName);
         Rt::Raytracer::createObjModel(world, filepath, scale, material);
     } catch(const std::exception &exception) {
         throw my::tracked_exception("Error in the parsing of the cone: " + std::string(exception.what()));
