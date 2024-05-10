@@ -39,9 +39,15 @@ void Rt::LoadScene::analyseOnePlane(const libconfig::Setting &currentPlane, Rt::
 
 void Rt::LoadScene::parseAllPlane(const libconfig::Setting &primitivesSettings, Rt::ObjectList &world)
 {
-    const libconfig::Setting &listPlanes = primitivesSettings.lookup("planes");
+    try {
+        const libconfig::Setting &listPlanes = primitivesSettings.lookup("planes");
 
-    for (int i = 0; i < listPlanes.getLength(); ++i) {
-        analyseOnePlane(listPlanes[i], world);
+        for (int i = 0; i < listPlanes.getLength(); ++i) {
+            analyseOnePlane(listPlanes[i], world);
+        }
+    } catch(const my::tracked_exception &exception) {
+        throw my::tracked_exception("Triangle");
+    } catch (const std::exception& e) {
+        return;
     }
 }

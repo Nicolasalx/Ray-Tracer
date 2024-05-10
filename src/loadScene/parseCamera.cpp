@@ -31,7 +31,7 @@ void Rt::LoadScene::parseCamera(libconfig::Config &cfg, Rt::Camera &camera)
     std::vector<int> vectorLookFrom = parseVector3D(look_from);
     std::vector<int> vectorLookAt = parseVector3D(look_at);
     std::vector<int> vectorVup = parseVector3D(vup);
-    std::vector<int> vectorBackground = parseVector3D(background);
+    std::vector<double> vectorBackground = parseColor(background);
 
     camera.fov = fov;
     camera.nb_thread = nb_thread;
@@ -42,5 +42,5 @@ void Rt::LoadScene::parseCamera(libconfig::Config &cfg, Rt::Camera &camera)
     camera.lookfrom = Math::Point3D(vectorLookFrom.at(0), vectorLookFrom.at(1), vectorLookFrom.at(2));
     camera.lookat = Math::Point3D(vectorLookAt.at(0), vectorLookAt.at(1), vectorLookAt.at(2));
     camera.vup = Math::Point3D(vectorVup.at(0), vectorVup.at(1), vectorVup.at(2));
-    camera.background = Math::Point3D(vectorBackground.at(0), vectorBackground.at(1), vectorBackground.at(2));
+    camera.background = Math::Color01(vectorBackground.at(0), vectorBackground.at(1), vectorBackground.at(2));
 }

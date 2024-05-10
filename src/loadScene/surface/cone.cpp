@@ -38,9 +38,15 @@ void Rt::LoadScene::analyseOneCone(const libconfig::Setting &currentCone, Rt::Ob
 
 void Rt::LoadScene::parseAllCone(const libconfig::Setting &primitivesSettings, Rt::ObjectList &world)
 {
-    const libconfig::Setting &listCones = primitivesSettings.lookup("cones");
-
-    for (int i = 0; i < listCones.getLength(); ++i) {
-        analyseOneCone(listCones[i], world);
+    try {
+        const libconfig::Setting &listCones = primitivesSettings.lookup("cones");
+    
+        for (int i = 0; i < listCones.getLength(); ++i) {
+            analyseOneCone(listCones[i], world);
+        }
+    } catch(const my::tracked_exception &exception) {
+        throw my::tracked_exception("Triangle");
+    } catch (const std::exception& e) {
+        return;
     }
 }

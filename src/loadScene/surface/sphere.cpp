@@ -39,8 +39,15 @@ void Rt::LoadScene::analyseOneSphere(const libconfig::Setting &currentSphere, Rt
 
 void Rt::LoadScene::parseAllSphere(const libconfig::Setting &primitivesSettings, Rt::ObjectList &world)
 {
-    const libconfig::Setting &listSpheres = primitivesSettings.lookup("spheres");
-    for (int i = 0; i < listSpheres.getLength(); ++i) {
-        analyseOneSphere(listSpheres[i], world);
+    try {
+        const libconfig::Setting &listSpheres = primitivesSettings.lookup("spheres");
+    
+        for (int i = 0; i < listSpheres.getLength(); ++i) {
+            analyseOneSphere(listSpheres[i], world);
+        }
+    } catch(const my::tracked_exception &exception) {
+        throw my::tracked_exception("Triangle");
+    } catch (const std::exception& e) {
+        return;
     }
 }

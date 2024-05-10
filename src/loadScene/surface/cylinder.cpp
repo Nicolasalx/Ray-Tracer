@@ -38,9 +38,15 @@ void Rt::LoadScene::analyseOneCylinder(const libconfig::Setting &currentCylinder
 
 void Rt::LoadScene::parseAllCylinder(const libconfig::Setting &primitivesSettings, Rt::ObjectList &world)
 {
-    const libconfig::Setting &listCylinders = primitivesSettings.lookup("cylinders");
+    try {
+        const libconfig::Setting &listCylinders = primitivesSettings.lookup("cylinders");
 
-    for (int i = 0; i < listCylinders.getLength(); ++i) {
-        analyseOneCylinder(listCylinders[i], world);
+        for (int i = 0; i < listCylinders.getLength(); ++i) {
+            analyseOneCylinder(listCylinders[i], world);
+        }
+    } catch(const my::tracked_exception &exception) {
+        throw my::tracked_exception("Triangle");
+    } catch (const std::exception& e) {
+        return;
     }
 }
