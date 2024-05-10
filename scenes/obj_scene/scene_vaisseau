@@ -1,0 +1,61 @@
+camera:
+{
+    resolution = { x = 480; y = 270; };
+    fov = 72.0;
+    nb_thread = 32;
+    max_depth = 10;
+    samples_per_pixel = 10;
+    look_from = { x = 13; y = 7; z = 13 };
+    look_at = { x = -3; y = 0; z = 0 };
+    vup = { x = 0; y = 1; z = 0 };
+    background = { r = 255; g = 255; b = 255; multiplier = 1.0 };
+};
+
+materials:
+{
+    listMaterials = (
+        { materialName = "lambertian_orange"; color = { r = 255; g = 165; b = 0; }; },
+        { materialName = "lambertian_blue"; color = { r = 0; g = 0; b = 255; multiplier = 5.0}; },
+        { materialName = "lambertian_yellow"; color = { r = 255; g = 255; b = 0; }; },
+        { materialName = "lambertian_purple"; color = { r = 128; g = 0; b = 128; }; },
+        { materialName = "lambertian_black"; color = { r = 40; g = 40; b = 40; }; },
+        { materialName = "lambertian_red"; color = { r = 255; g = 0; b = 0; multiplier = 5.0}; },
+        { materialName = "lambertian_white"; color = { r = 186; g = 51; b = 186; }; },
+        { materialName = "lambertian_green"; color = { r = 0; g = 255; b = 0; multiplier = 5.0}; },
+        { materialName = "diffuseLight"; color = { r = 255; g = 255; b = 255; multiplier = 5.0 }; }
+    );
+};
+
+primitives:
+{
+    planes = (
+        {
+            position = { x = -7, y = 0, z = 500 };
+            rotation = { x = 90, y = 0, z = 0 };
+            height = 1000.0;
+            width = 0.5;
+            material = "lambertian_red";
+        },
+        {
+            position = { x = 8, y = 0, z = 500 };
+            rotation = { x = 90, y = 0, z = 0 };
+            height = 1000.0;
+            width = 0.5;
+            material = "lambertian_green";
+        },
+        {
+            position = { x = 0, y = 6, z = 500 };
+            rotation = { x = 90, y = 0, z = 0 };
+            height = 1000.0;
+            width = 0.5;
+            material = "lambertian_blue";
+        },
+    );
+};
+
+objects:
+{
+    listObjects = (
+        { filepath = "assets/vaisseau.obj"; scale = 1.0; material = "lambertian_RANDOM"; }
+    )
+}
