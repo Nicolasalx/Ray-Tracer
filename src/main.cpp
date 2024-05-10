@@ -114,6 +114,9 @@ int main(int argc, const char *argv[])
     } catch (const std::exception &exception) {
         my::log::error(exception.what());
         return 84;
+    } catch (...) {
+        my::log::error("Unknow error.");
+        return 84;
     }
     return 0;
 }
