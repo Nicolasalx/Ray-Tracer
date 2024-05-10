@@ -18,7 +18,7 @@ namespace Rt
         double min;
         double max;
 
-        Interval() : min(+std::numeric_limits<double>::infinity()), max(-std::numeric_limits<double>::infinity()) {};
+        Interval() : min(std::numeric_limits<double>::infinity()), max(-std::numeric_limits<double>::infinity()) {};
         Interval(double min_, double max_) : min(min_), max(max_) {}
         Interval(const Rt::Interval &a, const Rt::Interval &b)
         {
@@ -36,8 +36,6 @@ namespace Rt
         double clamp(double x) const;
 
         Interval expand(double delta) const;
-
-        static const Interval empty, universe;
     };
 }
 
