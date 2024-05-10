@@ -1,0 +1,46 @@
+camera:
+{
+    resolution = { x = 1920; y = 1080; };
+    fov = 72.0;
+    nb_thread = 32;
+    max_depth = 10;
+    samples_per_pixel = 10;
+    look_from = { x = 278; y = 278; z = -800 };
+    look_at = { x = 278; y = 278; z = 0 };
+    vup = { x = 0; y = 1; z = 0 };
+    background = { r = 255; g = 255; b = 255 };
+};
+
+materials:
+{
+    listMaterials = (
+        { materialName = "lambertian_red"; color = { r = 0; g = 255; b = 0; }; },
+        { materialName = "lambertian_white"; color = { r = 186; g = 51; b = 186; }; },
+        { materialName = "lambertian_green"; color = { r = 0; g = 255; b = 0; }; },
+        { materialName = "diffuseLight"; color = { r = 255; g = 255; b = 255; }; }
+    );
+};
+
+primitives:
+{
+    planes = (
+        { position = { x = 2, y = 2, z = 2 }; rotation = { x = 2, y = 2, z = 2 }; height = 100.0; width = 200.0; material = "lambertian_green"; },
+        { position = { x = 2, y = 2, z = 2 }; rotation = { x = 2, y = 2, z = 2 }; height = 100.0; width = 200.0; material = "lambertian_red"; },
+        { position = { x = 2, y = 2, z = 2 }; rotation = { x = 2, y = 2, z = 2 }; height = 100.0; width = 200.0; material = "diffuseLight" },
+        { position = { x = 2, y = 2, z = 2 }; rotation = { x = 2, y = 2, z = 2 }; height = 100.0; width = 200.0; material = "lambertian_white"; },
+        { position = { x = 2, y = 2, z = 2 }; rotation = { x = 2, y = 2, z = 2 }; height = 100.0; width = 200.0; material = "lambertian_white"; },
+        { position = { x = 2, y = 2, z = 2 }; rotation = { x = 2, y = 2, z = 2 }; height = 100.0; width = 200.0; material = "lambertian_white"; }
+    );
+    spheres = (
+        { position = { x = 2, y = 2, z = 2 }; rotation = { x = 2, y = 2, z = 2 }; radius = 10.0; material = "lambertian_red"; }
+    );
+    cones = (
+        { position = { x = 3, y = 3, z = 3 }; rotation = { x = 3, y = 3, z = 3 }; radius = 15.0; length = 20.0; material = "lambertian_red"; }
+    );
+    cylinders = (
+        { position = { x = 3, y = 3, z = 3 }; rotation = { x = 3, y = 3, z = 3 }; radius = 15.0; length = 20.0; material = "lambertian_red"; }
+    );
+    triangles = (
+        { position = { x = 3, y = 3, z = 3 }; rotation = { x = 3, y = 3, z = 3 }; origin = { x = 12; y = 13; z = 14}; pointA = { x = 22; y = 23; z = 24}; pointB = { x = 32; y = 33; z = 34}; material = "lambertian_red" }
+    )
+};
