@@ -4,7 +4,7 @@ camera:
     fov = 72.0;
     nb_thread = 32;
     max_depth = 10;
-    samples_per_pixel = 10;
+    samples_per_pixel = 1000;
     look_from = { x = 0; y = 0; z = -3000 };
     look_at = { x = 0; y = 0; z = 0 };
     vup = { x = 0; y = 1; z = 0 };
@@ -28,6 +28,6 @@ primitives:
 objects:
 {
     listObjects = (
-        { filepath = "assets/panter.obj"; scale = 1.0; material = "lambertian_red"; }
+        { filepath = "assets/panter.obj"; scale = 1.0; material = "dzdzzd_RANDOM"; }
     )
 }
