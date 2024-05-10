@@ -7,9 +7,6 @@
 
 #include "Interval.hpp"
 
-const Rt::Interval Rt::Interval::empty = Rt::Interval(+std::numeric_limits<double>::infinity(), -std::numeric_limits<double>::infinity());
-const Rt::Interval Rt::Interval::universe = Rt::Interval(-std::numeric_limits<double>::infinity(), +std::numeric_limits<double>::infinity());
-
 double Rt::Interval::size() const
 {
     return max - min;
