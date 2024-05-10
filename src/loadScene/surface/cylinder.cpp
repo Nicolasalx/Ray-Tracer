@@ -45,7 +45,7 @@ void Rt::LoadScene::parseAllCylinder(const libconfig::Setting &primitivesSetting
             analyseOneCylinder(listCylinders[i], world);
         }
     } catch(const my::tracked_exception &exception) {
-        throw my::tracked_exception("Triangle");
+        throw my::tracked_exception("In the parsing libConfig ++ the Cylinder has a problem!");
     } catch (const std::exception &e) {
         return;
     }

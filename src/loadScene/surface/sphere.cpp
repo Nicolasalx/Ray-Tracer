@@ -46,7 +46,7 @@ void Rt::LoadScene::parseAllSphere(const libconfig::Setting &primitivesSettings,
             analyseOneSphere(listSpheres[i], world);
         }
     } catch(const my::tracked_exception &exception) {
-        throw my::tracked_exception("Triangle");
+        throw my::tracked_exception("In the parsing libConfig ++ the Sphere has a problem!");
     } catch (const std::exception& e) {
         return;
     }

@@ -47,7 +47,7 @@ void Rt::LoadScene::parseAllTriangle(const libconfig::Setting &primitivesSetting
             analyseOneTriangle(listTriangles[i], world);
         }
     } catch(const my::tracked_exception &exception) {
-        throw my::tracked_exception("Triangle");
+        throw my::tracked_exception("In the parsing libConfig ++ the Triangle has a problem!");
     } catch (const std::exception& e) {
         return;
     }
