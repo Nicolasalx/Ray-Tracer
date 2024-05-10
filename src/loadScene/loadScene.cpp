@@ -43,7 +43,7 @@ void Rt::LoadScene::loadScene(const std::string &filepath, Rt::ObjectList &world
         parseCamera(cfg, camera);
     } catch(const std::exception &e) {}
     try {
-        parseObject();
+        parseObject(cfg, world);
     } catch(const my::tracked_exception &exception) {
         throw my::tracked_exception(exception.what());
     } catch (const std::exception& e) {}
