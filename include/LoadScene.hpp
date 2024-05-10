@@ -76,7 +76,8 @@ namespace Rt
             void analyseOneCylinder(const libconfig::Setting &currentCylinder, Rt::ObjectList &world);
 
             // Object
-            void parseObject();
+            void parseObject(libconfig::Config &cfg, Rt::ObjectList &world);
+            void parseOneObject(const libconfig::Setting &object, Rt::ObjectList &world);
 
             // Generic functions to parse
             std::vector<int> parseVector3D(const libconfig::Setting &vector);

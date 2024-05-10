@@ -25,6 +25,10 @@ class FileObj {
         void printTextureList();
         void printNormalList();
         void printFaceList();
+        void VType(std::istringstream &stream);
+        void VNType(std::istringstream &stream);
+        void VTType(std::istringstream &stream);
+        void VFType(std::istringstream &stream);
         FaceList getFaceList();
     protected:
         std::vector <std::vector<double>> vertex_texture_list;

@@ -48,33 +48,26 @@ void Rt::Camera::init()
 
     center = lookfrom;
 
-    // Determine viewport dimensions.
     double focal_length = (lookfrom - lookat).length();
     double viewport_height = 2.0 * std::tan((fov * std::numbers::pi / 180.0) / 2.0) * focal_length;
     double viewport_width = viewport_height * (double(image_width)/image_height);
 
-    // Calculate the u,v,w unit basis vectors for the camera coordinate frame.
     w = (lookfrom - lookat).unit_vector();
     u = vup.cross(w).unit_vector();
     v = w.cross(u);
 
-    // Calculate the vectors across the horizontal and down the vertical viewport edges.
-    Math::Vector3D viewport_u = viewport_width * u;    // Vector across viewport horizontal edge
-    Math::Vector3D viewport_v = viewport_height * -v;  // Vector down viewport vertical edge
+    Math::Vector3D viewport_u = viewport_width * u;
+    Math::Vector3D viewport_v = viewport_height * -v;
 
-    // Calculate the horizontal and vertical delta vectors from pixel to pixel.
     pixel_delta_u = viewport_u / image_width;
     pixel_delta_v = viewport_v / image_height;
 
-    // Calculate the location of the upper left pixel.
     Math::Vector3D viewport_upper_left = center - (focal_length * w) - viewport_u / 2 - viewport_v / 2;
     pixel00_loc = viewport_upper_left + 0.5 * (pixel_delta_u + pixel_delta_v);
 }
 
 Rt::Ray Rt::Camera::get_ray(int i, int j) const
 {
-    // Construct a camera ray originating from the origin and directed at randomly sampled
-    // point around the pixel location i, j.
 
     auto offset = sample_square();
     auto pixel_sample = pixel00_loc
@@ -89,7 +82,6 @@ Rt::Ray Rt::Camera::get_ray(int i, int j) const
 
 Math::Vector3D Rt::Camera::sample_square() const
 {
-    // Returns the vector to a random point in the [-.5,-.5]-[+.5,+.5] unit square.
     return Math::Vector3D(Rt::Random::getBw01() - 0.5, Rt::Random::getBw01() - 0.5, 0);
 }
 

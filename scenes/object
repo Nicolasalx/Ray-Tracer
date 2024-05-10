@@ -1,7 +1,6 @@
 objects:
 {
     listObjects = (
-        { filepath = "abc"; scale = 2.0; material = "lambertian_green"; },
-        { filepath = "def"; scale = 15.0; material = "lambertian_green"; }
+        { filepath = "assets/panter.obj"; scale = 1.0; material = "lambertian_red"; }
     )
 }
