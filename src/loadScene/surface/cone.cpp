@@ -45,7 +45,7 @@ void Rt::LoadScene::parseAllCone(const libconfig::Setting &primitivesSettings, R
             analyseOneCone(listCones[i], world);
         }
     } catch(const my::tracked_exception &exception) {
-        throw my::tracked_exception("Triangle");
+        throw my::tracked_exception("In the parsing libConfig ++ the Cone has a problem!");
     } catch (const std::exception& e) {
         return;
     }

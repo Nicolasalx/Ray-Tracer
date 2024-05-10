@@ -46,7 +46,7 @@ void Rt::LoadScene::parseAllPlane(const libconfig::Setting &primitivesSettings, 
             analyseOnePlane(listPlanes[i], world);
         }
     } catch(const my::tracked_exception &exception) {
-        throw my::tracked_exception("Triangle");
+        throw my::tracked_exception("In the parsing libConfig ++ the Plane has a problem!");
     } catch (const std::exception& e) {
         return;
     }
