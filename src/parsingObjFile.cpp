@@ -20,6 +20,7 @@
 #include "Triangle.hpp"
 #include "FileObj.hpp"
 #include "Vector3D.hpp"
+#include "MaterialFactory.hpp"
 
 void Rt::Raytracer::createObjModel(Rt::ObjectList &world, const std::string &path,
     double scale, std::shared_ptr<Rt::IMaterial> material)
@@ -45,6 +46,30 @@ void Rt::Raytracer::createObjModel(Rt::ObjectList &world, const std::string &pat
     }
 }
 
+void Rt::Raytracer::createObjModelRandom(Rt::ObjectList &world,
+    const std::string &path, double scale)
+{
+    FileObj obj(path);
+    FaceList faceList = obj.getFaceList();
+    for (auto face : faceList) {
+        for (int i = 0; i < static_cast<int>(face.size()) - 2; i++) {
+            world.add(std::make_shared<Rt::Triangle>(
+                Math::Point3D(
+                    face[0][0] * scale,
+                    face[0][1] * scale,
+                    face[0][2] * scale),
+                Math::Point3D(
+                    face[i + 1][0] * scale,
+                    face[i + 1][1] * scale,
+                    face[i + 1][2] * scale),
+                Math::Point3D(
+                    face[i + 2][0] * scale,
+                    face[i + 2][1] * scale,
+                    face[i + 2][2] * scale), Rt::MaterialFactory::createMaterial<Rt::Lambertian>(
+                        Math::Color01(Rt::Random::getBw01(), Rt::Random::getBw01(), Rt::Random::getBw01()))));
+        }
+    }
+}
 
 FileObj::FileObj(std::string file_path)
 {
