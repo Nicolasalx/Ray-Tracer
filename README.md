@@ -81,3 +81,16 @@ The multiplier will multiply the value of r, g and b by this number to increase 
     - color2 -> Color01
 - Image
     - path -> std::string
+
+## Object
+
+A file who contains a list of triangles who will represent a 3d model.
+```
+{ filepath = "assets/panter.obj"; scale = 1.0; material = "lambertian_RANDOM"; }
+```
+
+It is composed by three parameters:
+
+- filepath: path to the file where the model is placed.
+- scale: the multiplier who represent the size of the 3d model.
+- material: the material who is assigned to this model.
