@@ -18,7 +18,13 @@ void Rt::LoadScene::parseArgs(int argc, const char **argv)
         throw my::tracked_exception("Bad number of arguments (minimum 1 scene required).");
     }
     for (int i = 1; i < argc; ++i) {
-        if (!std::filesystem::is_directory(argv[i])) {
+        if (std::string(argv[i]) == "--low_res") {
+            this->_lowRes = true;
+        } else if (std::string(argv[i]) == "--high_res") {
+            this->_highRes = true;
+        } else if (std::string(argv[i]) == "--close") {
+            this->_closeWindow = true;
+        } else if (!std::filesystem::is_directory(argv[i])) {
             _listConfigFile.push_back(argv[i]);
         } else {
             throw my::tracked_exception("The provided file is a directory.");

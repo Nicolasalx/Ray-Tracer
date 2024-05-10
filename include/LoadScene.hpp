@@ -107,6 +107,9 @@ namespace Rt
         private:
             std::vector<std::string> _listConfigFile;
             std::map<std::string, material_t> _materialsList;
+            bool _lowRes = false;
+            bool _highRes = false;
+            bool _closeWindow = false;
     };
 }
 

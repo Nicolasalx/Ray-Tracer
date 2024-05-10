@@ -35,19 +35,17 @@
 #include "Rotation.hpp"
 #include "Builder.hpp"
 #include "MaterialFactory.hpp"
+#include "TextureFactory.hpp"
 #include <thread>
 #include "LoadScene.hpp"
 #include <libconfig.h++>
 
 std::mutex Rt::Raytracer::mutex;
 std::atomic_bool Rt::Raytracer::end_rendering(false);
+std::atomic_bool Rt::Raytracer::close_window(false);
 
 void Rt::Raytracer::launchRendering(Rt::ObjectList &world, Rt::Camera &camera)
 {
-    std::shared_ptr<Rt::IMaterial> red = std::make_shared<Rt::Lambertian>(Math::Color01(1, 0, 0));
-    auto white = std::make_shared<Rt::Lambertian>(Math::Color01(0.73, 0.73, 0.73));
-    auto green = std::make_shared<Rt::Lambertian>(Math::Color01(0, 1, 0));
-    auto light = std::make_shared<Rt::DiffuseLight>(Math::Color01(1 * 20, 1 * 20, 1 * 20));
     camera.render(world);
 }
 
