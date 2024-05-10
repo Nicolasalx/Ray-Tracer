@@ -40,6 +40,9 @@ void Rt::Camera::render(const Rt::IObject &world)
     sf::Image result_image;
     result_image.create(image_width, image_height, Rt::Interface::image_pixel);
     result_image.saveToFile("result_image.png");
+    if (quit_after_render) {
+        Rt::Raytracer::close_window = true;
+    }
 }
 
 void Rt::Camera::init()

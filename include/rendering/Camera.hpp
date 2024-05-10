@@ -32,6 +32,7 @@ namespace Rt
         Math::Point3D lookat = Math::Point3D(0,0,-1);
         Math::Vector3D vup = Math::Vector3D(0,1,0);
         Math::Color01 background;
+        bool quit_after_render = false;
 
 
         void render(const Rt::IObject &world);

@@ -43,4 +43,19 @@ void Rt::LoadScene::parseCamera(libconfig::Config &cfg, Rt::Camera &camera)
     camera.lookat = Math::Point3D(vectorLookAt.at(0), vectorLookAt.at(1), vectorLookAt.at(2));
     camera.vup = Math::Point3D(vectorVup.at(0), vectorVup.at(1), vectorVup.at(2));
     camera.background = Math::Color01(vectorBackground.at(0) * vectorBackground.at(3), vectorBackground.at(1) * vectorBackground.at(3), vectorBackground.at(2) * vectorBackground.at(3));
+    if (this->_lowRes) {
+        camera.image_width = 240;
+        camera.image_height = 135;
+        camera.max_depth = 5;
+        camera.samples_per_pixel = 100;
+    }
+    if (this->_highRes) {
+        camera.image_width = 1920 / 6;
+        camera.image_height = 1080 / 6;
+        camera.max_depth = 25;
+        camera.samples_per_pixel = 1000;
+    }
+    if (this->_closeWindow) {
+        camera.quit_after_render = true;
+    }
 }

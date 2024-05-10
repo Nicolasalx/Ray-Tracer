@@ -31,6 +31,7 @@ namespace Rt
 
         static std::mutex mutex;
         static std::atomic_bool end_rendering;
+        static std::atomic_bool close_window;
     };
 }
 

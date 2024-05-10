@@ -45,7 +45,7 @@ Rt::Interface::~Interface()
 
 void Rt::Interface::loop()
 {
-    while (window.isOpen()) {
+    while (window.isOpen() && !Rt::Raytracer::close_window) {
         sf::Event event;
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
