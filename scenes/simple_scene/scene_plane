@@ -1,0 +1,35 @@
+camera:
+{
+    resolution = { x = 240; y = 135; };
+    fov = 90.0;
+    nb_thread = 32;
+    max_depth = 10;
+    samples_per_pixel = 100;
+    look_from = { x = 0; y = 278; z = -800 };
+    look_at = { x = 0; y = 0; z = 0 };
+    vup = { x = 0; y = 1; z = 0 };
+    background = { r = 255; g = 255; b = 255 };
+};
+
+materials:
+{
+    listMaterials = (
+        { materialName = "lambertian_red"; color = { r = 255; g = 0; b = 0; }; },
+        { materialName = "lambertian_white"; color = { r = 255; g = 255; b = 255; }; },
+        { materialName = "lambertian_green"; color = { r = 0; g = 255; b = 0; }; },
+        { materialName = "diffuseLight"; color = { r = 255; g = 255; b = 255; }; }
+    );
+};
+
+primitives:
+{
+    planes = (
+        {
+            position = { x = 0, y = 0, z = 0 };
+            rotation = { x = 0, y = 0, z = 0 };
+            height = 1000.0;
+            width = 1000.0;
+            material = "lambertian_red";
+        }
+    );
+};
