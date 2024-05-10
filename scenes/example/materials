@@ -4,6 +4,6 @@ materials:
         { materialName = "lambertian_red"; color = { r = 0; g = 255; b = 0; }; },
         { materialName = "lambertian_white"; color = { r = 186; g = 51; b = 186; }; },
         { materialName = "lambertian_green"; color = { r = 0; g = 255; b = 0; }; },
-        { materialName = "diffuseLight"; color = { r = 255; g = 255; b = 255; }; }
+        { materialName = "diffuseLight"; color = { r = 255; g = 255; b = 255; multiplier = 2.0}; }
     );
 };

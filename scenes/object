@@ -1,0 +1,7 @@
+objects:
+{
+    listObjects = (
+        { filepath = "abc"; scale = 2.0; material = "lambertian_green"; },
+        { filepath = "def"; scale = 15.0; material = "lambertian_green"; }
+    )
+}
