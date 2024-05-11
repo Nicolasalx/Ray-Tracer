@@ -53,7 +53,7 @@ void Rt::LoadScene::getLambertian(const libconfig::Setting &material, std::strin
 
             mat.scale = scale;
             mat.color1 = Math::Color01(vectorColor1.at(0), vectorColor1.at(1), vectorColor1.at(2));
-            mat.color1 = Math::Color01(vectorColor2.at(0), vectorColor2.at(1), vectorColor2.at(2));
+            mat.color2 = Math::Color01(vectorColor2.at(0), vectorColor2.at(1), vectorColor2.at(2));
         } else if (textureName == "image") {
             texture.lookupValue("path", filepathImg);
             mat.filepath = filepathImg;
