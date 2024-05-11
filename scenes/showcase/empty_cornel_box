@@ -4,11 +4,11 @@ camera:
     fov = 40.0;
     nb_thread = 32;
     max_depth = 50;
-    samples_per_pixel = 25;
+    samples_per_pixel = 250;
     look_from = { x = 0; y = 278; z = -800 };
     look_at = { x = 0; y = 278; z = 0 };
     vup = { x = 0; y = 1; z = 0 };
-    background = { r = 255; g = 255; b = 255; multiplier = 1.0; };
+    background = { r = 0; g = 0; b = 0; multiplier = 1.0; };
 };
 
 materials:
@@ -17,7 +17,7 @@ materials:
         { materialName = "lambertian_red"; color = { r = 166; g = 13; b = 13; }; },
         { materialName = "lambertian_white"; color = { r = 186; g = 186; b = 186; }; },
         { materialName = "lambertian_green"; color = { r = 31; g = 115; b = 38; }; },
-        { materialName = "diffuseLight_white"; color = { r = 255; g = 255; b = 255; multiplier = 15.0; }; }
+        { materialName = "diffuseLight_white"; color = { r = 255; g = 255; b = 255; multiplier = 30.0; }; }
     );
 };
 

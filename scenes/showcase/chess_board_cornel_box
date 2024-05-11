@@ -4,22 +4,22 @@ camera:
     fov = 40.0;
     nb_thread = 32;
     max_depth = 50;
-    samples_per_pixel = 250;
+    samples_per_pixel = 50;
     look_from = { x = 0; y = 278; z = -800 };
     look_at = { x = 0; y = 278; z = 0 };
     vup = { x = 0; y = 1; z = 0 };
-    background = { r = 0; g = 0; b = 0; multiplier = 1.0; };
+    background = { r = 255; g = 255; b = 255; multiplier = 1.0; };
 };
 
 materials:
 {
     listMaterials = (
-        { materialName = "lambertian_green"; color = { r = 126; g = 238; b = 126; }; },
-        { materialName = "lambertian_purple"; color = { r = 85; g = 78; b = 188; }; },
-        { materialName = "lambertian_pink"; color = { r = 237; g = 125; b = 127; }; },
+        { materialName = "lambertian_chess"; color = { r = 255; g = 255; b = 255; };
+            texture = { name = "chess"; scale = 50.0; color1 = { r = 255; g = 255; b = 255; };
+            color2 = { r = 0; g = 0; b = 0; } } },
+        { materialName = "lambertian_red"; color = { r = 166; g = 13; b = 13; }; },
         { materialName = "lambertian_white"; color = { r = 186; g = 186; b = 186; }; },
-        { materialName = "lambertian_red"; color = { r = 255; g = 0; b = 0; }; },
-        { materialName = "metal_grey"; color = { r = 200; g = 200; b = 200; }; reflection = 0.0; },
+        { materialName = "lambertian_green"; color = { r = 31; g = 115; b = 38; }; },
         { materialName = "diffuseLight_white"; color = { r = 255; g = 255; b = 255; multiplier = 30.0; }; }
     );
 };
@@ -32,7 +32,7 @@ primitives:
             rotation = { x = 90, y = 0, z = 0 };
             height = 555.0;
             width = 555.0;
-            material = "lambertian_white";
+            material = "lambertian_chess";
         },
         { // up
             position = { x = 278, y = 555, z = 555 };
@@ -46,21 +46,21 @@ primitives:
             rotation = { x = 0, y = 0, z = 90 };
             height = 555.0;
             width = 555.0;
-            material = "lambertian_green";
+            material = "lambertian_white";
         },
         { // left
             position = { x = 278, y = 0, z = 555 };
             rotation = { x = 0, y = 90, z = 0 };
             height = 555.0;
             width = 555.0;
-            material = "lambertian_purple";
+            material = "lambertian_red";
         },
         { // right
             position = { x = -277, y = 0, z = 555 };
             rotation = { x = 0, y = 90, z = 0 };
             height = 555.0;
             width = 555.0;
-            material = "lambertian_pink";
+            material = "lambertian_green";
         },
         { // top light
             position = { x = 65, y = 554, z = 332 };
@@ -70,30 +70,12 @@ primitives:
             material = "diffuseLight_white";
         }
     );
-    spheres = (
-        {
-            position = { x = 100, y = 75, z = 350 };
-            rotation = { x = 0, y = 0, z = 0 };
-            radius = 75.0;
-            material = "metal_grey";
-        },
-        {
-            position = { x = -150, y = 60, z = 300 };
-            rotation = { x = 0, y = 0, z = 0 };
-            radius = 60.0;
-            material = "metal_grey";
-        },
-        {
-            position = { x = -200, y = 25, z = 150 };
-            rotation = { x = 0, y = 0, z = 0 };
-            radius = 25.0;
-            material = "metal_grey";
-        },
-        {
-            position = { x = 200, y = 35, z = 150 };
-            rotation = { x = 0, y = 0, z = 0 };
-            radius = 35.0;
-            material = "metal_grey";
-        }
-    );
+//    spheres = (
+//        {
+//            position = { x = 0, y = 150, z = 100 };
+//            rotation = { x = 0, y = 0, z = 0 };
+//            radius = 150.0;
+//            material = "lambertian_red";
+//        }
+//    );
 };
