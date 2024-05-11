@@ -16,7 +16,7 @@
 #include "Lambertian.hpp"
 #include "DiffuseLight.hpp"
 
-void Rt::LoadScene::chooseMaterialType(std::shared_ptr<Rt::IMaterial> &material, std::string &materialName)
+void Rt::LoadScene::chooseMaterialType(std::shared_ptr<Rt::IMaterial> &material, std::string &materialName, Rt::material_t &allMaterial)
 {
     if (materialName.starts_with("metal")) {
         auto itMetal = _materialsList.find(materialName);
@@ -27,6 +27,7 @@ void Rt::LoadScene::chooseMaterialType(std::shared_ptr<Rt::IMaterial> &material,
         auto itLambertian = _materialsList.find(materialName);
         if (itLambertian != _materialsList.end()) {
             material = std::make_shared<Rt::Lambertian>(itLambertian->second.color);
+            allMaterial = itLambertian->second;
         }
     } else if (materialName.starts_with("dielectric")) {
         auto itDielectric = _materialsList.find(materialName);

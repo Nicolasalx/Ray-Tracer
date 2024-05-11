@@ -10,6 +10,11 @@
 #include "Builder.hpp"
 #include "my_log.hpp"
 #include "my_tracked_exception.hpp"
+#include "TextureFactory.hpp"
+#include "Lambertian.hpp"
+#include "ChessTexture.hpp"
+#include "ImageTexture.hpp"
+#include "MaterialFactory.hpp"
 
 void Rt::LoadScene::analyseOnePlane(const libconfig::Setting &currentPlane, Rt::ObjectList &world)
 {
@@ -27,9 +32,16 @@ void Rt::LoadScene::analyseOnePlane(const libconfig::Setting &currentPlane, Rt::
 
         Math::Vector3D vectorPosition = vectorTo3D(parseVector3D(position));
         Math::Vector3D vectorRotation = vectorTo3D(parseVector3D(rotation));
+        Rt::material_t allMaterial;
+        chooseMaterialType(material, materialName, allMaterial);
 
-        chooseMaterialType(material, materialName);
-        world.add(Rt::Builder::createObject<Rt::Plane>(vectorPosition, vectorRotation, material, height, width));
+        if (allMaterial.nameTexture == "chess") {
+            world.add(Rt::Builder::createObject<Rt::Plane>(vectorPosition, vectorRotation, Rt::MaterialFactory::createMaterial<Rt::Lambertian>(Rt::TextureFactory::createTexture<Rt::ChessTexture>(allMaterial.scale, allMaterial.color1, allMaterial.color2)), height, width));
+        } else if (allMaterial.nameTexture == "image") {
+            world.add(Rt::Builder::createObject<Rt::Plane>(vectorPosition, vectorRotation, Rt::MaterialFactory::createMaterial<Rt::Lambertian>(Rt::TextureFactory::createTexture<Rt::ImageTexture>(allMaterial.filepath)), height, width));
+        } else {
+            world.add(Rt::Builder::createObject<Rt::Plane>(vectorPosition, vectorRotation, material, height, width));
+        }
     } catch(const libconfig::SettingNotFoundException &nfex) {
         throw my::tracked_exception("Error in the parsing of the plane:");
     } catch(const std::exception &exception) {

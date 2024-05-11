@@ -10,6 +10,11 @@
 #include "Builder.hpp"
 #include "my_log.hpp"
 #include "my_tracked_exception.hpp"
+#include "TextureFactory.hpp"
+#include "Lambertian.hpp"
+#include "ChessTexture.hpp"
+#include "ImageTexture.hpp"
+#include "MaterialFactory.hpp"
 
 void Rt::LoadScene::analyseOneTriangle(const libconfig::Setting &currentTriangle, Rt::ObjectList &world)
 {
@@ -30,9 +35,18 @@ void Rt::LoadScene::analyseOneTriangle(const libconfig::Setting &currentTriangle
         Math::Point3D PpointA = vectorToPoint3D(parseVector3D(pointA));
         Math::Point3D PpointB = vectorToPoint3D(parseVector3D(pointB));
         std::shared_ptr<Rt::IMaterial> material;
+        Rt::material_t allMaterial;
 
-        chooseMaterialType(material, materialName);
-        world.add(Rt::Builder::createObject<Rt::Triangle>(vectorPosition, vectorRotation, material, pointOrigin, PpointA, PpointB));
+        chooseMaterialType(material, materialName, allMaterial);
+
+        if (allMaterial.nameTexture == "chess") {
+            world.add(Rt::Builder::createObject<Rt::Triangle>(vectorPosition, vectorRotation, Rt::MaterialFactory::createMaterial<Rt::Lambertian>(
+                Rt::TextureFactory::createTexture<Rt::ChessTexture>(allMaterial.scale, allMaterial.color1, allMaterial.color2)), pointOrigin, PpointA, PpointB));
+        } else if (allMaterial.nameTexture == "image") {
+            world.add(Rt::Builder::createObject<Rt::Triangle>(vectorPosition, vectorRotation, Rt::MaterialFactory::createMaterial<Rt::Lambertian>(Rt::TextureFactory::createTexture<Rt::ImageTexture>(allMaterial.filepath)), pointOrigin, PpointA, PpointB));
+        } else {
+            world.add(Rt::Builder::createObject<Rt::Triangle>(vectorPosition, vectorRotation, material, pointOrigin, PpointA, PpointB));
+        }
     } catch(const std::exception &exception) {
         throw my::tracked_exception("Error in the parsing of the triangle: " + std::string(exception.what()));
     }    

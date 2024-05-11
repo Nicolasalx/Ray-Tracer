@@ -35,6 +35,7 @@ namespace Rt
         double scale = 0.0;
         Math::Color01 color1;
         Math::Color01 color2;
+        std::string filepath = "";
     } material_t;
 
     class LoadScene {
@@ -55,7 +56,7 @@ namespace Rt
 
             // Handle primitive
             void parsePrimitives(libconfig::Config &cfg, Rt::ObjectList &world);
-            void chooseMaterialType(std::shared_ptr<Rt::IMaterial> &material, std::string &materialName);
+            void chooseMaterialType(std::shared_ptr<Rt::IMaterial> &material, std::string &materialName, Rt::material_t &allMaterial);
 
             // Camera
             void parseCamera(libconfig::Config &cfg, Rt::Camera &camera);

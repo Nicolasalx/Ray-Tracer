@@ -28,7 +28,10 @@ void Rt::LoadScene::parseOneObject(const libconfig::Setting &object, Rt::ObjectL
                 return;
             }
         }
-        chooseMaterialType(material, materialName);
+        Rt::material_t allMaterial;
+
+        chooseMaterialType(material, materialName, allMaterial);
+
         Rt::Raytracer::createObjModel(world, filepath, scale, material);
     } catch(const std::exception &exception) {
         throw my::tracked_exception("Error in the parsing of the cone: " + std::string(exception.what()));

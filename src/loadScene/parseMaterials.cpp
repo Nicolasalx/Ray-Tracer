@@ -33,6 +33,36 @@ void Rt::LoadScene::getLambertian(const libconfig::Setting &material, std::strin
 
     mat.name = LAMBERTIAN;
     mat.color = Math::Color01(vectorColor.at(0), vectorColor.at(1), vectorColor.at(2));
+
+    try {
+        double scale = 0.0;
+        std::string textureName = "";
+        std::string filepathImg = "";
+        const libconfig::Setting &texture = material["texture"];
+        texture.lookupValue("name", textureName);
+
+        mat.nameTexture = textureName;
+
+        if (textureName == "chess") {
+            const libconfig::Setting &color1 = texture["color1"];
+            const libconfig::Setting &color2 = texture["color2"];
+            texture.lookupValue("scale", scale);
+
+            std::vector<double> vectorColor1 = parseColor(color1);
+            std::vector<double> vectorColor2 = parseColor(color2);
+
+            mat.scale = scale;
+            mat.color1 = Math::Color01(vectorColor1.at(0), vectorColor1.at(1), vectorColor1.at(2));
+            mat.color1 = Math::Color01(vectorColor2.at(0), vectorColor2.at(1), vectorColor2.at(2));
+        } else if (textureName == "image") {
+            texture.lookupValue("path", filepathImg);
+            mat.filepath = filepathImg;
+        } else {
+            throw my::tracked_exception("Error in the parsing of a texture named: " + textureName);
+        }
+
+
+    } catch(const std::exception &e) {}
     _materialsList[materialName] = mat;
 }
 
