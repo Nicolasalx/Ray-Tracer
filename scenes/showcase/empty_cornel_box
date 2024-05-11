@@ -1,0 +1,78 @@
+camera:
+{
+    resolution = { x = 540; y = 540; };
+    fov = 40.0;
+    nb_thread = 32;
+    max_depth = 50;
+    samples_per_pixel = 25;
+    look_from = { x = 0; y = 278; z = -800 };
+    look_at = { x = 0; y = 278; z = 0 };
+    vup = { x = 0; y = 1; z = 0 };
+    background = { r = 255; g = 255; b = 255; multiplier = 1.0; };
+};
+
+materials:
+{
+    listMaterials = (
+        { materialName = "lambertian_red"; color = { r = 166; g = 13; b = 13; }; },
+        { materialName = "lambertian_white"; color = { r = 186; g = 186; b = 186; }; },
+        { materialName = "lambertian_green"; color = { r = 31; g = 115; b = 38; }; },
+        { materialName = "diffuseLight_white"; color = { r = 255; g = 255; b = 255; multiplier = 15.0; }; }
+    );
+};
+
+primitives:
+{
+    planes = (
+        { // floor
+            position = { x = 278, y = 0, z = 555 };
+            rotation = { x = 90, y = 0, z = 0 };
+            height = 555.0;
+            width = 555.0;
+            material = "lambertian_white";
+        },
+        { // up
+            position = { x = 278, y = 555, z = 555 };
+            rotation = { x = 90, y = 0, z = 0 };
+            height = 555.0;
+            width = 555.0;
+            material = "lambertian_white";
+        },
+        { // Back
+            position = { x = -277, y = 0, z = 555 };
+            rotation = { x = 0, y = 0, z = 90 };
+            height = 555.0;
+            width = 555.0;
+            material = "lambertian_white";
+        },
+        { // left
+            position = { x = 278, y = 0, z = 555 };
+            rotation = { x = 0, y = 90, z = 0 };
+            height = 555.0;
+            width = 555.0;
+            material = "lambertian_red";
+        },
+        { // right
+            position = { x = -277, y = 0, z = 555 };
+            rotation = { x = 0, y = 90, z = 0 };
+            height = 555.0;
+            width = 555.0;
+            material = "lambertian_green";
+        },
+        { // top light
+            position = { x = 65, y = 554, z = 332 };
+            rotation = { x = 90, y = 0, z = 0 };
+            height = 105.0;
+            width = 130.0;
+            material = "diffuseLight_white";
+        }
+    );
+//    spheres = (
+//        {
+//            position = { x = 0, y = 150, z = 100 };
+//            rotation = { x = 0, y = 0, z = 0 };
+//            radius = 150.0;
+//            material = "lambertian_red";
+//        }
+//    );
+};
