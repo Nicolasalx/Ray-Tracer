@@ -14,7 +14,7 @@ fi
 
 for file in "$directory"/*; do
     if [ -f "$file" ]; then
-        ./raytracer "$file" --high_res --close
+        ./raytracer "$file" --close
         mv "./result_image.png" "$file.png"
     fi
 done

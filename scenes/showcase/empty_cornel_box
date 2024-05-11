@@ -1,6 +1,6 @@
 camera:
 {
-    resolution = { x = 540; y = 540; };
+    resolution = { x = 750; y = 750; };
     fov = 40.0;
     nb_thread = 32;
     max_depth = 50;
