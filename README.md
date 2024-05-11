@@ -79,8 +79,19 @@ The multiplier will multiply the value of r, g and b by this number to increase 
     - scale -> double
     - color1 -> Color01
     - color2 -> Color01
+```
+{ materialName = "lambertian_red"; color = { r = 255; g = 0; b = 0; }; texture = { name = "chess"; scale = 5.0; color1 = { r = 255; g = 255; b = 255; }; color2 = { r = 255; g = 255; b = 255; }}}
+```
+
+To add a texture "Chess" you need to add a category texture with a name of "chess" with a paramater scale, color1 and color2.
+
 - Image
     - path -> std::string
+```
+{ materialName = "lambertian_white"; color = { r = 186; g = 51; b = 186; }; texture = { name = "image"; path = "assets/illi.png"} },
+```
+
+To add a texture "Image" you need to add a category texture with a name of "image" with a paramater path who is the filepath of the image.
 
 ## Object
 
