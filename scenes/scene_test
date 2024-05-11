@@ -15,7 +15,7 @@ materials:
 {
     listMaterials = (
         { materialName = "lambertian_red"; color = { r = 255; g = 0; b = 0; }; texture = { name = "chess"; scale = 5.0; color1 = { r = 255; g = 255; b = 255; }; color2 = { r = 255; g = 255; b = 255; } } },
-        { materialName = "lambertian_white"; color = { r = 186; g = 51; b = 186; }; texture = { name = "image"; path = "assets/illi.png"} },
+        { materialName = "lambertian_white"; color = { r = 186; g = 51; b = 186; }; texture = { name = "image"; path = "assets/img.png"} },
         { materialName = "lambertian_green"; color = { r = 0; g = 255; b = 0; }; },
         { materialName = "diffuseLight"; color = { r = 255; g = 255; b = 255; multiplier = 2.0 }; }
     );
