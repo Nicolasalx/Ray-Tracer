@@ -1,6 +1,6 @@
 objects:
 {
     listObjects = (
-        { filepath = "assets/panter.obj"; scale = 1.0; material = "lambertian_red"; }
+        { filepath = "assets/panter.obj"; scale = 1.0; material = "lambertian_RANDOM"; }
     )
 }
