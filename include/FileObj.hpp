@@ -30,7 +30,7 @@ class FileObj {
         void VNType(std::istringstream &stream);
         void VTType(std::istringstream &stream);
         void VFType(std::istringstream &stream);
-        void AddVFTN(VertexList &face, VertexList &texture, VertexList &normal, const std::string face_index, int index);
+        void AddVFTN(VertexList &face, VertexList &texture, VertexList &normal, const std::string &face_index, int index);
         FaceList getFaceList();
     protected:
         VertexList vertex_texture_list;

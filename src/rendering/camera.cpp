@@ -53,7 +53,7 @@ void Rt::Camera::init()
 
     double focal_length = (lookfrom - lookat).length();
     double viewport_height = 2.0 * std::tan((fov * std::numbers::pi / 180.0) / 2.0) * focal_length;
-    double viewport_width = viewport_height * (double(image_width)/image_height);
+    double viewport_width = viewport_height * (double(image_width) / image_height);
 
     w = (lookfrom - lookat).unit_vector();
     u = vup.cross(w).unit_vector();

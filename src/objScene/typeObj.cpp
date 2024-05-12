@@ -40,7 +40,7 @@ void FileObj::VTType(std::istringstream &stream)
     this->vertex_texture_list.push_back(vertex_texture);
 }
 
-void FileObj::AddVFTN(VertexList &face, VertexList &texture, VertexList &normal, const std::string face_index, int index)
+void FileObj::AddVFTN(VertexList &face, VertexList &texture, VertexList &normal, const std::string &face_index, int index)
 {
     if (index == 0) {
         face.push_back(vertex_list.at(std::stoi(face_index) - 1));

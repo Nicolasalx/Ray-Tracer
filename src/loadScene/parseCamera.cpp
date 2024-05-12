@@ -28,6 +28,10 @@ void Rt::LoadScene::parseCamera(const libconfig::Config &cfg, Rt::Camera &camera
     parseVector(cameraSettings["vup"], camera.vup);
     parseColorMul(cameraSettings["background"], camera.background);
 
+    camera.fov = fov;
+    camera.nb_thread = nb_thread;
+    camera.max_depth = max_depth;
+    camera.samples_per_pixel = samples_per_pixel;
     adjustCameraSettings(camera);
 }
 
