@@ -36,8 +36,8 @@ void Rt::LoadScene::getLambertian(const libconfig::Setting &material, std::strin
 
     try {
         double scale = 0.0;
-        std::string textureName = "";
-        std::string filepathImg = "";
+        std::string textureName;
+        std::string filepathImg;
         const libconfig::Setting &texture = material["texture"];
         texture.lookupValue("name", textureName);
 
@@ -95,7 +95,7 @@ void Rt::LoadScene::parseMaterials(libconfig::Config &cfg)
 
     for (int i = 0; i < listMaterialsSettings.getLength(); ++i) {
         const libconfig::Setting &material = listMaterialsSettings[i];
-        std::string materialName = "";
+        std::string materialName;
         material.lookupValue("materialName", materialName);
         if (materialName.starts_with("metal")) {
             getMetal(material, materialName);

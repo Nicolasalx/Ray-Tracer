@@ -83,7 +83,7 @@ Rt::Ray Rt::Camera::get_ray(int i, int j) const
     return Rt::Ray(ray_origin, ray_direction);
 }
 
-Math::Vector3D Rt::Camera::sample_square() const
+Math::Vector3D Rt::Camera::sample_square()
 {
     return Math::Vector3D(Rt::Random::getBw01() - 0.5, Rt::Random::getBw01() - 0.5, 0);
 }

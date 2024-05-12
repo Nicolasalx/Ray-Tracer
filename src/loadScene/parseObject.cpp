@@ -10,10 +10,10 @@
 void Rt::LoadScene::parseOneObject(const libconfig::Setting &object, Rt::ObjectList &world)
 {
     try {
-        std::string filepath = "";
+        std::string filepath;
         double scale = 0.0;
         std::shared_ptr<Rt::IMaterial> material;
-        std::string materialName = "";
+        std::string materialName;
 
         object.lookupValue("filepath", filepath);
         object.lookupValue("scale", scale);

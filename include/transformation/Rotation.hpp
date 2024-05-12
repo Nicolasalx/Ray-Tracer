@@ -22,7 +22,7 @@ namespace Rt
         Math::Matrix3D rotationMatrix(const Math::Vector3D &angles) const;
 
     public:
-        Rotation(std::shared_ptr<Rt::IObject> object, Math::Vector3D angle)
+        Rotation(const std::shared_ptr<Rt::IObject> &object, Math::Vector3D angle)
             : object_(object), angle_(Math::Vector3D(
                 angle.x() * (std::numbers::pi / 180.0),
                 angle.y() * (std::numbers::pi / 180.0),

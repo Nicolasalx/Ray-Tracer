@@ -60,7 +60,7 @@ void FileObj::VFType(std::istringstream &stream)
             if (index == 0) {
                 face.push_back(vertex_list.at(std::stoi(token) - 1));
             }
-            if (index == 1 && token != "") {
+            if (index == 1 && !token.empty()) {
                 texture.push_back(vertex_texture_list.at(std::stoi(token) - 1));
             }
             index++;
