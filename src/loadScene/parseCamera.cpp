@@ -8,14 +8,9 @@
 #include "Camera.hpp"
 #include "LoadScene.hpp"
 
-void Rt::LoadScene::parseCamera(libconfig::Config &cfg, Rt::Camera &camera)
+void Rt::LoadScene::parseCamera(const libconfig::Config &cfg, Rt::Camera &camera) const
 {
     const libconfig::Setting &cameraSettings = cfg.lookup("camera");
-    const libconfig::Setting &resolution = cameraSettings["resolution"];
-    const libconfig::Setting &look_from = cameraSettings["look_from"];
-    const libconfig::Setting &look_at = cameraSettings["look_at"];
-    const libconfig::Setting &vup = cameraSettings["vup"];
-    const libconfig::Setting &background = cameraSettings["background"];
 
     float fov = 0.0;
     int nb_thread = 0;
@@ -27,22 +22,36 @@ void Rt::LoadScene::parseCamera(libconfig::Config &cfg, Rt::Camera &camera)
     cameraSettings.lookupValue("max_depth", max_depth);
     cameraSettings.lookupValue("samples_per_pixel", samples_per_pixel);
 
-    std::vector<int> vectorResolution = parseVector2D(resolution);
-    std::vector<int> vectorLookFrom = parseVector3D(look_from);
-    std::vector<int> vectorLookAt = parseVector3D(look_at);
-    std::vector<int> vectorVup = parseVector3D(vup);
-    std::vector<double> vectorBackground = parseColorMul(background);
+    parseResolution(cameraSettings["resolution"], camera);
+    parseVector(cameraSettings["look_from"], camera.lookfrom);
+    parseVector(cameraSettings["look_at"], camera.lookat);
+    parseVector(cameraSettings["vup"], camera.vup);
+    parseColorMul(cameraSettings["background"], camera.background);
 
-    camera.fov = fov;
-    camera.nb_thread = nb_thread;
-    camera.max_depth = max_depth;
-    camera.samples_per_pixel = samples_per_pixel;
+    adjustCameraSettings(camera);
+}
+
+void Rt::LoadScene::parseResolution(const libconfig::Setting &resolution, Rt::Camera &camera)
+{
+    std::vector<int> vectorResolution = parseVector2D(resolution);
     camera.image_width = vectorResolution.at(0);
     camera.image_height = vectorResolution.at(1);
-    camera.lookfrom = Math::Point3D(vectorLookFrom.at(0), vectorLookFrom.at(1), vectorLookFrom.at(2));
-    camera.lookat = Math::Point3D(vectorLookAt.at(0), vectorLookAt.at(1), vectorLookAt.at(2));
-    camera.vup = Math::Point3D(vectorVup.at(0), vectorVup.at(1), vectorVup.at(2));
-    camera.background = Math::Color01(vectorBackground.at(0) * vectorBackground.at(3), vectorBackground.at(1) * vectorBackground.at(3), vectorBackground.at(2) * vectorBackground.at(3));
+}
+
+void Rt::LoadScene::parseVector(const libconfig::Setting &setting, Math::Point3D &point)
+{
+    std::vector<int> vectorData = parseVector3D(setting);
+    point = Math::Point3D(vectorData.at(0), vectorData.at(1), vectorData.at(2));
+}
+
+void Rt::LoadScene::parseColorMul(const libconfig::Setting &setting, Math::Color01 &color)
+{
+    std::vector<double> vectorData = parseColorMul(setting);
+    color = Math::Color01(vectorData.at(0) * vectorData.at(3), vectorData.at(1) * vectorData.at(3), vectorData.at(2) * vectorData.at(3));
+}
+
+void Rt::LoadScene::adjustCameraSettings(Rt::Camera &camera) const
+{
     if (this->_lowRes) {
         camera.image_width = 240;
         camera.image_height = 135;
