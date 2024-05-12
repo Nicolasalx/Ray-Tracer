@@ -40,22 +40,12 @@
 #include "LoadScene.hpp"
 #include <libconfig.h++>
 
-std::mutex Rt::Raytracer::mutex;
-std::atomic_bool Rt::Raytracer::end_rendering(false);
-std::atomic_bool Rt::Raytracer::close_window(false);
-
-void Rt::Raytracer::launchRendering(Rt::ObjectList &world, Rt::Camera &camera)
-{
-    camera.render(world);
-}
-
 int main(int argc, const char *argv[])
 {
     Rt::LoadScene allScenes;
     Rt::ObjectList world;
     Rt::Camera camera;
 
-    std::srand(std::time(nullptr));
     try {
         allScenes.parseArgs(argc, argv);
         allScenes.loadAllScenes(world, camera);

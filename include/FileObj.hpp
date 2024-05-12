@@ -13,9 +13,9 @@
 #include <bits/stdc++.h>
 #include <vector>
 
-typedef std::vector <std::vector<std::vector <double>>> FaceList;
-typedef std::vector <std::vector<std::vector <double>>> NormalList;
-typedef std::vector <std::vector<std::vector <double>>> TextureList;
+using FaceList = std::vector <std::vector<std::vector <double>>>;
+using NormalList = std::vector <std::vector<std::vector <double>>>;
+using TextureList = std::vector <std::vector<std::vector <double>>>;
 
 class FileObj {
     public:

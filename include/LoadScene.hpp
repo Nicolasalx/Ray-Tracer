@@ -26,7 +26,7 @@ namespace Rt
         DIFFUSE_LIGHT
     };
 
-    typedef struct {
+    struct material_t {
         material_name_e name;
         Math::Color01 color;
         double reflection = 0.0;
@@ -36,7 +36,7 @@ namespace Rt
         Math::Color01 color1;
         Math::Color01 color2;
         std::string filepath = "";
-    } material_t;
+    };
 
     class LoadScene {
         public:

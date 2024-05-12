@@ -21,6 +21,8 @@ Checks:
   -readability-implicit-bool-conversion,
   -modernize-use-nodiscard,
   -readability-suspicious-call-argument
+  -readability-named-parameter
+  -modernize-return-braced-init-list
 
 CheckOptions:
   - key: readability-function-size.StatementThreshold

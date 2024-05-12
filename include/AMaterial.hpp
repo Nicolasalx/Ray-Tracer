@@ -15,7 +15,7 @@ namespace Rt
     class AMaterial : public Rt::IMaterial
     {
     public:
-        ~AMaterial() = default;
+        ~AMaterial() override = default;
 
         bool scatter(const Rt::Ray &, const Rt::HitData &,
             Math::Color01 &, Rt::Ray &) const override
