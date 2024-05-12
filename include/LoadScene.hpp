@@ -59,7 +59,11 @@ namespace Rt
             void chooseMaterialType(std::shared_ptr<Rt::IMaterial> &material, std::string &materialName, Rt::material_t &allMaterial);
 
             // Camera
-            void parseCamera(libconfig::Config &cfg, Rt::Camera &camera);
+            void parseCamera(const libconfig::Config &cfg, Rt::Camera &camera) const;
+            static void parseResolution(const libconfig::Setting &resolution, Rt::Camera &camera);
+            static void parseVector(const libconfig::Setting &setting, Math::Point3D &point);
+            static void parseColorMul(const libconfig::Setting &setting, Math::Color01 &color);
+            void adjustCameraSettings(Rt::Camera &camera) const;
 
             // Sphere
             void parseAllSphere(const libconfig::Setting &primitivesSettings, Rt::ObjectList &world);
