@@ -1,0 +1,127 @@
+camera:
+{
+    resolution = { x = 750; y = 750; };
+    fov = 40.0;
+    nb_thread = 32;
+    max_depth = 50;
+    samples_per_pixel = 250;
+    look_from = { x = 0; y = 278; z = -800 };
+    look_at = { x = 0; y = 278; z = 0 };
+    vup = { x = 0; y = 1; z = 0 };
+    background = { r = 0; g = 0; b = 0; multiplier = 1.0; };
+};
+
+materials:
+{
+    listMaterials = (
+        { materialName = "lambertian_chess"; color = { r = 255; g = 255; b = 255; };
+            texture = { name = "chess"; scale = 25.0; color1 = { r = 0; g = 0; b = 0; };
+            color2 = { r = 255; g = 255; b = 255; } } },
+        { materialName = "lambertian_red"; color = { r = 166; g = 13; b = 13; }; },
+        { materialName = "lambertian_white"; color = { r = 186; g = 186; b = 186; }; },
+        { materialName = "lambertian_green"; color = { r = 31; g = 115; b = 38; }; },
+        { materialName = "diffuseLight_white"; color = { r = 255; g = 255; b = 255; multiplier = 30.0; }; },
+        { materialName = "diffuseLight_purple"; color = { r = 255; g = 0; b = 255; multiplier = 30.0; }; },
+        { materialName = "diffuseLight_yellow"; color = { r = 255; g = 122; b = 0; multiplier = 30.0; }; },
+        { materialName = "metal_grey"; color = { r = 200; g = 200; b = 200; }; reflection = 0.0; },
+        { materialName = "metal_red"; color = { r = 166; g = 13; b = 13; }; reflection = 0.0; },
+        { materialName = "metal_green"; color = { r = 31; g = 115; b = 38; }; reflection = 0.0; },
+        { materialName = "metal_blue"; color = { r = 1; g = 30; b = 60; }; reflection = 0.0; },
+        { materialName = "diffuseLight_green"; color = { r = 0; g = 255; b = 0; multiplier = 30.0; }; },
+        { materialName = "dielectric_out"; reflection = 1.5; },
+        { materialName = "dielectric_in"; reflection = 0.67; },
+        { materialName = "dielectric_glass"; reflection = 1.33; }
+    );
+};
+
+primitives:
+{
+    planes = (
+        { // floor
+            position = { x = 278, y = 0, z = 555 };
+            rotation = { x = 90, y = 0, z = 0 };
+            height = 555.0;
+            width = 555.0;
+            material = "lambertian_chess";
+        },
+        { // up
+            position = { x = 278, y = 555, z = 555 };
+            rotation = { x = 90, y = 0, z = 0 };
+            height = 555.0;
+            width = 555.0;
+            material = "lambertian_white";
+        },
+        { // Back
+            position = { x = -277, y = 0, z = 555 };
+            rotation = { x = 0, y = 0, z = 90 };
+            height = 555.0;
+            width = 555.0;
+            material = "lambertian_white";
+        },
+        { // left
+            position = { x = 278, y = 0, z = 555 };
+            rotation = { x = 0, y = 90, z = 0 };
+            height = 555.0;
+            width = 555.0;
+            material = "lambertian_red";
+        },
+        { // right
+            position = { x = -277, y = 0, z = 555 };
+            rotation = { x = 0, y = 90, z = 0 };
+            height = 555.0;
+            width = 555.0;
+            material = "lambertian_green";
+        },
+        { // right
+            position = { x = -276, y = 0, z = 415 };
+            rotation = { x = 0, y = 90, z = 0 };
+            height = 277.0;
+            width = 277.0;
+            material = "metal_grey";
+        },
+        { // right
+            position = { x = 277, y = 277, z = 415 };
+            rotation = { x = 0, y = 90, z = 0 };
+            height = 277.0;
+            width = 277.0;
+            material = "metal_grey";
+        }
+        // { // top light
+        //     position = { x = 65, y = 554, z = 332 };
+        //     rotation = { x = 90, y = 0, z = 0 };
+        //     height = 105.0;
+        //     width = 130.0;
+        //     material = "diffuseLight_white";
+        // }
+    );
+    spheres = (
+        {
+            position = { x = 150, y = 50, z = 350 };
+            rotation = { x = 0, y = 0, z = 0 };
+            radius = 50.0;
+            material = "diffuseLight_purple";
+        },
+        {
+            position = { x = -150, y = 200, z = 350 };
+            rotation = { x = 0, y = 0, z = 0 };
+            radius = 50.0;
+            material = "diffuseLight_yellow";
+        },
+        {
+            position = { x = 50, y = 400, z = 350 };
+            rotation = { x = 0, y = 0, z = 0 };
+            radius = 50.0;
+            material = "diffuseLight_green";
+        }
+    );
+    triangles = (
+        {
+            position = { x = -139, y = 0, z = 0 };
+            rotation = { x = 0, y = 0, z = 0 };
+            origin = { x = 0; y = 0; z = 554};
+            pointA = { x = 139; y = 277; z = 554};
+            pointB = { x = 277; y = 0; z = 554};
+            material = "metal_grey"
+        }
+    )
+};
