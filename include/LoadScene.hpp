@@ -31,11 +31,11 @@ namespace Rt
         Math::Color01 color;
         double reflection = 0.0;
 
-        std::string nameTexture = "";
+        std::string nameTexture;
         double scale = 0.0;
         Math::Color01 color1;
         Math::Color01 color2;
-        std::string filepath = "";
+        std::string filepath;
     };
 
     class LoadScene {

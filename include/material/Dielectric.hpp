@@ -26,7 +26,7 @@ namespace Rt
 
     public:
         Dielectric(double refraction) : refraction_(refraction) {}
-        ~Dielectric() = default;
+        ~Dielectric() override = default;
 
         bool scatter(const Rt::Ray &ray_in, const Rt::HitData &rec,
             Math::Color01 & attenuation, Rt::Ray &scattered) const override
