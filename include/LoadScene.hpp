@@ -86,14 +86,14 @@ namespace Rt
             void parseOneObject(const libconfig::Setting &object, Rt::ObjectList &world);
 
             // Generic functions to parse
-            std::vector<int> parseVector3D(const libconfig::Setting &vector);
-            std::vector<int> parseVector2D(const libconfig::Setting &vector);
+            static std::vector<int> parseVector3D(const libconfig::Setting &vector);
+            static std::vector<int> parseVector2D(const libconfig::Setting &vector);
             std::vector<double> parseColor(const libconfig::Setting &vector);
             std::vector<double> parseColorMul(const libconfig::Setting &vector);
 
-            Math::Point3D vectorToPoint3D(std::vector<int> list);
-            Math::Point3D vectorTo3D(std::vector<int> list);
-            double checkValueIsColor(int value);
+            static Math::Point3D vectorToPoint3D(std::vector<int> list);
+            static Math::Point3D vectorTo3D(std::vector<int> list);
+            static double checkValueIsColor(int value);
 
             template<typename T>
             void checkFieldExist(const libconfig::Setting &currentElem, const std::string &field, T &valueToGet, const std::string &surfaceName)

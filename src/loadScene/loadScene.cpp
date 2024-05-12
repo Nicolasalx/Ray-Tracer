@@ -25,7 +25,7 @@ void Rt::LoadScene::parseArgs(int argc, const char **argv)
         } else if (std::string(argv[i]) == "--close") {
             this->_closeWindow = true;
         } else if (!std::filesystem::is_directory(argv[i])) {
-            _listConfigFile.push_back(argv[i]);
+            _listConfigFile.emplace_back(argv[i]);
         } else {
             throw my::tracked_exception("The provided file is a directory.");
         }
