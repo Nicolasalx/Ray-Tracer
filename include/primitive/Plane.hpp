@@ -21,13 +21,13 @@ namespace Rt
         Math::Vector3D w_;
         std::shared_ptr<Rt::IMaterial> material_;
         Math::Vector3D normal_;
-        double d_;
+        double d_ = 0.0;
 
     public:
         Plane() = default;
         Plane(const Math::Point3D &pos, const Math::Vector3D &u,
         const Math::Vector3D &v, std::shared_ptr<IMaterial> material)
-          : pos_(pos), u_(u), v_(v), material_(material)
+          : pos_(pos), u_(u), v_(v), material_(std::move(material))
         {
             Math::Vector3D n = u.cross(v);
             normal_ = n.unit_vector();
@@ -35,7 +35,7 @@ namespace Rt
             w_ = n / n.dot(n);
         }
         Plane(double height, double width, std::shared_ptr<IMaterial> material)
-            : material_(material)
+            : material_(std::move(material))
         {
             u_ = Math::Vector3D(-width, 0, 0);
             v_ = Math::Vector3D(0, height, 0);

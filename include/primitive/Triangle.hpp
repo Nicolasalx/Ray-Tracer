@@ -17,7 +17,7 @@ namespace Rt
     public:
         Triangle(const Math::Point3D &origin, const Math::Point3D &pointA,
             const Math::Point3D &pointB, std::shared_ptr<Rt::IMaterial> material)
-            : Rt::Plane(origin, pointA - origin, pointB - origin, material) {}
+            : Rt::Plane(origin, pointA - origin, pointB - origin, std::move(material)) {}
         ~Triangle() override = default;
 
         bool is_interior(double a, double b, Rt::HitData &rec) const override;

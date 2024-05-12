@@ -23,11 +23,11 @@ namespace Rt
 
     public:
         Sphere(const Math::Point3D &center, double radius, std::shared_ptr<IMaterial> material)
-            : center_(center), radius_(std::fmax(0, radius)), material_(material)
+            : center_(center), radius_(std::fmax(0, radius)), material_(std::move(material))
         {
         }
         Sphere(double radius, std::shared_ptr<IMaterial> material)
-            : radius_(std::fmax(0, radius)), material_(material)
+            : radius_(std::fmax(0, radius)), material_(std::move(material))
         {
         }
 

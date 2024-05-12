@@ -22,11 +22,11 @@ namespace Rt
 
     public:
         Cone(const Math::Point3D &center, double radius, double length, std::shared_ptr<IMaterial> material)
-            : center_(center), radius_(std::fmax(0, radius)), length_(std::fmax(0, length)), material_(material)
+            : center_(center), radius_(std::fmax(0, radius)), length_(std::fmax(0, length)), material_(std::move(material))
         {
         }
         Cone(double radius, double length, std::shared_ptr<IMaterial> material)
-            : radius_(std::fmax(0, radius)), length_(std::fmax(0, length)), material_(material)
+            : radius_(std::fmax(0, radius)), length_(std::fmax(0, length)), material_(std::move(material))
         {
         }
 
