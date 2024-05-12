@@ -50,7 +50,7 @@ void Rt::Interface::drawProgressBar()
     double pourcentage = 0;
 
     if (progress_bar.getSize().x != this->bar_size.x) {
-        pourcentage = this->image_pixel_i / static_cast<double>(Rt::Interface::nb_pixel);
+        pourcentage = Rt::Interface::image_pixel_i / static_cast<double>(Rt::Interface::nb_pixel);
         progress_bar.setSize(sf::Vector2f(bar_size.x * pourcentage, bar_size.y));
         progress_text.setString(std::format("      {0:.2f} %\n{1} {2}",
             pourcentage * 100,
