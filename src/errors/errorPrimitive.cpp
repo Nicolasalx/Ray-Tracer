@@ -7,7 +7,7 @@
 
 #include "ErrorPrimitive.hpp"
 
-ErrorPrimitive::ErrorPrimitive(std::ostream &os, const std::string &message) throw()
+Rt::ErrorPrimitive::ErrorPrimitive(std::ostream &os, const std::string &message) noexcept
 {
     os << message << std::endl;
 }

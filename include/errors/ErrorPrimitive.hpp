@@ -10,11 +10,13 @@
 
 #include <iostream>
 
-class ErrorPrimitive {
-    public:
-        ErrorPrimitive(std::ostream &, const std::string &) throw();
-    protected:
-    private:
-};
+namespace Rt {
+    class ErrorPrimitive : public std::exception {
+        public:
+            ErrorPrimitive(std::ostream &, const std::string &) noexcept;
+        protected:
+        private:
+    };
+}
 
 #endif /* !ERRORPRIMITIVE_HPP_ */

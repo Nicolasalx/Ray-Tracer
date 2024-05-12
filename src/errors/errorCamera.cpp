@@ -7,7 +7,7 @@
 
 #include "ErrorCamera.hpp"
 
-ErrorCamera::ErrorCamera(std::ostream &os, const std::string &message) throw()
+Rt::ErrorCamera::ErrorCamera(std::ostream &os, const std::string &message) noexcept
 {
     os << message << std::endl;
 }
