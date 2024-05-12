@@ -57,7 +57,7 @@ void Rt::LoadScene::loadScene(const std::string &filepath, Rt::ObjectList &world
 
 void Rt::LoadScene::loadAllScenes(Rt::ObjectList &world, Rt::Camera &camera)
 {
-    for (const auto &filepath: _listConfigFile) {
+    for (const std::string &filepath: _listConfigFile) {
         loadScene(filepath, world, camera);
     }
 }
