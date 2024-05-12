@@ -23,7 +23,7 @@ namespace Rt
 
     public:
         ImageLoader() = default;
-        ImageLoader(const std::string image_path)
+        ImageLoader(const std::string &image_path)
         {
             if (!image_.loadFromFile(image_path)) {
                 throw my::tracked_exception("Failed to load image: " + image_path);

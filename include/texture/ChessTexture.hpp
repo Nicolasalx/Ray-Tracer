@@ -23,7 +23,7 @@ namespace Rt
 
     public:
         ChessTexture(double scale, std::shared_ptr<ITexture> even, std::shared_ptr<ITexture> odd)
-            : inv_scale(1.0 / scale), even(even), odd(odd) {}
+            : inv_scale(1.0 / scale), even(std::move(even)), odd(std::move(odd)) {}
 
         ChessTexture(double scale, const Math::Color01 &c1, const Math::Color01 &c2)
             : inv_scale(1.0 / scale),
@@ -31,7 +31,7 @@ namespace Rt
             odd(std::make_shared<Rt::SolidColor>(c2))
         {
         }
-        ~ChessTexture() = default;
+        ~ChessTexture() override = default;
 
         Math::Color01 value(double u, double v, const Math::Point3D &p) const override;
     };

@@ -20,9 +20,9 @@ namespace Rt
         std::vector<std::shared_ptr<Rt::IObject>> objects;
 
         ObjectList() = default;
-        ObjectList(std::shared_ptr<Rt::IObject> object)
+        ObjectList(const std::shared_ptr<Rt::IObject> &object)
         {
-            add(std::move(object));
+            add(object);
         }
 
         void clear();
