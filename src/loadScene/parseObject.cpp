@@ -20,7 +20,7 @@ void Rt::LoadScene::parseOneObject(const libconfig::Setting &object, Rt::ObjectL
 
         object.lookupValue("material", materialName);
 
-        std::size_t found = materialName.find_last_of("_");
+        std::size_t found = materialName.find_last_of('_');
         if (found != std::string::npos) {
             std::string result = materialName.substr(found + 1);
             if (result == "RANDOM") {

@@ -23,7 +23,7 @@
 #include "MaterialFactory.hpp"
 
 void Rt::Raytracer::createObjModel(Rt::ObjectList &world, const std::string &path,
-    double scale, std::shared_ptr<Rt::IMaterial> material)
+    double scale, const std::shared_ptr<Rt::IMaterial> &material)
 {
     FileObj obj(path);
     FaceList faceList = obj.getFaceList();
