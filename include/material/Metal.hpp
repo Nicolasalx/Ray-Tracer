@@ -25,7 +25,7 @@ namespace Rt
         */
         Metal(const Math::Color01 &diffusion, double reflection)
             : diffusion_(diffusion), reflection_(reflection < 1 ? reflection : 1) {}
-        ~Metal() = default;
+        ~Metal() override = default;
 
         bool scatter(const Rt::Ray &ray_in, const Rt::HitData &rec,
             Math::Color01 &attenuation, Rt::Ray &scattered) const override

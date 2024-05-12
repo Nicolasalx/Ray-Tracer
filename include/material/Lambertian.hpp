@@ -24,7 +24,7 @@ namespace Rt
     public:
         Lambertian(const Math::Color01 albedo) : texture_(std::make_shared<Rt::SolidColor>(albedo)) {}
         Lambertian(std::shared_ptr<ITexture> texture) : texture_(texture) {}
-        ~Lambertian() = default;
+        ~Lambertian() override = default;
     
         bool scatter(const Rt::Ray &, const Rt::HitData &rec,
             Math::Color01 &attenuation, Rt::Ray &scattered) const override
