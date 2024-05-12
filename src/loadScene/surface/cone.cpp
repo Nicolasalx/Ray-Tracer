@@ -19,7 +19,7 @@
 void Rt::LoadScene::analyseOneCone(const libconfig::Setting &currentCone, Rt::ObjectList &world)
 {
     try {
-        std::string materialName = "";
+        std::string materialName;
         double radius = 0.0;
         double length = 0.0;
         const libconfig::Setting &position = currentCone["position"];

@@ -12,7 +12,7 @@ void Rt::ObjectList::clear()
     objects.clear();
 }
 
-void Rt::ObjectList::add(std::shared_ptr<Rt::IObject> object)
+void Rt::ObjectList::add(const std::shared_ptr<Rt::IObject> &object)
 {
     objects.push_back(object);
 }

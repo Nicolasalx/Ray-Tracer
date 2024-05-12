@@ -19,7 +19,7 @@
 void Rt::LoadScene::analyseOneSphere(const libconfig::Setting &currentSphere, Rt::ObjectList &world)
 {
     try {
-        std::string materialName = "";
+        std::string materialName;
         double radius = 0.0;
         const libconfig::Setting &position = currentSphere["position"];
         const libconfig::Setting &rotation = currentSphere["rotation"];

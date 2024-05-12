@@ -48,7 +48,7 @@ namespace Rt
 
         void init();
         Rt::Ray get_ray(int i, int j) const;
-        Math::Vector3D sample_square() const;
+        static Math::Vector3D sample_square();
         Math::Color01 ray_color(const Rt::Ray &ray, int depth, const Rt::IObject &world) const;
     };
 }

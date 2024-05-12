@@ -19,7 +19,7 @@
 void Rt::LoadScene::analyseOnePlane(const libconfig::Setting &currentPlane, Rt::ObjectList &world)
 {
     try {
-        std::string materialName = "";
+        std::string materialName;
         double height = 0.0;
         double width = 0.0;
         std::shared_ptr<Rt::IMaterial> material;

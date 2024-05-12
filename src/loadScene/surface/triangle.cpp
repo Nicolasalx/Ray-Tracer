@@ -19,7 +19,7 @@
 void Rt::LoadScene::analyseOneTriangle(const libconfig::Setting &currentTriangle, Rt::ObjectList &world)
 {
     try {
-        std::string materialName = "";
+        std::string materialName;
         const libconfig::Setting &position = currentTriangle["position"];
         const libconfig::Setting &rotation = currentTriangle["rotation"];
         const libconfig::Setting &origin = currentTriangle["origin"];

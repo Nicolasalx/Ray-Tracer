@@ -27,7 +27,7 @@ namespace Rt
 
         void clear();
 
-        void add(std::shared_ptr<Rt::IObject> object);
+        void add(const std::shared_ptr<Rt::IObject> &object);
 
         bool hit(const Rt::Ray &ray, Rt::Interval ray_t, Rt::HitData &rec) const override;
     };
