@@ -20,8 +20,6 @@ void Rt::LoadScene::parseArgs(int argc, const char **argv)
     for (int i = 1; i < argc; ++i) {
         if (std::string(argv[i]) == "--low_res") {
             this->_lowRes = true;
-        } else if (std::string(argv[i]) == "--high_res") {
-            this->_highRes = true;
         } else if (std::string(argv[i]) == "--close") {
             this->_closeWindow = true;
         } else if (!std::filesystem::is_directory(argv[i])) {
@@ -57,7 +55,7 @@ void Rt::LoadScene::loadScene(const std::string &filepath, Rt::ObjectList &world
 
 void Rt::LoadScene::loadAllScenes(Rt::ObjectList &world, Rt::Camera &camera)
 {
-    for (const auto &filepath: _listConfigFile) {
+    for (const std::string &filepath: _listConfigFile) {
         loadScene(filepath, world, camera);
     }
 }

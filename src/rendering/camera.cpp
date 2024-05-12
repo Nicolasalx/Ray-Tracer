@@ -72,13 +72,13 @@ void Rt::Camera::init()
 Rt::Ray Rt::Camera::get_ray(int i, int j) const
 {
 
-    auto offset = sample_square();
-    auto pixel_sample = pixel00_loc
+    Math::Vector3D offset = sample_square();
+    Math::Vector3D pixel_sample = pixel00_loc
         + ((i + offset.x()) * pixel_delta_u)
         + ((j + offset.y()) * pixel_delta_v);
 
-    auto ray_origin = center;
-    auto ray_direction = (pixel_sample - ray_origin).unit_vector();
+    Math::Point3D ray_origin = center;
+    Math::Vector3D ray_direction = (pixel_sample - ray_origin).unit_vector();
 
     return Rt::Ray(ray_origin, ray_direction);
 }

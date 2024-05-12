@@ -40,6 +40,19 @@ void FileObj::VTType(std::istringstream &stream)
     this->vertex_texture_list.push_back(vertex_texture);
 }
 
+void FileObj::AddVFTN(VertexList &face, VertexList &texture, VertexList &normal, std::string face_index, int index)
+{
+    if (index == 0) {
+        face.push_back(vertex_list.at(std::stoi(face_index) - 1));
+    }
+    if (index == 1) {
+        texture.push_back(vertex_texture_list.at(std::stoi(face_index) - 1));
+    }
+    if (index == 2) {
+        normal.push_back(vertex_normal_list.at(std::stoi(face_index) - 1));
+    }
+}
+
 void FileObj::VFType(std::istringstream &stream)
 {
     std::vector<std::vector<double>> face;
@@ -54,7 +67,7 @@ void FileObj::VFType(std::istringstream &stream)
         int index = 0;
         size_t pos = 0;
         std::string token;
-        while((pos = face_index.find("/")) != std::string::npos){
+        while((pos = face_index.find('/')) != std::string::npos){
             token = face_index.substr(0, pos);
             face_index.erase(0, pos + 1);
             if (index == 0) {
@@ -65,15 +78,7 @@ void FileObj::VFType(std::istringstream &stream)
             }
             index++;
         }
-        if (index == 0) {
-            face.push_back(vertex_list.at(std::stoi(face_index) - 1));
-        }
-        if (index == 1) {
-            texture.push_back(vertex_texture_list.at(std::stoi(face_index) - 1));
-        }
-        if (index == 2) {
-            normal.push_back(vertex_normal_list.at(std::stoi(face_index) - 1));
-        }
+        AddVFTN(face, texture, normal, face_index, index);
     }
     this->face_list.push_back(face);
     this->texture_list.push_back(texture);

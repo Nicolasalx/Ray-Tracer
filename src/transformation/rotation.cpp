@@ -7,7 +7,7 @@
 
 #include "Rotation.hpp"
 
-Math::Matrix3D Rt::Rotation::rotationMatrix(const Math::Vector3D &angles) const
+Math::Matrix3D Rt::Rotation::rotationMatrix(const Math::Vector3D &angles)
 {
     double cos_x = std::cos(angles.x());
     double sin_x = std::sin(angles.x());

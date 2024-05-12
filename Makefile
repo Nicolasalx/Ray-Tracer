@@ -18,6 +18,7 @@ INCLUDE_PATH	=	-I./include/ -I./include/lib \
 					-I./include/rendering \
 					-I./include/texture \
 					-I./include/transformation \
+					-I./include/errors \
 
 
 NAME			=	raytracer

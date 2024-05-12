@@ -53,16 +53,8 @@ void Rt::LoadScene::parseColorMul(const libconfig::Setting &setting, Math::Color
 void Rt::LoadScene::adjustCameraSettings(Rt::Camera &camera) const
 {
     if (this->_lowRes) {
-        camera.image_width = 240;
-        camera.image_height = 135;
         camera.max_depth = 5;
-        camera.samples_per_pixel = 100;
-    }
-    if (this->_highRes) {
-        camera.image_width = 1920 / 6;
-        camera.image_height = 1080 / 6;
-        camera.max_depth = 25;
-        camera.samples_per_pixel = 1000;
+        camera.samples_per_pixel = 50;
     }
     if (this->_closeWindow) {
         camera.quit_after_render = true;

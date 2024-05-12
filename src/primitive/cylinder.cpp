@@ -21,17 +21,19 @@ bool Rt::Cylinder::hit(const Rt::Ray &ray, Rt::Interval ray_t, Rt::HitData &rec)
         double root1 = (-b - std::sqrt(discriminant)) / (2.0 * a);
         double root2 = (-b + std::sqrt(discriminant)) / (2.0 * a);
 
-        if (!ray_t.surrounds(root1) && !ray_t.surrounds(root2))
+        if (!ray_t.surrounds(root1) && !ray_t.surrounds(root2)) {
             return false;
+        }
 
         double hit_y1 = ray.getOrigin().y() + root1 * ray.getDirection().y();
         double hit_y2 = ray.getOrigin().y() + root2 * ray.getDirection().y();
 
         if (hit_y1 < center_.y() || hit_y1 > center_.y() + length_) {
-            if (hit_y2 < center_.y() || hit_y2 > center_.y() + length_)
+            if (hit_y2 < center_.y() || hit_y2 > center_.y() + length_) {
                 return false;
-            else
+            } else {
                 root1 = root2;
+            }
         }
         double hit_y = ray.getOrigin().y() + root1 * ray.getDirection().y();
         rec.t = root1;

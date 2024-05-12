@@ -19,11 +19,11 @@ namespace Rt
         std::shared_ptr<Rt::IObject> object_;
         Math::Vector3D angle_;
 
-        Math::Matrix3D rotationMatrix(const Math::Vector3D &angles) const;
+        static Math::Matrix3D rotationMatrix(const Math::Vector3D &angles);
 
     public:
-        Rotation(const std::shared_ptr<Rt::IObject> object, Math::Vector3D angle)
-            : object_(std::move(object)), angle_(Math::Vector3D(
+        Rotation(const std::shared_ptr<Rt::IObject> &object, Math::Vector3D angle)
+            : object_(object), angle_(Math::Vector3D(
                 angle.x() * (std::numbers::pi / 180.0),
                 angle.y() * (std::numbers::pi / 180.0),
                 angle.z() * (std::numbers::pi / 180.0)))

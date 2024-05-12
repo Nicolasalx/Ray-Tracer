@@ -23,7 +23,7 @@ bool Rt::ObjectList::hit(const Rt::Ray &ray, Rt::Interval ray_t, Rt::HitData &re
     bool hit_anything = false;
     double closest_so_far = ray_t.max;
 
-    for (const auto &object : objects) {
+    for (const std::shared_ptr<Rt::IObject> &object : objects) {
         if (object->hit(ray, Rt::Interval(ray_t.min, closest_so_far), temp_rec)) {
             hit_anything = true;
             closest_so_far = temp_rec.t;
