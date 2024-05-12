@@ -20,7 +20,7 @@ namespace Rt
 
     public:
         Translation(std::shared_ptr<Rt::IObject> object, const Math::Vector3D &offset)
-            : object_(object), offset_(offset)
+            : object_(std::move(object)), offset_(offset)
         {
         }
 

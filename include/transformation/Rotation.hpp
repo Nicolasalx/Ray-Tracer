@@ -23,7 +23,7 @@ namespace Rt
 
     public:
         Rotation(std::shared_ptr<Rt::IObject> object, Math::Vector3D angle)
-            : object_(object), angle_(Math::Vector3D(
+            : object_(std::move(object)), angle_(Math::Vector3D(
                 angle.x() * (std::numbers::pi / 180.0),
                 angle.y() * (std::numbers::pi / 180.0),
                 angle.z() * (std::numbers::pi / 180.0)))
