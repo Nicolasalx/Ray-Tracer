@@ -28,8 +28,9 @@ bool Rt::Rotation::hit(const Rt::Ray &ray, Rt::Interval ray_t, Rt::HitData &rec)
     Math::Matrix3D rotation_matrix = rotationMatrix(angle_);
     Rt::Ray rotated_ray = ray.rotate(rotation_matrix);
 
-    if (!object_->hit(rotated_ray, ray_t, rec))
+    if (!object_->hit(rotated_ray, ray_t, rec)) {
         return false;
+    }
 
     rec.pos = rec.pos.rotate(rotation_matrix.transpose());
     rec.normal = rec.normal.rotate(rotation_matrix.transpose()).unit_vector();

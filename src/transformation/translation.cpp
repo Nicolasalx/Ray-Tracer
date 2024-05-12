@@ -11,8 +11,9 @@ bool Rt::Translation::hit(const Rt::Ray &ray, Rt::Interval ray_t, Rt::HitData &r
 {
     Rt::Ray offset_r(ray.getOrigin() - offset_, ray.getDirection());
 
-    if (!object_->hit(offset_r, ray_t, rec))
+    if (!object_->hit(offset_r, ray_t, rec)) {
         return false;
+    }
 
     rec.pos += offset_;
     return true;
