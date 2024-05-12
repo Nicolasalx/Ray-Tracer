@@ -9,6 +9,7 @@
     #define INTERVAL_HPP_
 
     #include <limits>
+    #include <algorithm>
 
 namespace Rt
 {
