@@ -23,15 +23,16 @@ bool Rt::Sphere::hit(const Rt::Ray &ray, Rt::Interval ray_t, Rt::HitData &rec) c
     double root = (h - sqrtd) / a;
     if (!ray_t.surrounds(root)) {
         root = (h + sqrtd) / a;
-        if (!ray_t.surrounds(root))
+        if (!ray_t.surrounds(root)) {
             return false;
+        }
     }
 
     rec.t = root;
     rec.pos = ray.at(rec.t);
     Math::Vector3D outward_normal = (rec.pos - center_) / radius_;
     rec.set_face_normal(ray, outward_normal);
-    this->get_sphere_uv(outward_normal, rec.u, rec.v);
+    Rt::Sphere::get_sphere_uv(outward_normal, rec.u, rec.v);
     rec.material = this->material_;
 
     return true;
