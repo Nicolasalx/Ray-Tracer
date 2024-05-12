@@ -13,9 +13,10 @@
 namespace Rt {
     class ErrorCamera : public std::exception {
         public:
-            ErrorCamera(std::ostream &, const std::string &) noexcept;
+            ErrorCamera(std::ostream &os, const std::string &message) noexcept;
         protected:
         private:
+
     };
 }
 

@@ -13,7 +13,7 @@
 namespace Rt {
     class ErrorObj : public std::exception {
         public:
-            ErrorObj(std::ostream &, const std::string &) noexcept;
+            ErrorObj(std::ostream &os, const std::string &message) noexcept;
         protected:
         private:
     };

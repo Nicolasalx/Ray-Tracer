@@ -13,7 +13,7 @@
 namespace Rt {
     class ErrorPrimitive : public std::exception {
         public:
-            ErrorPrimitive(std::ostream &, const std::string &) noexcept;
+            ErrorPrimitive(std::ostream &os, const std::string &message) noexcept;
         protected:
         private:
     };
