@@ -16,6 +16,7 @@
 using FaceList = std::vector <std::vector<std::vector <double>>>;
 using NormalList = std::vector <std::vector<std::vector <double>>>;
 using TextureList = std::vector <std::vector<std::vector <double>>>;
+using VertexList = std::vector<std::vector<double>>;
 
 class FileObj {
     public:
@@ -29,11 +30,12 @@ class FileObj {
         void VNType(std::istringstream &stream);
         void VTType(std::istringstream &stream);
         void VFType(std::istringstream &stream);
+        void AddVFTN(VertexList &face, VertexList &texture, VertexList &normal, std::string face_index, int index);
         FaceList getFaceList();
     protected:
-        std::vector <std::vector<double>> vertex_texture_list;
-        std::vector <std::vector<double>> vertex_normal_list;
-        std::vector <std::vector<double>> vertex_list;
+        VertexList vertex_texture_list;
+        VertexList vertex_normal_list;
+        VertexList vertex_list;
         FaceList face_list;
         NormalList normal_list;
         TextureList texture_list;
