@@ -19,10 +19,6 @@ namespace Rt
         double reflection_;
 
     public:
-        /* diffusion: the colors that will be diffused
-           reflection: value between 0 and 1 determining the level of replection
-           0 is the higher and 1 is the lower
-        */
         Metal(const Math::Color01 &diffusion, double reflection)
             : diffusion_(diffusion), reflection_(reflection < 1 ? reflection : 1) {}
         ~Metal() override = default;

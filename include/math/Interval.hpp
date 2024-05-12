@@ -22,10 +22,7 @@ namespace Rt
         Interval() : min(std::numeric_limits<double>::infinity()), max(-std::numeric_limits<double>::infinity()) {};
         Interval(double min_, double max_) : min(min_), max(max_) {}
         Interval(const Rt::Interval &a, const Rt::Interval &b)
-        {
-            min = std::min(a.min, b.min);
-            max = std::max(a.max, b.max);
-        }
+            : min(std::min(a.min, b.min)), max(std::max(a.max, b.max)) {}
         ~Interval() = default;
 
         double size() const;
