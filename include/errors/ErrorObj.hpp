@@ -10,11 +10,13 @@
 
 #include <iostream>
 
-class ErrorObj {
-    public:
-        ErrorObj(std::ostream &, const std::string &) throw();
-    protected:
-    private:
+namespace Rt {
+    class ErrorObj : public std::exception {
+        public:
+            ErrorObj(std::ostream &, const std::string &) noexcept;
+        protected:
+        private:
+    };
 };
 
 #endif /* !ERROROBJ_HPP_ */

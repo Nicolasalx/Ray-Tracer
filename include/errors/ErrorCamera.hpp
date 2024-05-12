@@ -10,11 +10,13 @@
 
 #include <iostream>
 
-class ErrorCamera {
-    public:
-        ErrorCamera(std::ostream &, const std::string &) throw();
-    protected:
-    private:
-};
+namespace Rt {
+    class ErrorCamera : public std::exception {
+        public:
+            ErrorCamera(std::ostream &, const std::string &) noexcept;
+        protected:
+        private:
+    };
+}
 
 #endif /* !ERRORCAMERA_HPP_ */

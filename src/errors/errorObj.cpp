@@ -7,7 +7,7 @@
 
 #include "ErrorObj.hpp"
 
-ErrorObj::ErrorObj(std::ostream &os, const std::string &message) throw()
+Rt::ErrorObj::ErrorObj(std::ostream &os, const std::string &message) noexcept
 {
     os << message << std::endl;
 }
