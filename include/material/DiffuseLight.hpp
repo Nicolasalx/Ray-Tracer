@@ -20,7 +20,7 @@ namespace Rt
         std::shared_ptr<Rt::ITexture> texture_;
 
     public:
-        DiffuseLight(std::shared_ptr<Rt::ITexture> texture) : texture_(texture) {}
+        DiffuseLight(std::shared_ptr<Rt::ITexture> texture) : texture_(std::move(texture)) {}
         DiffuseLight(const Math::Color01 &emit) : texture_(std::make_shared<Rt::SolidColor>(emit)) {}
 
         Math::Color01 emitted(double u, double v, const Math::Point3D &p) const override
