@@ -165,7 +165,7 @@ Math::Vector3D Math::Vector3D::reflect(const Math::Vector3D &n) const
     return *this - n * (2 * this->dot(n));
 }
 
-Math::Vector3D Math::Vector3D::refract(const Math::Vector3D &n, double etai_over_etat)
+Math::Vector3D Math::Vector3D::refract(const Math::Vector3D &n, double etai_over_etat) const
 {
     double cos_theta = std::fmin((-(*this)).dot(n), 1.0);
     Math::Vector3D r_out_perp = (*this + n * cos_theta) * etai_over_etat;

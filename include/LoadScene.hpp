@@ -88,8 +88,8 @@ namespace Rt
             // Generic functions to parse
             static std::vector<int> parseVector3D(const libconfig::Setting &vector);
             static std::vector<int> parseVector2D(const libconfig::Setting &vector);
-            std::vector<double> parseColor(const libconfig::Setting &vector);
-            std::vector<double> parseColorMul(const libconfig::Setting &vector);
+            static std::vector<double> parseColor(const libconfig::Setting &vector);
+            static std::vector<double> parseColorMul(const libconfig::Setting &vector);
 
             static Math::Point3D vectorToPoint3D(std::vector<int> list);
             static Math::Point3D vectorTo3D(std::vector<int> list);
