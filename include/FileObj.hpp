@@ -19,8 +19,8 @@ using TextureList = std::vector <std::vector<std::vector <double>>>;
 
 class FileObj {
     public:
-        FileObj(std::string file_path);
-        ~FileObj();
+        FileObj(const std::string &file_path);
+        ~FileObj() = default;
         void printVertexList();
         void printTextureList();
         void printNormalList();

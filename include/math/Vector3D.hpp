@@ -57,7 +57,7 @@ namespace Math
         static Vector3D random_on_hemisphere(const Vector3D &normal);
         bool near_zero() const;
         Vector3D reflect(const Vector3D &n) const;
-        Vector3D refract(const Vector3D &n, double etai_over_etat);
+        Vector3D refract(const Vector3D &n, double etai_over_etat) const;
         Vector3D rotate(const Math::Matrix3D &rotation_matrix) const;
     };
 

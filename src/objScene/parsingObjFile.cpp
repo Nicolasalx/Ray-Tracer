@@ -23,7 +23,7 @@
 #include "MaterialFactory.hpp"
 
 void Rt::Raytracer::createObjModel(Rt::ObjectList &world, const std::string &path,
-    double scale, std::shared_ptr<Rt::IMaterial> material)
+    double scale, const std::shared_ptr<Rt::IMaterial> &material)
 {
     FileObj obj(path);
     FaceList faceList = obj.getFaceList();
@@ -71,7 +71,7 @@ void Rt::Raytracer::createObjModelRandom(Rt::ObjectList &world,
     }
 }
 
-FileObj::FileObj(std::string file_path)
+FileObj::FileObj(const std::string &file_path)
 {
     std::string lines;
     std::ifstream file(file_path);
@@ -97,10 +97,6 @@ FileObj::FileObj(std::string file_path)
     }
 }
 
-FileObj::~FileObj()
-{
-}
-
 void FileObj::printVertexList()
 {
     int index = 1;
@@ -112,7 +108,7 @@ void FileObj::printVertexList()
 void FileObj::printFaceList()
 {
     int index = 1;
-    for (auto face : this->face_list) {
+    for (const auto &face : this->face_list) {
         std::cout << "face " << index++ << " :";
         for (auto vertex : face) {
             std::cout << " {x: " << vertex[0] << " y: " << vertex[1] << " z: " << vertex[2] << "}";
@@ -129,7 +125,7 @@ FaceList FileObj::getFaceList()
 void FileObj::printTextureList()
 {
     int index = 1;
-    for (auto texture : this->texture_list) {
+    for (const auto &texture : this->texture_list) {
         std::cout << "texture " << index++ << " :";
         for (auto vertex : texture) {
             std::cout << " {x: " << vertex[0] << " y: " << vertex[1] << "}";
@@ -141,7 +137,7 @@ void FileObj::printTextureList()
 void FileObj::printNormalList()
 {
     int index = 1;
-    for (auto normal : this->normal_list) {
+    for (const auto &normal : this->normal_list) {
         std::cout << "normal " << index++ << " :";
         for (auto vertex : normal) {
             std::cout << " {x: " << vertex[0] << " y: " << vertex[1] << " z: " << vertex[2] << "}";
