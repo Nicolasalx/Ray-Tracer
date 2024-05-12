@@ -18,23 +18,23 @@ bool Rt::Cone::hit(const Rt::Ray &ray, Rt::Interval ray_t, Rt::HitData &rec) con
 
     double discriminant = b * b - 4 * a * c;
 
-    if (discriminant > 0)
-    {
+    if (discriminant > 0) {
         double root1 = (-b - std::sqrt(discriminant)) / (2.0 * a);
         double root2 = (-b + std::sqrt(discriminant)) / (2.0 * a);
 
-        if (!ray_t.surrounds(root1) && !ray_t.surrounds(root2))
+        if (!ray_t.surrounds(root1) && !ray_t.surrounds(root2)) {
             return false;
+        }
 
         double hit_y1 = ray.getOrigin().y() + root1 * ray.getDirection().y();
         double hit_y2 = ray.getOrigin().y() + root2 * ray.getDirection().y();
 
-        if (hit_y1 < center_.y() || hit_y1 > center_.y() + length_)
-        {
-            if (hit_y2 < center_.y() || hit_y2 > center_.y() + length_)
+        if (hit_y1 < center_.y() || hit_y1 > center_.y() + length_) {
+            if (hit_y2 < center_.y() || hit_y2 > center_.y() + length_) {
                 return false;
-            else
+            } else {
                 root1 = root2;
+            }
         }
 
         double hit_y = ray.getOrigin().y() + root1 * ray.getDirection().y();
@@ -42,8 +42,9 @@ bool Rt::Cone::hit(const Rt::Ray &ray, Rt::Interval ray_t, Rt::HitData &rec) con
         rec.pos = ray.at(rec.t);
         Math::Vector3D outward_normal = Math::Vector3D((rec.pos.x() - center_.x()) / (1 - k * k), k * k, (rec.pos.z() - center_.z()) / (1 - k * k)).unit_vector();
                 
-        if (ray.getDirection().dot(outward_normal) > 0)
+        if (ray.getDirection().dot(outward_normal) > 0) {
             outward_normal = -outward_normal;
+        }
 
         rec.set_face_normal(ray, outward_normal);
         rec.material = material_;
@@ -52,7 +53,7 @@ bool Rt::Cone::hit(const Rt::Ray &ray, Rt::Interval ray_t, Rt::HitData &rec) con
         rec.u = 1 - (phi + std::numbers::pi) / (2 * std::numbers::pi);
         rec.v = (hit_y - center_.y()) / length_;
 
-    return true;
+        return true;
     }
 
     return false;
