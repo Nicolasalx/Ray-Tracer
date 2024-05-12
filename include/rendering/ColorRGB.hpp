@@ -23,7 +23,7 @@ namespace Rt
         std::array<int, 3> color = {0, 0, 0};
 
     public:
-        ColorRGB(const Math::Color01 color01);
+        ColorRGB(Math::Color01 color01);
         ColorRGB(int r, int g, int b);
         ~ColorRGB() = default;
 

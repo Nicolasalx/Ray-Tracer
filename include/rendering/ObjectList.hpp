@@ -22,7 +22,7 @@ namespace Rt
         ObjectList() = default;
         ObjectList(std::shared_ptr<Rt::IObject> object)
         {
-            add(object);
+            add(std::move(object));
         }
 
         void clear();
