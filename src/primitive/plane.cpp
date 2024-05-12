@@ -11,8 +11,9 @@ bool Rt::Plane::is_interior(double a, double b, Rt::HitData &rec) const
 {
     Rt::Interval unit_interval = Rt::Interval(0, 1);
 
-    if (!unit_interval.contains(a) || !unit_interval.contains(b))
+    if (!unit_interval.contains(a) || !unit_interval.contains(b)) {
         return false;
+    }
 
     rec.u = a;
     rec.v = b;
@@ -23,12 +24,14 @@ bool Rt::Plane::hit(const Rt::Ray &ray, Rt::Interval ray_t, Rt::HitData &rec) co
 {
     double denom = normal_.dot(ray.getDirection());
 
-    if (std::fabs(denom) < 1e-8)
+    if (std::fabs(denom) < 1e-8) {
         return false;
+    }
 
     double t = (d_ - normal_.dot(ray.getOrigin())) / denom;
-    if (!ray_t.contains(t))
+    if (!ray_t.contains(t)) {
         return false;
+    }
 
     Math::Point3D intersection = ray.at(t);
     Math::Vector3D planar_hitpt_vector = intersection - pos_;

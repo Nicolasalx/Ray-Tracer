@@ -9,8 +9,9 @@
 
 bool Rt::Triangle::is_interior(double a, double b, Rt::HitData &rec) const
 {
-    if ((a < 0) || (b < 0) || (a + b > 1))
+    if ((a < 0) || (b < 0) || (a + b > 1)) {
         return false;
+    }
     rec.u = a;
     rec.v = b;
     return true;

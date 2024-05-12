@@ -13,11 +13,11 @@ bool Rt::Sphere::hit(const Rt::Ray &ray, Rt::Interval ray_t, Rt::HitData &rec) c
     double a = ray.getDirection().length_squared();
     double h = ray.getDirection().dot(oc);
     double c = oc.length_squared() - radius_ * radius_;
+    double discriminant = h * h - a * c;
 
-    double discriminant = h*h - a*c;
-    if (discriminant < 0)
+    if (discriminant < 0) {
         return false;
-
+    }
     double sqrtd = std::sqrt(discriminant);
 
     double root = (h - sqrtd) / a;
