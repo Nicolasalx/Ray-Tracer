@@ -49,6 +49,7 @@ color: The color of the material in RGB.
 
 ### Lambertian
     - color -> Color01
+    
 ```c++
 { materialName = "lambertian_name"; color = { r = 0; g = 255; b = 0; }; }
 ```
@@ -56,19 +57,19 @@ color: The color of the material in RGB.
 ### Metal
     - color -> Color01
     - reflection -> double [0, 1]
-```
+```c++
 { materialName = "metal_name"; color = { r = 0; g = 255; b = 0; }; reflection = 0.0 }
 ```
 
 ### Dielectric
     - reflection -> [0, 1]
-```
+```c++
 { materialName = "dielectric_name"; reflection = 0.0 }
 ```
 
 ### Diffuse Light
     - emit -> Color01
-```
+```c++
 { materialName = "diffuseLight"; color = { r = 255; g = 255; b = 255; multiplier = 2.0 }; }
 ```
 The multiplier will multiply the value of r, g and b by this number to increase or decrease the color of the light.
@@ -79,7 +80,7 @@ The multiplier will multiply the value of r, g and b by this number to increase 
     - scale -> double
     - color1 -> Color01
     - color2 -> Color01
-```
+```c++
 { materialName = "lambertian_red"; color = { r = 255; g = 0; b = 0; }; texture = { name = "chess"; scale = 5.0; color1 = { r = 255; g = 255; b = 255; }; color2 = { r = 255; g = 255; b = 255; }}}
 ```
 
@@ -87,7 +88,7 @@ To add a texture "Chess" you need to add a category texture with a name of "ches
 
 - Image
     - path -> std::string
-```
+```c++
 { materialName = "lambertian_white"; color = { r = 186; g = 51; b = 186; }; texture = { name = "image"; path = "assets/illi.png"} },
 ```
 
@@ -96,7 +97,7 @@ To add a texture "Image" you need to add a category texture with a name of "imag
 ## Object
 
 A file who contains a list of triangles who will represent a 3d model.
-```
+```c++
 { filepath = "assets/panter.obj"; scale = 1.0; material = "lambertian_RANDOM"; }
 ```
 
