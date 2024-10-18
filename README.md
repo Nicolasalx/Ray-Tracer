@@ -39,7 +39,7 @@
 
 ## Material
 
-```
+```c++
 In the config file a material is represented like that:
 
 materialName: Name of the material we can use in any primitive to assign at this surface.
@@ -49,7 +49,7 @@ color: The color of the material in RGB.
 
 ### Lambertian
     - color -> Color01
-```
+```c++
 { materialName = "lambertian_name"; color = { r = 0; g = 255; b = 0; }; }
 ```
 
